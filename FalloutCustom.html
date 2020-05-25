@@ -30,9 +30,9 @@
         <button type = "action" name = "act_pack">Pack</button>
         <button type = "action" name = "act_all">All</button>
     </div>
-_t
+    _t
 
-    <div class="tab_contents">
+    <div class = "tab_contents">
         <input type = "hidden" class = "tabs" name = "attr_sheetTabs" value = "basic"/>
         <div class = "tab basic">
             <div>Basics Tab</div>
@@ -47,7 +47,7 @@ _t
 
 </div>
 
-<script type="text/worker">
+<script type = "text/worker">
 
     const buttonList = ["basic","perks","pwrarmor","drugs","combat","pack","all"];
     buttonList.forEach(button => {
@@ -56,5 +56,6 @@ _t
             setAttrs({sheetTabs1: button});
         });
     });
+
 
 </script>

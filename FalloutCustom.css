@@ -176,7 +176,8 @@ label {
     grid-gap: 10em;
     padding: 0.5em;
 }
-button{
+
+button {
     border: none;
     padding: 0.25em;
 }
@@ -198,7 +199,7 @@ button[name="act_all"] {
 .sheet-tabs1[value="drugs"] ~ button[name="act_drugs"],
 .sheet-tabs1[value="combat"] ~ button[name="act_combat"],
 .sheet-tabs1[value="pack"] ~ button[name="act_pack"],
-.sheet-tabs1[value="all"] ~ button[name="act_all"]{
+.sheet-tabs1[value="all"] ~ button[name="act_all"] {
     background-color: black;
     color: #3FB315;
 }
