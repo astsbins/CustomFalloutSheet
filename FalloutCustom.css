@@ -1,32 +1,56 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:wght@500&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Sigmar+One&display=swap');
 
-:root{
-    --backgroundColor: rgba(219, 227, 195,0.7);
-}
-input{
-    background-color: rgba(237, 245, 215,0.7);
-    height: 1em;
-}
+/*:root{*/
+/*    --backgroundColor: rgba(219, 227, 195,0.7);*/
+/*}*/
 .charsheet {
-/*height: 100%;*/
+    /*height: 100%;*/
 
 }
-.charsheet > div{
+
+
+input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px dotted black;
+    /*background-color: rgba(213, 237, 190,0.5);*/
+    background-color: transparent;
+    height: 1em;
+    padding: 0.2em;
+    float: none;
+    width: auto;
+    overflow: hidden;
+}
+
+label {
+    align-self: center;
+}
+
+.charsheet {
+    /*height: 100%;*/
+
+}
+
+.charsheet > div {
     /*height: 100%;*/
     /*z-index: 100;*/
 
 }
+
 .sheet-grid {
+    width: 110em;
     /*height: 100%;*/
     /*width: 100%;*/
     /*background-color:#d1e39d ;*/
+    font-size: 10px;
     position: absolute;
-    background-image: url("https://images4.alphacoders.com/969/thumb-1920-96964.jpg");
+    background-image: url("https://raw.githubusercontent.com/astsbins/CustomFalloutSheet/master/fallout%20Background%20texture.jpg");
     z-index: 0;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    font-family:"Roboto Mono", monospace;
+    font-family: "Roboto Mono", monospace;
     padding: 1em;
     grid-gap: 1em;
     color: black;
@@ -35,35 +59,170 @@ input{
 .sheet-grid > div {
     /*background-color: rgba(219, 227, 195,0.7);*/
 
+
 }
+
 .sheet-title {
     padding: 0.5em;
     grid-column: 1/13;
     justify-self: center;
     grid-auto-rows: min-content;
     color: black;
-    background-color: rgba(219, 227, 195,0.7);
+    background-color: rgba(213, 237, 190, 0.8);
 
 }
 
-.sheet-3col{
+.sheet-charinfo {
     background-color: transparent;
     display: grid;
     grid-column: 1/13;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     /*grid-gap: 0.5em;*/
     grid-column-gap: 0.5em;
     grid-row-gap: 0.3em;
     padding: 0.5em;
+
 }
 
-.sheet-3col > div{
-    background-color: rgba(219, 227, 195,0.7);
+.sheet-charinfo > div {
+    background-color: rgba(213, 237, 190, 0.7);
+    padding: 0.1em 1em 0.03em 1em;
+
+}
+
+.sheet-info_input {
+    /*align-items: center;*/
+    /*grid-column: span;*/
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.sheet-info_input > label {
+    grid-column: 1;
+}
+
+.sheet-info_input > input {
+    grid-column: 2/4;
+}
+
+.sheet-5col {
+    grid-column: 1/13;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+/*.sheet-5col >div {*/
+/*    border: black solid 1px;*/
+/*}*/
+.sheet-roller {
+    grid-column: 2/4;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: rgba(213, 237, 190, 0.8);
+}
+
+.sheet-hasbg {
+    background-color: rgba(213, 237, 190, 0.8);
+}
+
+.sheet-rollsection {
+    padding: 1em;
+    font-size: 15px;
+}
+
+.sheet-rollsection > div {
+    justify-self: center;
+    align-self: center;
+
+}
+
+.sheet-main_roll {
+    height: 1.5em;
+    width: 12em;
+    background-color: #5aca32;
+    border: none;
+    padding: 0.5em;
+
+}
+
+.sheet-7col {
+    grid-column: 1/13;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+/*Configure the tab buttons*/
+.sheet-basic,
+.sheet-perks,
+.sheet-pwrarmor,
+.sheet-drugs,
+.sheet-combat,
+.sheet-pack,
+.sheet-all {
+    display: none;
+}
+
+/* show the selected tab */
+.sheet-tabs[value="basic"] ~ div.sheet-basic,
+.sheet-tabs[value="perks"] ~ div.sheet-perks,
+.sheet-tabs[value="pwrarmor"] ~ div.sheet-pwrarmor,
+.sheet-tabs[value="drugs"] ~ div.sheet-drugs,
+.sheet-tabs[value="combat"] ~ div.sheet-combat,
+.sheet-tabs[value="pack"] ~ div.sheet-pack,
+.sheet-tabs[value="all"] ~ div.sheet-tab {
+    display: grid;
+    background-color: rgba(213, 237, 190, 0.8);
+    /*grid-column: 1/13;*/
+    grid-gap: 10em;
     padding: 0.5em;
 }
- .sheet-2col {
-     align-items: center;
-     grid-column: span;
-     display: grid;
-     grid-template-columns: repeat(2, 1fr);
- }
+button{
+    border: none;
+    padding: 0.25em;
+}
+
+button[name="act_basic"],
+button[name="act_perks"],
+button[name="act_pwrarmor"],
+button[name="act_drugs"],
+button[name="act_combat"],
+button[name="act_pack"],
+button[name="act_all"] {
+    background-color: #3FB315;
+
+}
+
+.sheet-tabs1[value="basic"] ~ button[name ="act_basic"],
+.sheet-tabs1[value="perks"] ~ button[name ="act_perks"],
+.sheet-tabs1[value="pwrarmor"] ~ button[name="act_pwrarmor"],
+.sheet-tabs1[value="drugs"] ~ button[name="act_drugs"],
+.sheet-tabs1[value="combat"] ~ button[name="act_combat"],
+.sheet-tabs1[value="pack"] ~ button[name="act_pack"],
+.sheet-tabs1[value="all"] ~ button[name="act_all"]{
+    background-color: black;
+    color: #3FB315;
+}
+
+.sheet-tab_contents {
+    grid-column: 1/13;
+    grid-gap: 10em;
+}
+
+.sheet-tab_buttons {
+    grid-gap: 0.75em;
+}
+
+.sheet-tab_buttons > button {
+
+}
+
+/*.sheet-tab{*/
+/*    display: grid;*/
+/*    grid-template-columns: 1fr;*/
+
+/*}*/
+/*.sheet-tab > div{*/
+/*    grid-column: 1;*/
+/*    background-color: rgba(213, 237, 190, 0.8);*/
+/*    border: #FFFFFF solid 2px;*/
+/*}*/
