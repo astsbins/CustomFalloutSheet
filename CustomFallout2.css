@@ -1,0 +1,187 @@
+.charsheet{
+    --border: 1px solid black;
+}
+
+input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px dotted black;
+    /*background-color: rgba(213, 237, 190,0.5);*/
+    background-color: transparent;
+    height: 1em;
+    padding: 0.2em;
+    float: none;
+    width: auto;
+    overflow: hidden;
+}
+
+.sheet-grid{
+    width: 800px;
+    height: 1400px;
+    display: grid;
+    grid-template-columns: repeat(9,1fr);
+    grid-template-rows: repeat(11,1fr);
+    grid-gap: 0.5em ;
+}
+
+.sheet-grid > div{
+    /*border: var(--border);*/
+    /*padding: 0.3em;*/
+    display: grid;
+}
+
+.sheet-special{
+    grid-template-columns: 1fr;
+    grid-column: 1/2;
+    grid-row: 1/10;
+    border: none;
+    grid-gap: 2em;
+
+
+}
+
+.sheet-special > div{
+    grid-column: 1;
+    border: var(--border);
+    padding: 0.5em;
+}
+
+.sheet-skills{
+    border: var(--border);
+    grid-column: 2/4;
+    grid-row: 1/9;
+    padding: 0.5em;
+}
+
+.sheet-charinfo{
+    border: var(--border);
+    grid-column: 4/10;
+    grid-row: 1/2;
+    padding: 0.5em;
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    /*grid-gap: 0.5em;*/
+    grid-column-gap: 0.5em;
+    grid-row-gap: 0.3em;
+    padding: 0.5em;
+}
+.sheet-main{
+    grid-column: 4/10;
+    grid-row: 2/9;
+    /*border: var(--border);*/
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(12,1fr);
+    grid-gap: 0.5em;
+}
+
+
+.sheet-middle {
+    display: grid;
+    grid-column: 1/4;
+    grid-row: 2/13;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(13,1fr);
+    /*grid-column-gap: 0.5em;*/
+    grid-gap: 0.5em;
+}
+
+.sheet-hdr{
+    display: grid;
+    grid-row: 1/2;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 0.5em;
+    /*border: var(--border);*/
+    /*padding: 0.5em;*/
+}
+
+.sheet-hdr > div{
+    border: var(--border);
+    padding: 0.5em;
+}
+.sheet-rolls{
+    grid-column: 1/4;
+    grid-row: 1/2;
+    border: var(--border);
+
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 0.5em;
+}
+
+.sheet-rolls > div{
+    justify-self: center;
+    align-self: center;
+    padding: 0.5em;
+
+    /*border: var(--border);*/
+}
+
+/*.sheet-main_roller{*/
+/*    size: inherit;*/
+/*}*/
+
+.sheet-tabs{
+    grid-column: 4/6;
+    grid-row: 1/2;
+    border: var(--border);
+    padding: 0.5em;
+}
+
+.sheet-hp{
+    grid-column: 1;
+}
+
+.sheet-def{
+    grid-column: 2;
+}
+
+.sheet-rad{
+    grid-column: 3;
+}
+.sheet-aawt{
+    /*grid-column: 1/2;*/
+    display: grid;
+    grid-row: 2/14;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 0.5em;
+    /*border: var(--border);*/
+}
+
+.sheet-aawt > div{
+    border: var(--border);
+    padding: 0.5em;
+}
+.sheet-attacks{
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+.sheet-armor{
+    grid-row: 2/3;
+}
+
+.sheet-wounds{
+    grid-row: 3/4;
+}
+
+.sheet-trackers{
+    grid-row: 4/5;
+}
+
+.sheet-perks{
+    grid-column: 4/6;
+    grid-row: 2/14;
+    border: var(--border);
+    padding: 0.5em;
+}
+
+.sheet-weapons{
+    border: var(--border);
+    grid-column: 2/10;
+    grid-row: 9/11;
+    padding: 0.5em;
+}
+

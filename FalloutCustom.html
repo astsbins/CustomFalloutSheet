@@ -1,61 +1,74 @@
-<div class = "grid">
-    <div class = "title"><h1>Fallout Stairway to Heaven</h1></div>
-    <div class = "charinfo">
-        <div class = "info_input"><label for = "attr_name">Name </label><input type = "text" id = "attr_name"></div>
-        <div class = "info_input"><label for = "attr_player">Player</label><input type = "text" id = "attr_player"></div>
-        <div class = "info_input"><label for = "attr_hometown">Hometown</label><input type = "text" id = "attr_hometown"></div>
-        <div class = "info_input"><label for = "attr_race">Race </label><input type = "text" id = "attr_race"></div>
-        <div class = "info_input"><label for = "attr_origin">Origin</label><input type = "text" id = "attr_origin"></div>
-        <div class = "info_input"><label for = "attr_background">Background</label><input type = "text" id = "attr_background"></div>
-        <div class = "info_input"><label for = "attr_archetype">Archetype</label><input type = "text" id = "attr_archetype"></div>
-        <div class = "info_input"><label for = "attr_reputation">Reputation</label><input type = "text" id = "attr_reputation"></div>
-        <div class = "info_input"><label for = "attr_karma">Karma</label><input type = "text" id = "attr_karma"></div>
+<div class="grid">
+    <div class="title"><h1>Fallout Stairway to Heaven</h1></div>
+    <div class="charinfo">
+<!--        <div class="info_input"><label>Name </label> <input type="text" placeholder="Name" name="attr_name"></div>-->
+<!--        <div class="info_input"><label>Player</label> <input type="text" placeholder="Player" name="attr_player"></div>-->
+<!--        <div class="info_input"><label>Hometown</label> <input type="text" placeholder="Hometown" name="attr_hometown"></div>-->
+<!--        <div class="info_input"><label>Race </label> <input type="text" placeholder="Race" name="attr_race"></div>-->
+<!--        <div class="info_input"><label>Origin</label> <input type="text" placeholder="Origin" name="attr_origin"></div>-->
+<!--        <div class="info_input"><label>Background</label> <input type="text" placeholder="Background" name="attr_background"></div>-->
+<!--        <div class="info_input"><label>Archetype</label> <input type="text" placeholder="Archetype" name="attr_archetype"></div>-->
+<!--        <div class="info_input"><label>Reputation</label> <input type="text" placeholder="Reputation" name="attr_reputation"></div>-->
+<!--        <div class="info_input"><label>Karma</label> <input type="text" placeholder="Karma" name="attr_karma"></div>-->
+        <div class="info_input"> <input type="text" placeholder="Name" name="attr_name"></div>
+        <div class="info_input"> <input type="text" placeholder="Player" name="attr_player"></div>
+        <div class="info_input"> <input type="text" placeholder="Hometown" name="attr_hometown"></div>
+        <div class="info_input"> <input type="text" placeholder="Race" name="attr_race"></div>
+        <div class="info_input"> <input type="text" placeholder="Origin" name="attr_origin"></div>
+        <div class="info_input"> <input type="text" placeholder="Background" name="attr_background"></div>
+        <div class="info_input"> <input type="text" placeholder="Archetype" name="attr_archetype"></div>
+        <div class="info_input"> <input type="text" placeholder="Reputation" name="attr_reputation"></div>
+        <div class="info_input"> <input type="text" placeholder="Karma" name="attr_karma"></div>
     </div>
-    <div class = "rollsection 5col hasbg">
+    <div class="rollsection 5col hasbg">
         <div></div>
         <div>
-            <button class = "main_roll">Roll Ability</button>
+            <button class="main_roll">Roll Ability</button>
         </div>
-        <div>no attribute</div>
+        <div>no attribute <div class="sc">0</div></div>
         <div>no ability</div>
         <div></div>
     </div>
-    <div class = "7col tab_buttons">
-        <input type = "hidden" class = "tabs1" name = "attr_sheetTabs1" value = "basic"/>
-        <button type = "action" name = "act_basic">Basic</button>
-        <button type = "action" name = "act_perks">Perks</button>
-        <button type = "action" name = "act_pwrarmor">Pwr Armor</button>
-        <button type = "action" name = "act_drugs">Drugs</button>
-        <button type = "action" name = "act_combat">Combat</button>
-        <button type = "action" name = "act_pack">Pack</button>
-        <button type = "action" name = "act_all">All</button>
+    <div class="7col tab_buttons">
+        <input type="hidden" class="tabs1" name="attr_sheetTabs1" value="basic"/>
+        <button class="tab_button" type="action" name="act_basic">Basic</button>
+        <button class="tab_button" type="action" name="act_perks">Perks</button>
+        <button class="tab_button" type="action" name="act_pwrarmor">Pwr Armor</button>
+        <button class="tab_button" type="action" name="act_drugs">Drugs</button>
+        <button class="tab_button" type="action" name="act_combat">Combat</button>
+        <button class="tab_button" type="action" name="act_pack">Pack</button>
+        <button class="tab_button" type="action" name="act_all">All</button>
     </div>
-    _t
 
-    <div class = "tab_contents">
-        <input type = "hidden" class = "tabs" name = "attr_sheetTabs" value = "basic"/>
-        <div class = "tab basic">
+
+    <div class="tab_contents">
+        <input type="hidden" class="tabs" name="attr_sheetTabs" value="basic"/>
+        <div class="tab basic">
             <div>Basics Tab</div>
         </div>
-        <div class = "tab perks"> Perks Tab</div>
-        <div class = "tab pwrarmor">Power Armor tab</div>
-        <div class = "tab drugs">Drugs Tab</div>
-        <div class = "tab combat">Combat Tab</div>
-        <div class = "tab pack">Pack Tab</div>
-        <div class = "tab all">All Tab</div>
+        <div class="tab perks"> Perks Tab</div>
+        <div class="tab pwrarmor">Power Armor tab</div>
+        <div class="tab drugs">Drugs Tab</div>
+        <div class="tab combat">Combat Tab</div>
+        <div class="tab pack">Pack Tab</div>
+        <div class="tab all">All Tab</div>
     </div>
 
 </div>
 
-<script type = "text/worker">
+<script type="text/worker">
 
     const buttonList = ["basic","perks","pwrarmor","drugs","combat","pack","all"];
     buttonList.forEach(button => {
         on(`clicked:${button}`, function() {
-            setAttrs({sheetTabs: button})
-            setAttrs({sheetTabs1: button});
+            setAttrs({
+                sheetTabs: button,
+                sheetTabs1:button
+            });
         });
     });
+
+
 
 
 </script>

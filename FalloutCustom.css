@@ -22,10 +22,12 @@ input {
     float: none;
     width: auto;
     overflow: hidden;
+    font-size: 1.5em;
 }
 
 label {
     align-self: center;
+
 }
 
 .charsheet {
@@ -40,7 +42,7 @@ label {
 }
 
 .sheet-grid {
-    width: 110em;
+    width: 800px;
     /*height: 100%;*/
     /*width: 100%;*/
     /*background-color:#d1e39d ;*/
@@ -74,8 +76,9 @@ label {
 
 .sheet-charinfo {
     background-color: transparent;
-    display: grid;
     grid-column: 1/13;
+    display: grid;
+
     grid-template-columns: repeat(3, 1fr);
     /*grid-gap: 0.5em;*/
     grid-column-gap: 0.5em;
@@ -152,16 +155,18 @@ label {
 }
 
 /*Configure the tab buttons*/
-.sheet-basic,
-.sheet-perks,
-.sheet-pwrarmor,
-.sheet-drugs,
-.sheet-combat,
-.sheet-pack,
-.sheet-all {
+/*.sheet-basic,*/
+/*.sheet-perks,*/
+/*.sheet-pwrarmor,*/
+/*.sheet-drugs,*/
+/*.sheet-combat,*/
+/*.sheet-pack,*/
+/*.sheet-all {*/
+/*    display: none;*/
+/*}*/
+.sheet-tab{
     display: none;
 }
-
 /* show the selected tab */
 .sheet-tabs[value="basic"] ~ div.sheet-basic,
 .sheet-tabs[value="perks"] ~ div.sheet-perks,
@@ -182,15 +187,19 @@ button {
     padding: 0.25em;
 }
 
-button[name="act_basic"],
-button[name="act_perks"],
-button[name="act_pwrarmor"],
-button[name="act_drugs"],
-button[name="act_combat"],
-button[name="act_pack"],
-button[name="act_all"] {
-    background-color: #3FB315;
+/*button[name="act_basic"],*/
+/*button[name="act_perks"],*/
+/*button[name="act_pwrarmor"],*/
+/*button[name="act_drugs"],*/
+/*button[name="act_combat"],*/
+/*button[name="act_pack"],*/
+/*button[name="act_all"] {*/
+/*    background-color: #3FB315;*/
 
+/*}*/
+
+.sheet-tab_button{
+    background-color: #3FB315;
 }
 
 .sheet-tabs1[value="basic"] ~ button[name ="act_basic"],
@@ -217,13 +226,3 @@ button[name="act_all"] {
 
 }
 
-/*.sheet-tab{*/
-/*    display: grid;*/
-/*    grid-template-columns: 1fr;*/
-
-/*}*/
-/*.sheet-tab > div{*/
-/*    grid-column: 1;*/
-/*    background-color: rgba(213, 237, 190, 0.8);*/
-/*    border: #FFFFFF solid 2px;*/
-/*}*/
