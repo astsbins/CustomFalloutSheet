@@ -161,7 +161,7 @@
     attributes.forEach(attribute => {
         on(`clicked:${attribute}`, function() {
             final_label = capitalise(attribute);
-            if (final_label === "None"){
+            if (final_label === "Noattr"){
                 final_label = "No Attribute";
             }
             getAttrs([`${attribute}_value`], value =>{
@@ -177,7 +177,7 @@
     abilities.forEach(ability => {
         on(`clicked:${ability}`, function() {
             final_label = capitalise(ability);
-            if (final_label === "None"){
+            if (final_label === "Noabil"){
                 final_label = "No Ability";
             }
             getAttrs([`${ability}_value`], value => {
