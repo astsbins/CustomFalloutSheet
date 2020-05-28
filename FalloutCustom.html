@@ -26,7 +26,7 @@
             <button class="main_roll">Roll Ability</button>
         </div>
         <div>no attribute <div class="sc">0</div></div>
-        <div>no ability</div>
+        <span>no ability</span>
         <div></div>
     </div>
     <div class="7col tab_buttons">
@@ -43,6 +43,7 @@
 
     <div class="tab_contents">
         <input type="hidden" class="tabs" name="attr_sheetTabs" value="basic"/>
+
         <div class="tab basic">
             <div>Basics Tab</div>
         </div>
@@ -62,6 +63,7 @@
     buttonList.forEach(button => {
         on(`clicked:${button}`, function() {
             setAttrs({
+
                 sheetTabs: button,
                 sheetTabs1:button
             });

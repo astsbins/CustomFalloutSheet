@@ -18,11 +18,12 @@ input {
     /*background-color: rgba(213, 237, 190,0.5);*/
     background-color: transparent;
     height: 1em;
-    padding: 0.2em;
+    padding: 2em;
     float: none;
     width: auto;
     overflow: hidden;
     font-size: 1.5em;
+
 }
 
 label {
