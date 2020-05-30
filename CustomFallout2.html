@@ -1,31 +1,40 @@
+<!--TODO: Consider refactoring attribute names such that the value of attr_atrribute would be the number rather than the name
+    TODO: attr_attribute_name could be the name instead-->
 <div class="grid">
     <div class="special">
-        <div class="special_strength"><button type="action" name="act_strength">strength</button>
-            <input class="special_field" name="attr_strength_value"     placeholder="cur" type="number">
+        <div class="special_strength">
+            <button type="action" name="act_strength">strength</button>
+            <input class="special_field" name="attr_strength_value" placeholder="cur" type="number">
             <input name="attr_strength_value_max" placeholder="max" type="number"></div>
 
-        <div class="special_perception"><button type="action" name="act_perception">perception</button>
-            <input name="attr_perception_value"     placeholder="cur" type="number">
+        <div class="special_perception">
+            <button type="action" name="act_perception">perception</button>
+            <input name="attr_perception_value" placeholder="cur" type="number">
             <input name="attr_perception_value_max" placeholder="max" type="number"></div>
 
-        <div class="special_endurance"><button type="action" name="act_endurance">endurance</button>
-            <input name="attr_endurance_value"     placeholder="cur" type="number">
+        <div class="special_endurance">
+            <button type="action" name="act_endurance">endurance</button>
+            <input name="attr_endurance_value" placeholder="cur" type="number">
             <input name="attr_endurance_value_max" placeholder="max" type="number"></div>
 
-        <div class="special_charisma"><button type="action" name="act_charisma">charisma</button>
-            <input name="attr_charisma_value"     placeholder="cur" type="number">
+        <div class="special_charisma">
+            <button type="action" name="act_charisma">charisma</button>
+            <input name="attr_charisma_value" placeholder="cur" type="number">
             <input name="attr_charisma_value_max" placeholder="max" type="number"></div>
 
-        <div class="special_intelligence"><button type="action" name="act_intelligence">intelligence</button>
-            <input name="attr_intelligence_value"     placeholder="cur" type="number">
+        <div class="special_intelligence">
+            <button type="action" name="act_intelligence">intelligence</button>
+            <input name="attr_intelligence_value" placeholder="cur" type="number">
             <input name="attr_intelligence_value_max" placeholder="max" type="number"></div>
 
-        <div class="special_agility"><button type="action" name="act_agility">agility</button>
-            <input name="attr_agility_value"     placeholder="cur" type="number">
+        <div class="special_agility">
+            <button type="action" name="act_agility">agility</button>
+            <input name="attr_agility_value" placeholder="cur" type="number">
             <input name="attr_agility_value_max" placeholder="max" type="number"></div>
 
-        <div class="special_luck"><button type="action" name="act_luck">luck</button>
-            <input name="attr_luck_value"     placeholder="cur" type="number">
+        <div class="special_luck">
+            <button type="action" name="act_luck">luck</button>
+            <input name="attr_luck_value" placeholder="cur" type="number">
             <input name="attr_luck_value_max" placeholder="max" type="number"></div>
 
 
@@ -78,7 +87,6 @@
         <span class="knowledges_supermutants"><button type="action" name="act_supermutants">supermutants</button><input name="attr_supermutants_value" type="number"></span>
 
 
-
     </div>
 
     <div class="charinfo">
@@ -91,40 +99,40 @@
         <!--        <div class="info_input"><label>Archetype</label> <input type="text" placeholder="Archetype" name="attr_archetype"></div>-->
         <!--        <div class="info_input"><label>Reputation</label> <input type="text" placeholder="Reputation" name="attr_reputation"></div>-->
         <!--        <div class="info_input"><label>Karma</label> <input type="text" placeholder="Karma" name="attr_karma"></div>-->
-        <div class="info_input"> <input type="text" placeholder="Name" name="attr_name"></div>
-        <div class="info_input"> <input type="text" placeholder="Player" name="attr_player"></div>
-        <div class="info_input"> <input type="text" placeholder="Hometown" name="attr_hometown"></div>
-        <div class="info_input"> <input type="text" placeholder="Race" name="attr_race"></div>
-        <div class="info_input"> <input type="text" placeholder="Origin" name="attr_origin"></div>
-        <div class="info_input"> <input type="text" placeholder="Background" name="attr_background"></div>
-        <div class="info_input"> <input type="text" placeholder="Archetype" name="attr_archetype"></div>
-        <div class="info_input"> <input type="text" placeholder="Reputation" name="attr_reputation"></div>
-        <div class="info_input"> <input type="text" placeholder="Karma" name="attr_karma"></div>
+        <div class="info_input"><input type="text" placeholder="Name" name="attr_name"></div>
+        <div class="info_input"><input type="text" placeholder="Player" name="attr_player"></div>
+        <div class="info_input"><input type="text" placeholder="Hometown" name="attr_hometown"></div>
+        <div class="info_input"><input type="text" placeholder="Race" name="attr_race"></div>
+        <div class="info_input"><input type="text" placeholder="Origin" name="attr_origin"></div>
+        <div class="info_input"><input type="text" placeholder="Background" name="attr_background"></div>
+        <div class="info_input"><input type="text" placeholder="Archetype" name="attr_archetype"></div>
+        <div class="info_input"><input type="text" placeholder="Reputation" name="attr_reputation"></div>
+        <div class="info_input"><input type="text" placeholder="Karma" name="attr_karma"></div>
 
     </div>
     <div class="main">
         <div class="rolls">
             <button type="roll" class="main_roller" value="@{selected_attribute} @{selected_attribute_value}  +  @{selected_ability} @{selected_ability_value}">Roll</button>
             <div>
-                <input type="hidden"  name="attr_selected_attribute_value"/>
+                <input type="hidden" name="attr_selected_attribute_value"/>
                 <span name="attr_selected_attribute">no attribute </span>
                 <button type="action" name="act_noattr">None</button>
             </div>
             <div>
-                <input type="hidden"  name="attr_selected_ability_value"/>
+                <input type="hidden" name="attr_selected_ability_value"/>
                 <span name="attr_selected_ability">no ability </span>
                 <button type="action" name="act_noabil">None</button>
             </div>
         </div>
         <div class="tabs"> tabs</div>
         <div class="middle">
-<!--            hp defence rad (hdr)-->
+            <!--            hp defence rad (hdr)-->
             <div class="hdr">
                 <div class="hp"> hp</div>
                 <div class="def">defense</div>
                 <div class="rad">rad</div>
             </div>
-<!--                attack armor wound trackers (aawt)-->
+            <!--                attack armor wound trackers (aawt)-->
             <div class="aawt">
                 <div class="attacks">attacks</div>
                 <div class="armor">armor</div>
@@ -137,11 +145,71 @@
 
 
     <div class="weapons">
-        Weapons
-    </div>
-</div>
+        <h3>Weapons</h3>
+        <div class="weapon_titles">
+            <h5>Weapon</h5>
+            <h5>Attribute</h5>
+            <h5>Skill</h5>
+            <h5>Mod</h5>
+            <h5>Dmg Type</h5>
+            <h5>Damage</h5>
+            <h5>Range</h5>
+            <h5>Rate</h5>
+            <h5>Clip</h5>
+            <h5>Ammo Type</h5>
+            <h5>Amount</h5>
+        </div>
 
-<script  type="text/worker">
+
+
+        <fieldset class="repeating_weapons">
+            <input class="attr_weapon_name" placeholder="Weapon Name" type="text">
+            <select name="attr_weapon_attribute" value="0">
+                <option value="0" selected></option>
+                <option value="@{strength_value}">Strength</option>
+                <option value="@{perception_value}">Perception</option>
+                <option value="@{endurance_value}">Endurance</option>
+                <option value="@{charisma_value}">Charisma</option>
+                <option value="@{intelligence_value}">Intelligence</option>
+                <option value="@{agility_value}">Agility</option>
+                <option value="@{luck_value}">Luck</option>
+            </select>
+            <select name="attr_weapon_skill" value="0">
+                <option value="0" selected></option>
+                <option value="@{small_guns_value}">Small Guns</option>
+                <option value="@{energy_weapons_value}">Energy Weapons</option>
+                <option value="@{big_guns_value}">Big Guns</option>
+                <option value="@{close_combat_value}">Close Combat</option>
+                <option value="@{throwing_value}">Throwing</option>
+                <option value="@{explosives_value}">Explosives</option>
+            </select>
+            <input type="number">
+
+            <select name="attr_damage_type" value="0">
+                <option value="PHY">Physical</option>
+                <option value="ENE">Energy</option>
+                <option value="RAD">Radiation</option>
+                <option value="POI">Poison</option>
+            </select>
+
+            <input type="number">
+            <select name="attr_weapon_range" value="0">
+                <option value="R">R</option>
+                <option value="C">C</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="E">E</option>
+            </select>
+            <input type="number">
+            <input type="number">
+            <input placeholder="Ammo Type" type="text">
+            <input type="number">
+        </fieldset>
+
+
+    </div>
+
+    <script type="text/worker">
 
     const attributes = ["strength","perception","endurance","charisma","intelligence","agility","luck","noattr"];
 
@@ -189,4 +257,5 @@
 
         });
     });
-</script>
+
+    </script>

@@ -46,7 +46,7 @@ for (let attributeModsKey in attribute_mods) {
 // let fullList = attribute_mods.skills.concat(attribute_mods.crafts).concat(attribute_mods.knowledges);
 //
 // console.log(fullList)
-//
+
 // for (let key in abilty_and_skills) {
 //     abilty_and_skills.key.forEach(modifier =>{
 //         on(`clicked:${key}`, () => {
@@ -58,6 +58,17 @@ for (let attributeModsKey in attribute_mods) {
 //                 final_label = "No Ability";
 //             }
 //
+//             getAttrs(["modifier"], value =>{
+//                 let l;
+//                 if (modifier in abilty_and_skills.attributes){
+//                     l = "attribute";
+//                 }else{
+//                     l = "ability";
+//                 }
+//                 setAttrs({
+//
+//                          })
+//             })
 //
 //         });
 //     });
