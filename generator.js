@@ -1,6 +1,6 @@
 const attribute_mods = {
 
-    "skills" : ["sneak", "larceny", "pilot","medicine", "survival", "small_guns", "energy", "big_guns",
+    "skills" : ["sneak", "larceny", "pilot","medicine", "survival", "small_guns", "energy_weapons", "big_guns",
                 "explosives", "close_combat", "throwing", "athletics", "speech",
                 "deception", "barter", "investigate", "search"],
 
@@ -14,7 +14,7 @@ const attribute_mods = {
 const abilty_and_skills = {
     "attributes" : ["strength","perception","endurance","charisma","intelligence","agility","luck","none"],
 
-    "abilities" : ["sneak", "larceny", "pilot","medicine", "survival", "small_guns", "energy", "big guns",
+    "abilities" : ["sneak", "larceny", "pilot","medicine", "survival", "small_guns", "energy_weapons", "big_guns",
                  "explosives", "close_combat", "throwing", "athletics", "speech","armor","weapons", "food", "gear", "machine", "pwr_armor", "robots", "construction",
                  "deception", "barter", "investigate", "search","computers", "science", "local", "history", "creatures", "bos", "enclave", "institute", "ceasars_legion", "lone_star",
                  "supermutants","none"]
@@ -43,6 +43,14 @@ for (let attributeModsKey in attribute_mods) {
     console.log("\n")
 
 }
+
+console.log("\n\n\n\n")
+weapon_stuff = ["weapon_name", "weapon_attribute", "weapon_skill", "weapon_mod", "weapon_damage"]
+let finalString = ""
+weapon_stuff.forEach(thing =>{
+    finalString += `change:repeating_weapons:${thing}  `
+})
+console.log(finalString)
 // let fullList = attribute_mods.skills.concat(attribute_mods.crafts).concat(attribute_mods.knowledges);
 //
 // console.log(fullList)
