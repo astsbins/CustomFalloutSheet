@@ -17,15 +17,10 @@ input {
     box-sizing : border-box;
 }
 
-input[name = "attr_strength_value"]{
-    width: 10em;
-}
-button{
-    .text-transform: captialise;
-}
+
 
 .sheet-grid{
-    width: 900px;
+    width: 850px;
     height: 1400px;
     display: grid;
     grid-template-columns: repeat(9,1fr);
@@ -52,9 +47,17 @@ button{
     border: var(--border);
     padding: 0.5em;
     display: grid;
-    grid-template-columns: 0.8fr;
+    /*grid-template-columns: 0.8fr;*/
     grid-template-rows: repeat(3, 1fr);
     justify-items: center;
+}
+.sheet-special > div > input[type="number"]{
+    min-width: 0;
+    width: 100%;
+    justify-self: center;
+}
+.sheet-special > div > button{
+    width: 80%;
 }
 
 .sheet-skills{
@@ -97,6 +100,7 @@ button{
     grid-template-columns: repeat(5,1fr);
     grid-template-rows: repeat(12,1fr);
     grid-gap: 0.5em;
+
 }
 
 
@@ -113,16 +117,42 @@ button{
 .sheet-hdr{
     display: grid;
     grid-row: 1/2;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3,1fr);
     grid-gap: 0.5em;
     /*border: var(--border);*/
     /*padding: 0.5em;*/
 }
 
 .sheet-hdr > div{
+    grid-template-areas:   "title title"
+                            "cur  max";
+    grid-template-columns: 1fr   1fr;
+    grid-template-rows:    1fr   1fr;
     border: var(--border);
     padding: 0.5em;
 }
+
+.sheet-hdr >div > h4{
+    grid-area: title;
+}
+.sheet-hdr >div > input[type="number"]{
+    min-width: 0;
+    width: 50%;
+    justify-self: center;
+}
+
+/*.sheet-hp{*/
+/*    grid-column: 1;*/
+/*}*/
+
+/*.sheet-def{*/
+/*    grid-column: 2;*/
+/*}*/
+
+/*.sheet-rad{*/
+/*    grid-column: 3;*/
+/*}*/
+
 .sheet-rolls{
     grid-column: 1/4;
     grid-row: 1/2;
@@ -152,39 +182,18 @@ button{
     padding: 0.5em;
 }
 
-.sheet-hp{
-    grid-column: 1;
-}
 
-.sheet-def{
-    grid-column: 2;
-}
 
-.sheet-rad{
-    grid-column: 3;
-}
-.sheet-aawt{
-    /*grid-column: 1/2;*/
-    display: grid;
-    grid-row: 2/14;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, 1fr);
-    grid-gap: 0.5em;
-    /*border: var(--border);*/
-}
-
-.sheet-aawt > div{
-    border: var(--border);
-    padding: 0.5em;
-}
 .sheet-attacks{
     max-height: 100%;
     min-height: 0;
     min-width: 0;
     overflow: auto;
     grid-column: 1/2;
-    grid-row: 1/2;
+    grid-row: 2/6;
     display: grid;
+    border: var(--border);
+    padding: 0.5em;
     /*TODO: Fix this hack, should need to do this to make to stay up top*/
     /*grid-template-rows: repeat(9,1fr);*/
 }
@@ -198,10 +207,26 @@ button{
                           "rol eft eft eft";
     grid-template-columns: 1fr 1fr 5fr 2fr;
     grid-template-rows: repeat(2, 1fr);
-    gap: 0.2em;
+    grid-gap: 0.2em;
 }
 button[name="attr_atk_roll"]{
     grid-area: rol;
+}
+.sheet-awt{
+    /*grid-column: 1/2;*/
+    display: grid;
+    grid-row: 6/14;
+    grid-template-areas: "tabs"
+                         "content";
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 16fr;
+    grid-gap: 0.5em;
+    /*border: var(--border);*/
+}
+
+.sheet-awt > div{
+    border: var(--border);
+    padding: 0.5em;
 }
 .sheet-weapons > .repcontainer[data-groupname="repeating_attacks"]{
     /*display: grid;*/
@@ -218,22 +243,53 @@ button[name="attr_atk_roll"]{
 .sheet-attacks > div > *{
     border: var(--border);
 }
+.sheet-awt_tabs{
+}
 .sheet-armor{
-    /*max-height: 100%;*/
-    /*height: 100%;*/
-    grid-row: 2/3;
+    display: grid;
+    grid-area: content;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr repeat(8,2fr);
+}
+.sheet-armor > *{
+    border: var(--border);
+}
+.sheet-armor_title{
+    grid-row: 1;
 }
 
 .sheet-wounds{
     /*max-height: 100%;*/
     /*height: 100%;*/
-    grid-row: 3/4;
 }
 
 .sheet-trackers{
     /*max-height: 100%;*/
     /*height: 100%;*/
-    grid-row: 4/5;
+}
+.sheet-armor,
+.sheet-wounds,
+.sheet-trackers {
+    display: none;
+}
+
+/* show the selected tab */
+.sheet-awt_tabstoggle[value="armor"] ~ div.sheet-armor,
+.sheet-awt_tabstoggle[value="wounds"] ~ div.sheet-wounds,
+.sheet-awt_tabstoggle[value="trackers"] ~ div.sheet-trackers {
+    display: block;
+}
+.sheet-character,
+.sheet-config,
+.sheet-journal {
+    display: none;
+}
+
+/* show the selected tab */
+.sheet-tabstoggle[value="character"] ~ div.sheet-character,
+.sheet-tabstoggle[value="configuration"] ~ div.sheet-config,
+.sheet-tabstoggle[value="journal"] ~ div.sheet-journal {
+    display: block;
 }
 
 .sheet-perks{
@@ -296,3 +352,11 @@ button[name="attr_atk_roll"]{
     width: 100%;
     height:2em;
 }
+
+
+
+
+
+
+
+

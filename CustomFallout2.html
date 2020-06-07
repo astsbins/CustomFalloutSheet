@@ -85,8 +85,6 @@
         <span class="knowledges_ceasars_legion"><button type="action" name="act_ceasars_legion">ceasars legion</button><input name="attr_ceasars_legion_value" type="number"></span>
         <span class="knowledges_lone_star"><button type="action" name="act_lone_star">lone star</button><input name="attr_lone_star_value" type="number"></span>
         <span class="knowledges_supermutants"><button type="action" name="act_supermutants">supermutants</button><input name="attr_supermutants_value" type="number"></span>
-
-
     </div>
 
     <div class="charinfo">
@@ -128,15 +126,18 @@
         <div class="middle">
             <!--            hp defence rad (hdr)-->
             <div class="hdr">
-                <div class="hp"> hp</div>
-                <div class="def">defense</div>
-                <div class="rad">rad</div>
+                <div class="hp"><h4>HP</h4>
+                    <input type="number" name="attr_hp" placeholder="cur"><input type="number" name="attr_hp_max" placeholder="max"></div>
+                <div class="def"><h4>Defense</h4>
+                    <input type="number" name="attr_def" placeholder="cur"><input type="number" name="attr_def_max" placeholder="max"></div>
+                <div class="rad"><h4>Rad</h4>
+                    <input type="number" name="attr_rad" placeholder="cur"><input type="number" name="attr_rad_max" placeholder="max"></div>
             </div>
-            <!--                attack armor wound trackers (aawt)-->
-            <div class="aawt">
+
+
                 <div class="attacks">
                     <div><h4>Attacks</h4></div>
-                    <span name="attr_atk_weaponn">Weapon</span>
+<!--                    <span name="attr_atk_weaponn">Weapon</span>-->
                     <fieldset class="repeating_attacks">
                         <button name="attr_atk_roll" type="roll" value="attack roll!"></button>
                         <input name="attr_no_d20s" type="number" value="2" placeholder="d20s"/>
@@ -144,12 +145,29 @@
                         <input name="attr_ammo_cnt" type="number" placeholder="ammo"/>
                         <input class="damage_effects" name="attr_damage_effects" placeholder="Damage Effects" type="text">
                     </fieldset>
-
-
                 </div>
-                <div class="armor">armor</div>
-                <div class="wounds">wounds</div>
-                <div class="trackers">trackers</div>
+            <!-- armor wounds trackers (aawt)-->
+            <div class="awt">
+                <div class="awt_tabs">
+                    <button type="action" name="act_armor">Armor</button>
+                    <button type="action" name="act_wounds">Wounds</button>
+                    <button type="action" name="act_trackers">Trackers</button>
+                </div>
+
+
+                <input type='hidden' class='awt_tabstoggle' name='attr_awt_tab'  value='character'/>
+                <div class="armor">
+                    <h3 class="armor_title">Armor</h3>
+                    <div>Eyes</div>
+                    <div>Head</div>
+                    <div>R Arm</div>
+                    <div>Torso</div>
+                    <div>Groin</div>
+                    <div>R Leg</div>
+                    <div>L Leg</div>
+                </div>
+                <div class="wounds"><h3>Wounds</h3></div>
+                <div class="trackers"><h3>Trackers</h3></div>
             </div>
         </div>
         <div class="perks">perks and traits</div>
@@ -269,36 +287,51 @@
 
         });
     });
-
+    const buttonlist = ["armor","wounds","trackers"];
+    buttonlist.forEach(button => {
+        on(`clicked:${button}`, function() {
+            setAttrs({
+                awt_tab: button
+            });
+        });
+    });
     // function genname(repeating_section, id.){
     //     return(`repeating_${name}_-`)
     // }
     //TODO: find better way of doing this, both the too long 'on' query and the repeating weapons things
-    on("change:repeating_weapons:weapon_name  change:repeating_weapons:weapon_attribute  change:repeating_weapons:weapon_skill  change:repeating_weapons:weapon_mod  change:repeating_weapons:weapon_damage change:repeating_weapons:weapon_damage_type ", eventInfo => {
+    on("change:repeating_weapons:atk_row_id " +
+    "change:repeating_weapons:weapon_name " +
+    "change:repeating_weapons:weapon_attribute " +
+    "change:repeating_weapons:weapon_skill " +
+    "change:repeating_weapons:weapon_mod " +
+    "change:repeating_weapons:weapon_damage " +
+    "change:repeating_weapons:weapon_damage_type", eventInfo => {
         let element = eventInfo.sourceAttribute
         let row_id = element.match(/repeating_.*_-([^_]*)/)[1]
         getAttrs([`repeating_weapons_-${row_id}_atk_row_id`,
-                  `repeating_weapons_-${row_id}_weapon_name`,
-                  `repeating_weapons_-${row_id}_weapon_attribute`,
-                  `repeating_weapons_-${row_id}_weapon_skill`,
-                  `repeating_weapons_-${row_id}_weapon_damage_type`,
-                  `repeating_weapons_-${row_id}_weapon_damage`,], info => {
+            `repeating_weapons_-${row_id}_weapon_name`,
+            `repeating_weapons_-${row_id}_weapon_attribute`,
+            `repeating_weapons_-${row_id}_weapon_skill`,
+            `repeating_weapons_-${row_id}_weapon_damage_type`,
+            `repeating_weapons_-${row_id}_weapon_damage`,], info => {
+            function r_wep(name){
+                    return(info[`repeating_weapons_-${row_id}_${name}`])
+            }
 
             let newrowattrs = {};
-            let c_row_id = info[`repeating_weapons_-${row_id}_atk_row_id`];
-            let wha = c_row_id
-            newrowattrs["wha"] = c_row_id
-            if (c_row_id.length == 1) {
-                c_row_id= generateRowID();
-                newrowattrs["repeating_weapons_-" + row_id + "_atk_row_id"] = c_row_id;
+            let atk_row_id = r_wep("atk_row_id");
+            let wha = atk_row_id
+            newrowattrs["wha"] = atk_row_id
+            if (atk_row_id.length == 1) {
+                atk_row_id= generateRowID();
+                newrowattrs["repeating_weapons_-" + row_id + "_atk_row_id"] = atk_row_id;
             }
-            let newrowid = generateRowID();
-            let newatr = `repeating_attacks_${c_row_id}_atk_weapon`
+            let newatr = `repeating_attacks_${atk_row_id}_atk_weapon`
             newrowattrs[newatr] = info[`repeating_weapons_-${row_id}_weapon_name`];
 
-            // newrowattrs["repeating_weapons_" + row_id + "_weapon_attribute"] = "@{luck_value}";
-            newrowattrs["atk_weaponn"] = info[element] + "  " + wha + "  " + c_row_id + "^"
-            newrowattrs[`repeating_attacks_${c_row_id}_atk_roll`] = `rolling ${info[`repeating_weapons_-${row_id}_weapon_name`]} with ${info[`repeating_weapons_-${row_id}_weapon_attribute`]} and ${info[`repeating_weapons_-${row_id}_weapon_skill`]} for   ${info[`repeating_weapons_-${row_id}_weapon_damage`]} ${info[`repeating_weapons_-${row_id}_weapon_damage_type`]} damage!`
+
+            newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `rolling ${r_wep("weapon_name")} with ${r_wep("weapon_attribute")} and ${r_wep("weapon_skill")} for
+            ${r_wep("weapon_damage")} ${r_wep("weapon_damage_type")} damage!`
 
             setAttrs(newrowattrs)
 
@@ -309,6 +342,15 @@
             //              // atk_weapon_id: "hello"
             //
             //          });
+        });
+    });
+
+    const buttonlist2 = ["character","journal","configuration"];
+    buttonlist2.forEach(button => {
+        on(`clicked:${button}`, function() {
+            setAttrs({
+                sheetTab: button
+            });
         });
     });
 

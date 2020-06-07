@@ -45,11 +45,17 @@ for (let attributeModsKey in attribute_mods) {
 }
 
 console.log("\n\n\n\n")
-weapon_stuff = ["weapon_name", "weapon_attribute", "weapon_skill", "weapon_mod", "weapon_damage"]
-let finalString = ""
-weapon_stuff.forEach(thing =>{
-    finalString += `change:repeating_weapons:${thing}  `
+weapon_stuff = ["atk_row_id", "weapon_name", "weapon_attribute", "weapon_skill", "weapon_mod", "weapon_damage", "weapon_damage_type "]
+let finalString = 'on('
+weapon_stuff.forEach(thing => {
+    finalString += `"change:repeating_weapons:${thing} " +\n`
 })
+finalString = `${finalString.substring(0,finalString.length -2)}), eventInfo =>{
+        let element = eventInfo.sourceAttribute
+        let row_id = element.match(/repeating_.*_-([^_]*)/)[1]`
+// weapon_stuff.forEach(thing => {
+//     finalString += `repeating_weapons_-\${row_id}_${thing}\n`
+// })
 console.log(finalString)
 // let fullList = attribute_mods.skills.concat(attribute_mods.crafts).concat(attribute_mods.knowledges);
 //
