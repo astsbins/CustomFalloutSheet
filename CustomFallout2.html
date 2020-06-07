@@ -157,20 +157,93 @@
 
                 <input type='hidden' class='awt_tabstoggle' name='attr_awt_tab'  value='character'/>
                 <div class="armor">
-                    <h3 class="armor_title">Armor</h3>
-                    <div>Eyes</div>
-                    <div>Head</div>
-                    <div>R Arm</div>
-                    <div>Torso</div>
-                    <div>Groin</div>
-                    <div>R Leg</div>
-                    <div>L Leg</div>
+                    <h4 class="armor_title">Armor</h4>
+                    <div class="armor_location" name="attr_armor_eyes">
+                        <div class="location"><strong>Eyes</strong></div>
+                        <div class="armor_name"><input type="text" placeholder="Armor Name"></div>
+                        <div class="phy_dr_eyes">P<input type="number" placeholder="hyical"></div>
+                        <div class="ene_dr_eyes">E<input type="number" placeholder="nergy"></div>
+                        <div class="rad_rd_eyes">R<input type="number" placeholder="adiation"></div>
+                        <div class="poi_dr_eyes">P<input type="number" placeholder="oison"></div>
+                    </div>
+
+                    <div class="armor_location" name="attr_armor_head">
+                        <div class="location"><strong>Head</strong></div>
+                        <div class="armor_name"><input type="text" placeholder="Armor Name"></div>
+                        <div class="phy_dr_head">P<input type="number" placeholder="hyical"></div>
+                        <div class="ene_dr_head">E<input type="number" placeholder="nergy"></div>
+                        <div class="rad_rd_head">R<input type="number" placeholder="adiation"></div>
+                        <div class="poi_dr_head">P<input type="number" placeholder="oison"></div>
+                    </div>
+
+                    <div class="armor_location" name="attr_armor_right_arm">
+                        <div class="location"><strong>Right Arm</strong></div>
+                        <div class="armor_name"><input type="text" placeholder="Armor Name"></div>
+                        <div class="phy_dr_right_arm">P<input type="number" placeholder="hyical"></div>
+                        <div class="ene_dr_right_arm">E<input type="number" placeholder="nergy"></div>
+                        <div class="rad_rd_right_arm">R<input type="number" placeholder="adiation"></div>
+                        <div class="poi_dr_right_arm">P<input type="number" placeholder="oison"></div>
+                    </div>
+
+                    <div class="armor_location" name="attr_armor_left_arm">
+                        <div class="location"><strong>Left Arm</strong></div>
+                        <div class="armor_name"><input type="text" placeholder="Armor Name"></div>
+                        <div class="phy_dr_left_arm">P<input type="number" placeholder="hyical"></div>
+                        <div class="ene_dr_left_arm">E<input type="number" placeholder="nergy"></div>
+                        <div class="rad_rd_left_arm">R<input type="number" placeholder="adiation"></div>
+                        <div class="poi_dr_left_arm">P<input type="number" placeholder="oison"></div>
+                    </div>
+
+                    <div class="armor_location" name="attr_armor_torso">
+                        <div class="location"><strong>Torso</strong></div>
+                        <div class="armor_name"><input type="text" placeholder="Armor Name"></div>
+                        <div class="phy_dr_torso">P<input type="number" placeholder="hyical"></div>
+                        <div class="ene_dr_torso">E<input type="number" placeholder="nergy"></div>
+                        <div class="rad_rd_torso">R<input type="number" placeholder="adiation"></div>
+                        <div class="poi_dr_torso">P<input type="number" placeholder="oison"></div>
+                    </div>
+
+                    <div class="armor_location" name="attr_armor_groin">
+                        <div class="location"><strong>Groin</strong></div>
+                        <div class="armor_name"><input type="text" placeholder="Armor Name"></div>
+                        <div class="phy_dr_groin">P<input type="number" placeholder="hyical"></div>
+                        <div class="ene_dr_groin">E<input type="number" placeholder="nergy"></div>
+                        <div class="rad_rd_groin">R<input type="number" placeholder="adiation"></div>
+                        <div class="poi_dr_groin">P<input type="number" placeholder="oison"></div>
+                    </div>
+
+                    <div class="armor_location" name="attr_armor_left_leg">
+                        <div class="location"><strong>Left Leg</strong></div>
+                        <div class="armor_name"><input type="text" placeholder="Armor Name"></div>
+                        <div class="phy_dr_left_leg">P<input type="number" placeholder="hyical"></div>
+                        <div class="ene_dr_left_leg">E<input type="number" placeholder="nergy"></div>
+                        <div class="rad_rd_left_leg">R<input type="number" placeholder="adiation"></div>
+                        <div class="poi_dr_left_leg">P<input type="number" placeholder="oison"></div>
+                    </div>
+
+                    <div class="armor_location" name="attr_armor_right_leg">
+                        <div class="location"><strong>Right Leg</strong></div>
+                        <div class="armor_name"><input type="text" placeholder="Armor Name"></div>
+                        <div class="phy_dr_right_leg">P<input type="number" placeholder="hyical"></div>
+                        <div class="ene_dr_right_leg">E<input type="number" placeholder="nergy"></div>
+                        <div class="rad_rd_right_leg">R<input type="number" placeholder="adiation"></div>
+                        <div class="poi_dr_right_leg">P<input type="number" placeholder="oison"></div>
+                    </div>
+
                 </div>
                 <div class="wounds"><h3>Wounds</h3></div>
                 <div class="trackers"><h3>Trackers</h3></div>
             </div>
         </div>
-        <div class="perks">perks and traits</div>
+        <div class="perks">
+            <h4>perks and traits</h4>
+            <br>
+            <fieldset class="repeating_perks">
+                <span name="perk_span" class="perk_name"><strong>Perk: </strong><input name="attr_perk_name" type="text" placeholder="Perk Name" ></span>
+                <textarea name="attr_perk_descr" class="perk_descr" name="descr" placeholder="Details about perk here..."  ></textarea>
+            </fieldset>
+
+        </div>
     </div>
 
 

@@ -24,7 +24,11 @@ const abilty_and_skills = {
 const special = ["strength","perception","endurance","charisma","intelligence","agility","luck"];
 
 function capitalise(word) {
-    return(word[0].toUpperCase()+word.substring(1));
+    text = word.toLowerCase()
+        .split(' ')
+        .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+        .join(' ')
+    return(text);
 }
 // let withdiv = `<div class="${modifer}"><button type="action" name="act_${modifer}">${upperWord(modifer)}</button></div>`
 // let nodiv = `<button type="action" name="act_${modifer}">${upperWord(modifer)}</button>`
@@ -87,3 +91,16 @@ console.log(finalString)
 //         });
 //     });
 // }
+let armor_locations = ["eyes", "head", "right_arm", "left_arm", "torso", "groin", "left_leg", "right_leg" ]
+    armor_locations.forEach(loc =>{
+        console.log(    `                    
+                        <div class="armor_location" name="attr_armor_${loc}">
+                            <div class="location"><strong>${capitalise(loc.replace("_"," "))}</strong></div>
+                            <div class="armor_name"><input type="text" placeholder="Armor Name"></div>
+                            <div class="phy_dr_${loc}">P<input type="number" placeholder="hyical"></div>
+                            <div class="ene_dr_${loc}">E<input type="number" placeholder="nergy"></div>
+                            <div class="rad_rd_${loc}">R<input type="number" placeholder="adiation"></div>
+                            <div class="poi_dr_${loc}">P<input type="number" placeholder="oison"></div>
+                        </div>`)
+    });
+
