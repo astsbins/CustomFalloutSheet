@@ -17,9 +17,43 @@ input {
     box-sizing : border-box;
 }
 
-
-
+input[type ="number"]{
+    min: "1";
+}
 .sheet-grid{
+    display: grid;
+    grid-template-rows: 1fr 55fr;
+    grid-gap: 0.5em;
+}
+
+.sheet-main_tabs{
+    grid-row: 1;
+    display: grid;
+    border: var(--border);
+    /*padding: 0.5em;*/
+}
+div.sheet-character,
+div.sheet-companion,
+div.sheet-vehicle,
+div.sheet-settlement{
+    display: none;
+}
+    /*main tabs*/
+.sheet-main_tabstoggle[value="character"] ~ div.sheet-character,
+.sheet-main_tabstoggle[value="companion"] ~ div.sheet-companion,
+.sheet-main_tabstoggle[value="vehicle"] ~   div.sheet-vehicle,
+.sheet-main_tabstoggle[value="settlement"] ~ div.sheet-settlement {
+    display: grid;
+}
+.sheet-main_tabs > div >button{
+    font-size: 1.2em;
+    /*color: red;*/
+    height: 1.3em;
+
+}
+
+.sheet-character{
+    grid-row: 2;
     width: 850px;
     height: 1400px;
     display: grid;
@@ -28,7 +62,7 @@ input {
     grid-gap: 0.5em;
 }
 
-.sheet-grid > div{
+.sheet-content > div{
     /*border: var(--border);*/
     /*padding: 0.3em;*/
     display: grid;
@@ -55,6 +89,7 @@ input {
     min-width: 0;
     width: 100%;
     justify-self: center;
+    min: 0;
 }
 .sheet-special > div > button{
     width: 80%;
@@ -154,12 +189,12 @@ input {
 /*}*/
 
 .sheet-rolls{
-    grid-column: 1/4;
+    grid-column: 1/6;
     grid-row: 1/2;
     border: var(--border);
     padding: 0.5em;
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: 1fr repeat(3,3fr);
     grid-gap: 0.5em;
 }
 
@@ -174,13 +209,6 @@ input {
 /*.sheet-main_roller{*/
 /*    size: inherit;*/
 /*}*/
-
-.sheet-tabs{
-    grid-column: 4/6;
-    grid-row: 1/2;
-    border: var(--border);
-    padding: 0.5em;
-}
 
 
 
@@ -275,7 +303,6 @@ button[name="attr_atk_roll"]{
 
 .sheet-armor_location >div >input[type="number"]{
     min-width: 0;
-    width: 80%;
     height: 1.2em;
 }
 .sheet-armor_location >div >input[type="text"]{
@@ -302,12 +329,6 @@ button[name="attr_atk_roll"]{
 .sheet-awt_tabstoggle[value="trackers"] ~ div.sheet-trackers {
     display: grid;
 }
-.sheet-character,
-.sheet-config,
-.sheet-journal {
-    display: none;
-}
-
 
 
 .sheet-perks{
@@ -319,6 +340,10 @@ button[name="attr_atk_roll"]{
 .sheet-perk_descr  {
     height: 90%;
     width: 95%;
+}
+.sheet-perks > .repcontainer[data-groupname="repeating_perks"]{
+    display: grid;
+    grid-gap: 0.5em;
 }
 .sheet-perks > .repcontainer[data-groupname="repeating_perks"] >.repitem{
     display: grid;
