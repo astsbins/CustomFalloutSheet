@@ -34,7 +34,7 @@ function capitalise(word) {
 // let nodiv = `<button type="action" name="act_${modifer}">${upperWord(modifer)}</button>`
 
 special.forEach(attr=>{
-    console.log(`<div class="special_${attr}"><button type="action" name="act_${attr}">${attr.replace("_"," ")}</button>
+    console.log(`<div class="special_${attr}"><button type="action" name="act_${attr}">${capitalise(attr.replace("_"," "))}</button>
      <input name="attr_${attr}_value"     placeholder="cur" type="number">
      <input name="attr_${attr}_value_max" placeholder="max" type="number"></div>\n`);
 });
@@ -42,7 +42,7 @@ special.forEach(attr=>{
 for (let attributeModsKey in attribute_mods) {
     console.log(`<div><h4>${capitalise(attributeModsKey)}</h4></div>`);
     attribute_mods[attributeModsKey].forEach(modifier =>{
-        console.log(`<span class="${attributeModsKey}_${modifier}"><button type="action" name="act_${modifier}">${modifier.replace("_"," ")}</button><input name="attr_${modifier}_value" type="number"></span>`);
+        console.log(`<span class="${attributeModsKey}_${modifier}"><button type="action" name="act_${modifier}">${capitalise(modifier.replace("_"," "))}</button><input name="attr_${modifier}_value" type="number"></span>`);
     })
     console.log("\n")
 

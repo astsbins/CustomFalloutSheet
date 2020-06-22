@@ -1,5 +1,11 @@
 .charsheet{
-    --border: 1px solid black;
+    --border: none;
+    --tile_colour: rgba(213, 237, 190, 0.8);
+    --background_image: url("https://raw.githubusercontent.com/astsbins/CustomFalloutSheet/master/fallout%20Background%20texture.jpg");
+    --button_colour: #b0e178;
+    --buton_hover_colour: #002700;
+    --unselected_tab_colour: #82bd75;
+    color: black;
 }
 
 input {
@@ -17,59 +23,52 @@ input {
     box-sizing : border-box;
 }
 
-input[type ="number"]{
-    min: "1";
-}
-.sheet-grid{
-    display: grid;
-    grid-template-rows: 1fr 55fr;
-    grid-gap: 0.5em;
+
+/*.sheet-grid{*/
+/*    display: grid;*/
+/*    grid-template-rows: 1fr 55fr;*/
+/*    grid-gap: 0.5em;*/
+/*    width: 850px;*/
+/*    height: 1400px;*/
+/*}*/
+button{
+    background-color: var(--button_colour);
+    border: 1px solid #002700;
 }
 
-.sheet-main_tabs{
-    grid-row: 1;
-    display: grid;
-    border: var(--border);
-    /*padding: 0.5em;*/
-}
-div.sheet-character,
-div.sheet-companion,
-div.sheet-vehicle,
-div.sheet-settlement{
-    display: none;
-}
-    /*main tabs*/
-.sheet-main_tabstoggle[value="character"] ~ div.sheet-character,
-.sheet-main_tabstoggle[value="companion"] ~ div.sheet-companion,
-.sheet-main_tabstoggle[value="vehicle"] ~   div.sheet-vehicle,
-.sheet-main_tabstoggle[value="settlement"] ~ div.sheet-settlement {
-    display: grid;
-}
-.sheet-main_tabs > div >button{
-    font-size: 1.2em;
-    /*color: red;*/
-    height: 1.3em;
-
+button:hover{
+    background-color: var(--buton_hover_colour);
+    border: 1px solid var(--buton_hover_colour);
+    color: var(--tile_colour) ;
+    /*transition-duration: 0.3s;*/
 }
 
-.sheet-character{
-    grid-row: 2;
-    width: 850px;
+button:active{
+    border: 1px solid #3FB315;
+}
+.sheet-content{
+    width: 900px;
     height: 1400px;
+    grid-row: 2;
     display: grid;
     grid-template-columns: repeat(9,1fr);
     grid-template-rows: repeat(11,1fr);
     grid-gap: 0.5em;
+    background-image: var(--background_image);
+    padding: 1em;
 }
+
 
 .sheet-content > div{
     /*border: var(--border);*/
     /*padding: 0.3em;*/
-    display: grid;
+    /*display: grid;*/
 }
 
 .sheet-special{
+    display: grid;
     grid-template-columns: 1fr;
+    /*grid-template-rows: repeat(7,1fr);*/
     grid-column: 1/2;
     grid-row: 1/9;
     border: none;
@@ -79,6 +78,7 @@ div.sheet-settlement{
 .sheet-special > div{
     grid-column: 1;
     border: var(--border);
+    background-color: var(--tile_colour);
     padding: 0.5em;
     display: grid;
     /*grid-template-columns: 0.8fr;*/
@@ -89,7 +89,6 @@ div.sheet-settlement{
     min-width: 0;
     width: 100%;
     justify-self: center;
-    min: 0;
 }
 .sheet-special > div > button{
     width: 80%;
@@ -97,6 +96,7 @@ div.sheet-settlement{
 
 .sheet-skills{
     border: var(--border);
+    background-color: var(--tile_colour);
     grid-column: 2/4;
     grid-row: 1/9;
     padding: 0.5em;
@@ -111,10 +111,14 @@ div.sheet-settlement{
 
 .sheet-skills > span > button{
     flex: 2;
+    /*justify-content: left;*/
+    /*justify-self: left;*/
+    /*justify-items: left;*/
 }
 
 .sheet-charinfo{
     border: var(--border);
+    background-color: var(--tile_colour);
     grid-column: 4/10;
     grid-row: 1/2;
     padding: 0.5em;
@@ -126,72 +130,32 @@ div.sheet-settlement{
     grid-row-gap: 0.3em;
 }
 
+.sheet-info_input > input[type="number"]{
+    width: 40%
+}
 
 .sheet-main{
     grid-column: 4/10;
     grid-row: 2/9;
     /*border: var(--border);*/
     display: grid;
-    grid-template-columns: repeat(5,1fr);
-    grid-template-rows: repeat(12,1fr);
-    grid-gap: 0.5em;
-
-}
-
-
-.sheet-middle {
-    display: grid;
-    grid-column: 1/4;
-    grid-row: 2/13;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(13,1fr);
-    /*grid-column-gap: 0.5em;*/
+    grid-template-areas: "rll"
+                         "tab"
+                         "cnt";
+    /*grid-template-columns: repeat(5,1fr);*/
+    grid-template-rows: 0.6fr 0.1fr 12fr;
     grid-gap: 0.5em;
 }
-
-.sheet-hdr{
-    display: grid;
-    grid-row: 1/2;
-    grid-template-columns: repeat(3,1fr);
-    grid-gap: 0.5em;
-    /*border: var(--border);*/
-    /*padding: 0.5em;*/
+.sheet-main{
+    min-height: 0;
+    max-height: 100%;
 }
-
-.sheet-hdr > div{
-    grid-template-areas:   "title title"
-                            "cur  max";
-    grid-template-columns: 1fr   1fr;
-    grid-template-rows:    1fr   1fr;
-    border: var(--border);
-    padding: 0.5em;
-}
-
-.sheet-hdr >div > h4{
-    grid-area: title;
-}
-.sheet-hdr >div > input[type="number"]{
-    min-width: 0;
-    width: 50%;
-    justify-self: center;
-}
-
-/*.sheet-hp{*/
-/*    grid-column: 1;*/
-/*}*/
-
-/*.sheet-def{*/
-/*    grid-column: 2;*/
-/*}*/
-
-/*.sheet-rad{*/
-/*    grid-column: 3;*/
-/*}*/
-
 .sheet-rolls{
-    grid-column: 1/6;
-    grid-row: 1/2;
+    /*grid-column: 1/6;*/
+    /*grid-row: 1/2;*/
+    grid-area: rll;
     border: var(--border);
+    background-color: var(--tile_colour);
     padding: 0.5em;
     display: grid;
     grid-template-columns: 1fr repeat(3,3fr);
@@ -205,60 +169,119 @@ div.sheet-settlement{
 
     /*border: var(--border);*/
 }
+.sheet-main_tabs{
+    grid-area: tab;
+    display: grid;
+    border: var(--border);
+    /*background-color: var(--tile_colour);*/
+    /*padding: 0.5em;*/
+}
+.sheet-main_tabstoggle[value="vehicle"] ~   div.sheet-vehicle{
+    display: block;
+}
+.sheet-main_tabs > div >button{
+    font-size: 1em;
+    /*color: red;*/
 
-/*.sheet-main_roller{*/
-/*    size: inherit;*/
+
+}
+
+.sheet-character,
+.sheet-companion,
+.sheet-vehicle,
+.sheet-settlement{
+    display: none;
+}
+/*main tabs*/
+.sheet-main_tabstoggle[value="character"] ~ div.sheet-character,
+.sheet-main_tabstoggle[value="companion"] ~ div.sheet-companion,
+.sheet-main_tabstoggle[value="settlement"] ~ div.sheet-settlement {
+    display: grid;
+}
+
+
+
+
+/*.sheet-awt > div{*/
+/*    border: var(--border);*/
+/*    background-color: var(--tile_colour);*/
+/*    padding: 0.5em;*/
+/*}*/
+.sheet-character{
+    min-height: 0;
+    min-width: 0;
+    /*display: grid;*/
+    grid-area: cnt;
+    /*grid-column: 1/6;*/
+    grid-template-areas: "hdr hdr hdr prk prk"
+                        "atk atk atk prk prk"
+                        "awt awt awt prk prk";
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: 1.5fr 6fr 10fr;
+    grid-gap: 0.3em;
+    border: var(--border);
+}
+.sheet-character > div{
+    min-height: 0;
+}
+/*.sheet-middle {*/
+/*    !*min-height: 0;*!*/
+/*    min-width: 0;*/
+/*    display: grid;*/
+/*    grid-column: 1/4;*/
+/*    grid-row: 2/13;*/
+/*    grid-template-columns: 1fr;*/
+/*    grid-template-rows: repeat(13,1fr);*/
+/*    !*grid-column-gap: 0.5em;*!*/
+/*    grid-gap: 0.5em;*/
 /*}*/
 
+.sheet-hdr{
+    grid-area: hdr;
+    min-width: 0;
+    display: grid;
+    grid-row: 1/2;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 0.5em;
+    /*border: var(--border);*/
+    /*padding: 0.5em;*/
+}
+
+.sheet-hdr > div{
+    grid-template-areas:   "title title"
+    "cur  max";
+    grid-template-columns: 1fr   1fr;
+    grid-template-rows:    1fr   1fr;
+    border: var(--border);
+    background-color: var(--tile_colour);
+    padding: 0.5em;
+}
+
+.sheet-hdr >div > h4{
+    grid-area: title;
+}
+.sheet-hdr >div > input[type="number"]{
+    min-width: 0;
+    width: 50%;
+    justify-self: center;
+}
 
 
 .sheet-attacks{
-    max-height: 100%;
+    /*max-height: 100%;*/
+    grid-area: atk;
     min-height: 0;
     min-width: 0;
     overflow: auto;
-    grid-column: 1/2;
-    grid-row: 2/6;
-    display: grid;
+    /*grid-column: 1/2;*/
+    /*grid-row: 2/6;*/
+    display: flex;
+    flex-direction: column;
     border: var(--border);
+    background-color: var(--tile_colour);
     padding: 0.5em;
     /*TODO: Fix this hack, should need to do this to make to stay up top*/
     /*grid-template-rows: repeat(9,1fr);*/
-}
-.sheet-attacks > h4{
-
-}
-.sheet-attacks >.repcontainer[data-groupname="repeating_attacks"] >.repitem{
-
-    display: grid;
-    grid-template-areas:  "rol rls wep amm"
-                          "rol eft eft eft";
-    grid-template-columns: 1fr 1fr 5fr 2fr;
-    grid-template-rows: repeat(2, 1fr);
-    grid-gap: 0.2em;
-}
-button[name="attr_atk_roll"]{
-    grid-area: rol;
-}
-.sheet-awt{
-    /*grid-column: 1/2;*/
-    display: grid;
-    grid-row: 6/14;
-    grid-template-areas: "tabs"
-                         "content";
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 16fr;
-    grid-gap: 0.5em;
-    /*border: var(--border);*/
-}
-
-.sheet-awt > div{
-    border: var(--border);
-    padding: 0.5em;
-}
-.sheet-weapons > .repcontainer[data-groupname="repeating_attacks"]{
-    /*display: grid;*/
-    grid-gap: 0.4em;
 }
 .sheet-attacks > div > input[type="number"]{
     width: 100%;
@@ -270,18 +293,92 @@ button[name="attr_atk_roll"]{
 }
 .sheet-attacks > div > *{
     border: var(--border);
+    /*background-color: var(--tile_colour);*/
 }
-.sheet-awt_tabs{
-}
-.sheet-armor{
+
+.sheet-attacks >.repcontainer[data-groupname="repeating_attacks"]{
+    min-width: 0;
     display: grid;
+    grid-gap: 0.4em;
+}
+.sheet-attacks >.repcontainer[data-groupname="repeating_attacks"] >.repitem{
+    min-width: 0;
+    height: min-content;
+    display: grid;
+    grid-template-areas:  "rol rls wep amm"
+                          "rol eft eft eft";
+    grid-template-columns: 1fr 1fr 5fr 2fr;
+    grid-template-rows: repeat(2, 1fr);
+
+}
+button[name="attr_atk_roll"]{
+    grid-area: rol;
+}
+
+.sheet-armor_tab,
+.sheet-wounds,
+.sheet-trackers {
+    display: none;
+}
+
+/* show the selected tab */
+.sheet-awt_tabstoggle[value="armor_tab"] ~ div.sheet-armor_tab,
+.sheet-awt_tabstoggle[value="wounds"] ~ div.sheet-wounds,
+.sheet-awt_tabstoggle[value="trackers"] ~ div.sheet-trackers {
+    display: grid;
+    min-width: 0;
+}
+
+button[name="act_armor_tab"],
+button[name="act_wounds"],
+button[name="act_trackers"]{
+    background-color: var(--unselected_tab_colour);
+}
+
+.sheet-awt_tabstoggle[value="armor_tab"] ~ div button[name="act_armor_tab"],
+.sheet-awt_tabstoggle[value="wounds"] ~ div button[name="act_wounds"],
+.sheet-awt_tabstoggle[value="trackers"] ~ div button[name="act_trackers"] {
+    background-color: var(--tile_colour);
+    border: 1px solid var(--tile_colour);
+}
+
+
+.sheet-awt{
+    /*grid-column: 1/2;*/
+    grid-area: awt;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    /*grid-row: 6/14;*/
+    grid-template-areas: "tabs"
+    "content";
+
+    /*border: var(--border);*/
+    /*border: var(--border);*/
+}
+
+.sheet-awt_tabs > button{
+    background-color: var(--tile_colour);
+    border: 1px solid var(--tile_colour);
+
+}
+.sheet-awt_tabs >button:hover{
+    color: black;
+}
+.sheet-armor_tab{
+    /*display: grid;*/
     grid-area: content;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr repeat(7,2fr);
+    background-color: var(--tile_colour);
     min-height: 0;
+    height: 100%;
+    padding: 0.5em;
+    grid-gap: 0.2em;
 }
-.sheet-armor > div{
+.sheet-armor_tab > div{
     border: var(--border);
+    background-color: var(--tile_colour);
     padding: 0.2em;
 }
 
@@ -309,43 +406,43 @@ button[name="attr_atk_roll"]{
     height: 1.2em;
 }
 .sheet-wounds{
+    padding: 0.5em;
+    background-color: var(--tile_colour);
     /*max-height: 100%;*/
-    /*height: 100%;*/
+    height: 100%;
 }
 
 .sheet-trackers{
+    padding: 0.5em;
+    background-color: var(--tile_colour);
     /*max-height: 100%;*/
-    /*height: 100%;*/
-}
-.sheet-armor,
-.sheet-wounds,
-.sheet-trackers {
-    display: none;
+    height: 100%;
 }
 
-/* show the selected tab */
-.sheet-awt_tabstoggle[value="armor"] ~ div.sheet-armor,
-.sheet-awt_tabstoggle[value="wounds"] ~ div.sheet-wounds,
-.sheet-awt_tabstoggle[value="trackers"] ~ div.sheet-trackers {
-    display: grid;
-}
 
 
 .sheet-perks{
-    grid-column: 4/6;
-    grid-row: 2/14;
+    grid-area: prk;
+    /*grid-column: 4/6;*/
+    /*grid-row: 2/14;*/
     border: var(--border);
+    background-color: var(--tile_colour);
     padding: 0.5em;
+    min-width: 0;
+    max-width: 100%;
 }
 .sheet-perk_descr  {
+    min-width: 0;
     height: 90%;
     width: 95%;
 }
 .sheet-perks > .repcontainer[data-groupname="repeating_perks"]{
+    min-width: 0;
     display: grid;
     grid-gap: 0.5em;
 }
 .sheet-perks > .repcontainer[data-groupname="repeating_perks"] >.repitem{
+    min-width: 0;
     display: grid;
     grid-template-rows: 1fr 3fr;
     grid-gap: 0.3em;
@@ -359,16 +456,18 @@ button[name="attr_atk_roll"]{
 /*}*/
 .sheet-weapons{
     border: var(--border);
+    background-color: var(--tile_colour);
     grid-column: 1/10;
-    grid-row: 9/11;
+    grid-row: 9/12;
     padding: 0.5em;
-    /*display:flex;*/
-    /*flex-direction: column;*/
-    display: grid;
-    grid-gap: 0.3em;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /*display: grid;*/
+    /*grid-gap: 0.3em;*/
+    /*grid-template-columns: 1fr;*/
     /*TODO: fix this hack*/
-    grid-template-rows: repeat(9,1fr);
+    /*grid-template-rows: repeat(9,1fr);*/
 }
 
 .sheet-weapons > .sheet-weapon_titles,
@@ -376,19 +475,23 @@ button[name="attr_atk_roll"]{
     /*display: flex;*/
     /*flex-direction: row;*/
     /*grid-column: 1/2;*/
+    /*height: min-content;*/
+    height: min-content;
     width: 100%;
     display: grid;
-    grid-gap: 0.3em;
-    grid-template-areas:    "wep atr skl mod dmt dmg rng rte clp amt";
-    grid-template-columns:   3fr 2fr 2fr 1fr 2fr 1fr 1fr 1fr 1fr 2fr;
+    grid-gap: 0.4em;
+    grid-template-areas:    "wep atr skl   mod dmt   dmg rng rte clp amt";
+    grid-template-columns:   3fr 2fr 2.5fr 1fr 1.5fr 1fr 1fr 1fr 1fr 1.5fr;
 }
 
+
 .sheet-weapons > .repcontainer[data-groupname="repeating_weapons"]{
-    /*display: grid;*/
+    display: grid;
     grid-gap: 0.4em;
 }
 .sheet-weapons > div > *{
     border: var(--border);
+    /*background-color: var(--tile_colour);*/
     /*padding: 0.2em;*/
     max-width: 100%;
     min-width: 0;
@@ -399,6 +502,7 @@ button[name="attr_atk_roll"]{
 }
 .repitem > *{
     border: var(--border);
+    background-color: var(--tile_colour);
     max-width: 100%;
     min-width: 0;
 }
@@ -408,12 +512,22 @@ button[name="attr_atk_roll"]{
 .repitem> select{
     min-width: 0;
     width: 100%;
-    height:2em;
+    height: 100%;
+    /*height:2em;*/
 }
 
+.sheet-vehicle {
+    width: 100%;
+}
 
+.sheet-vehicle > *{
+    width: 100%;
+    border: var(--border);
+    min-height: 0;
+}
 
-
-
+.repcontainer[data-groupname="repeating_vehicles"] > .repcontainer{
+    padding: 0.5em;
+}
 
 
