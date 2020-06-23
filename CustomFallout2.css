@@ -56,24 +56,31 @@ button:hover{
 button:active{
     border: 1px solid #3FB315;
 }
+.sheet-main_title{
+    /*background-image: var(--background_image);*/
+    background-color: var(--tile_colour);
+    display: flex;
+    justify-self: center;
+    justify-items: center;
+    justify-content: center;
+    width: 926px;
+}
 .sheet-content{
-    width: 900px;
-    height: 1600px;
     grid-row: 2;
     display: grid;
     grid-template-columns: repeat(9,1fr);
     grid-template-rows: repeat(11,1fr);
     grid-gap: 0.5em;
     background-image: var(--background_image);
+    width: 900px;
+    height: 1400px;
+    max-height: 1400px;
     padding: 1em;
+    min-height: 0;
 }
 
 
-.sheet-content > div{
-    /*border: var(--border);*/
-    /*padding: 0.3em;*/
-    /*display: grid;*/
-}
+
 
 .sheet-special{
     display: grid;
@@ -169,7 +176,7 @@ button:active{
     background-color: var(--tile_colour);
     padding: 0.5em;
     display: grid;
-    grid-template-columns: 1fr repeat(3,3fr);
+    grid-template-columns: 1fr repeat(3,3fr) 2fr;
     grid-gap: 0.5em;
 }
 
@@ -228,7 +235,7 @@ button:active{
                         "atk atk atk prk prk"
                         "awt awt awt prk prk";
     grid-template-columns: repeat(5,1fr);
-    grid-template-rows: 1.5fr 6fr 10fr;
+    grid-template-rows: 1.4fr 6fr 10fr;
     grid-gap: 0.3em;
     border: var(--border);
 }
@@ -475,6 +482,7 @@ button[name="attr_atk_roll"]{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    min-height: 0;
     /*display: grid;*/
     /*grid-gap: 0.3em;*/
     /*grid-template-columns: 1fr;*/
@@ -548,4 +556,11 @@ button[name="attr_atk_roll"]{
 .sheet-rolltemplate-default > table> caption {
     font-weight: bold;
     background-color: #206a20;
+}
+
+.sheet-rolltemplate-default > table{
+    text-align: left;
+}
+.sheet-rolltemplate-default > table >td{
+    text-align: left;
 }

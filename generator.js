@@ -36,7 +36,7 @@ function capitalise(word) {
 special.forEach(attr=>{
     console.log(`<div class="special_${attr}"><button type="action" name="act_${attr}">${capitalise(attr.replace("_"," "))}</button>
      <input name="attr_${attr}_value"     placeholder="cur" type="number">
-     <input name="attr_${attr}_value_max" placeholder="max" type="number"></div>\n`);
+     <input name="attr_${attr}_value_max" placeholder="max" type="number" value=10></div>\n`);
 });
 
 for (let attributeModsKey in attribute_mods) {

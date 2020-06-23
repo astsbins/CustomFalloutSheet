@@ -1,36 +1,54 @@
 <!--TODO: Consider refactoring attribute names such that the value of attr_atrribute would be the number rather than the name
     TODO: attr_attribute_name could be the name instead-->
 
-<img src="https://raw.githubusercontent.com/astsbins/CustomFalloutSheet/master/sheet_title.png" alt="">
+
+
+<div class="main_title">
+    <img src="https://github.com/astsbins/CustomFalloutSheet/blob/master/sheet_title.png?raw=true" alt="">
+</div>
 <div class="content">
     <div class="special">
-        <div class="special_strength"><button type="action" name="act_strength">Strength</button>
+        <div class="special_strength">
+            <button type="action" name="act_strength">Strength</button>
             <input name="attr_strength_value"     placeholder="cur" type="number">
-            <input name="attr_strength_value_max" placeholder="max" type="number"></div>
+            <input name="attr_strength_value_max" placeholder="max" type="number" value=10>
+        </div>
 
-        <div class="special_perception"><button type="action" name="act_perception">Perception</button>
+        <div class="special_perception">
+            <button type="action" name="act_perception">Perception</button>
             <input name="attr_perception_value"     placeholder="cur" type="number">
-            <input name="attr_perception_value_max" placeholder="max" type="number"></div>
+            <input name="attr_perception_value_max" placeholder="max" type="number" value=10>
+        </div>
 
-        <div class="special_endurance"><button type="action" name="act_endurance">Endurance</button>
+        <div class="special_endurance">
+            <button type="action" name="act_endurance">Endurance</button>
             <input name="attr_endurance_value"     placeholder="cur" type="number">
-            <input name="attr_endurance_value_max" placeholder="max" type="number"></div>
+            <input name="attr_endurance_value_max" placeholder="max" type="number" value=10>
+        </div>
 
-        <div class="special_charisma"><button type="action" name="act_charisma">Charisma</button>
+        <div class="special_charisma">
+            <button type="action" name="act_charisma">Charisma</button>
             <input name="attr_charisma_value"     placeholder="cur" type="number">
-            <input name="attr_charisma_value_max" placeholder="max" type="number"></div>
+            <input name="attr_charisma_value_max" placeholder="max" type="number" value=10>
+        </div>
 
-        <div class="special_intelligence"><button type="action" name="act_intelligence">Intelligence</button>
+        <div class="special_intelligence">
+            <button type="action" name="act_intelligence">Intelligence</button>
             <input name="attr_intelligence_value"     placeholder="cur" type="number">
-            <input name="attr_intelligence_value_max" placeholder="max" type="number"></div>
+            <input name="attr_intelligence_value_max" placeholder="max" type="number" value=10>
+        </div>
 
-        <div class="special_agility"><button type="action" name="act_agility">Agility</button>
+        <div class="special_agility">
+            <button type="action" name="act_agility">Agility</button>
             <input name="attr_agility_value"     placeholder="cur" type="number">
-            <input name="attr_agility_value_max" placeholder="max" type="number"></div>
+            <input name="attr_agility_value_max" placeholder="max" type="number" value=10>
+        </div>
 
-        <div class="special_luck"><button type="action" name="act_luck">Luck</button>
+        <div class="special_luck">
+            <button type="action" name="act_luck">Luck</button>
             <input name="attr_luck_value"     placeholder="cur" type="number">
-            <input name="attr_luck_value_max" placeholder="max" type="number"></div>
+            <input name="attr_luck_value_max" placeholder="max" type="number" value=10>
+        </div>
 
 
     </div>
@@ -38,48 +56,108 @@
     <div class="skills">
 
         <div><h4>Skills</h4></div>
-        <span class="skills_sneak"><button type="action" name="act_sneak">Sneak</button><input name="attr_sneak_value" type="number"></span>
-        <span class="skills_larceny"><button type="action" name="act_larceny">Larceny</button><input name="attr_larceny_value" type="number"></span>
-        <span class="skills_pilot"><button type="action" name="act_pilot">Pilot</button><input name="attr_pilot_value" type="number"></span>
-        <span class="skills_medicine"><button type="action" name="act_medicine">Medicine</button><input name="attr_medicine_value" type="number"></span>
-        <span class="skills_survival"><button type="action" name="act_survival">Survival</button><input name="attr_survival_value" type="number"></span>
-        <span class="skills_small_guns"><button type="action" name="act_small_guns">Small Guns</button><input name="attr_small_guns_value" type="number"></span>
-        <span class="skills_energy_weapons"><button type="action" name="act_energy_weapons">Energy Weapons</button><input name="attr_energy_weapons_value" type="number"></span>
-        <span class="skills_big_guns"><button type="action" name="act_big_guns">Big Guns</button><input name="attr_big_guns_value" type="number"></span>
-        <span class="skills_explosives"><button type="action" name="act_explosives">Explosives</button><input name="attr_explosives_value" type="number"></span>
-        <span class="skills_close_combat"><button type="action" name="act_close_combat">Close Combat</button><input name="attr_close_combat_value" type="number"></span>
-        <span class="skills_throwing"><button type="action" name="act_throwing">Throwing</button><input name="attr_throwing_value" type="number"></span>
-        <span class="skills_athletics"><button type="action" name="act_athletics">Athletics</button><input name="attr_athletics_value" type="number"></span>
-        <span class="skills_speech"><button type="action" name="act_speech">Speech</button><input name="attr_speech_value" type="number"></span>
-        <span class="skills_deception"><button type="action" name="act_deception">Deception</button><input name="attr_deception_value" type="number"></span>
-        <span class="skills_barter"><button type="action" name="act_barter">Barter</button><input name="attr_barter_value" type="number"></span>
-        <span class="skills_investigate"><button type="action" name="act_investigate">Investigate</button><input name="attr_investigate_value" type="number"></span>
-        <span class="skills_search"><button type="action" name="act_search">Search</button><input name="attr_search_value" type="number"></span>
+        <span class="skills_sneak"><button type="action" name="act_sneak">Sneak</button><input
+                name="attr_sneak_value" type="number"></span>
+        <span class="skills_larceny"><button type="action"
+                                             name="act_larceny">Larceny</button><input
+                name="attr_larceny_value" type="number"></span>
+        <span class="skills_pilot"><button type="action" name="act_pilot">Pilot</button><input
+                name="attr_pilot_value" type="number"></span>
+        <span class="skills_medicine"><button type="action"
+                                              name="act_medicine">Medicine</button><input
+                name="attr_medicine_value" type="number"></span>
+        <span class="skills_survival"><button type="action"
+                                              name="act_survival">Survival</button><input
+                name="attr_survival_value" type="number"></span>
+        <span class="skills_small_guns"><button type="action"
+                                                name="act_small_guns">Small Guns</button><input
+                name="attr_small_guns_value" type="number"></span>
+        <span class="skills_energy_weapons"><button type="action" name="act_energy_weapons">Energy Weapons</button><input
+                name="attr_energy_weapons_value" type="number"></span>
+        <span class="skills_big_guns"><button type="action"
+                                              name="act_big_guns">Big Guns</button><input
+                name="attr_big_guns_value" type="number"></span>
+        <span class="skills_explosives"><button type="action"
+                                                name="act_explosives">Explosives</button><input
+                name="attr_explosives_value" type="number"></span>
+        <span class="skills_close_combat"><button type="action" name="act_close_combat">Close Combat</button><input
+                name="attr_close_combat_value" type="number"></span>
+        <span class="skills_throwing"><button type="action"
+                                              name="act_throwing">Throwing</button><input
+                name="attr_throwing_value" type="number"></span>
+        <span class="skills_athletics"><button type="action"
+                                               name="act_athletics">Athletics</button><input
+                name="attr_athletics_value" type="number"></span>
+        <span class="skills_speech"><button type="action"
+                                            name="act_speech">Speech</button><input
+                name="attr_speech_value" type="number"></span>
+        <span class="skills_deception"><button type="action"
+                                               name="act_deception">Deception</button><input
+                name="attr_deception_value" type="number"></span>
+        <span class="skills_barter"><button type="action"
+                                            name="act_barter">Barter</button><input
+                name="attr_barter_value" type="number"></span>
+        <span class="skills_investigate"><button type="action" name="act_investigate">Investigate</button><input
+                name="attr_investigate_value" type="number"></span>
+        <span class="skills_search"><button type="action"
+                                            name="act_search">Search</button><input
+                name="attr_search_value" type="number"></span>
 
 
         <div><h4>Crafts</h4></div>
-        <span class="crafts_armor"><button type="action" name="act_armor">Armor</button><input name="attr_armor_value" type="number"></span>
-        <span class="crafts_weapons"><button type="action" name="act_weapons">Weapons</button><input name="attr_weapons_value" type="number"></span>
-        <span class="crafts_food"><button type="action" name="act_food">Food</button><input name="attr_food_value" type="number"></span>
-        <span class="crafts_gear"><button type="action" name="act_gear">Gear</button><input name="attr_gear_value" type="number"></span>
-        <span class="crafts_machine"><button type="action" name="act_machine">Machine</button><input name="attr_machine_value" type="number"></span>
-        <span class="crafts_pwr_armor"><button type="action" name="act_pwr_armor">Pwr Armor</button><input name="attr_pwr_armor_value" type="number"></span>
-        <span class="crafts_robots"><button type="action" name="act_robots">Robots</button><input name="attr_robots_value" type="number"></span>
-        <span class="crafts_construction"><button type="action" name="act_construction">Construction</button><input name="attr_construction_value" type="number"></span>
+        <span class="crafts_armor"><button type="action" name="act_armor">Armor</button><input
+                name="attr_armor_value" type="number"></span>
+        <span class="crafts_weapons"><button type="action"
+                                             name="act_weapons">Weapons</button><input
+                name="attr_weapons_value" type="number"></span>
+        <span class="crafts_food"><button type="action" name="act_food">Food</button><input
+                name="attr_food_value" type="number"></span>
+        <span class="crafts_gear"><button type="action" name="act_gear">Gear</button><input
+                name="attr_gear_value" type="number"></span>
+        <span class="crafts_machine"><button type="action"
+                                             name="act_machine">Machine</button><input
+                name="attr_machine_value" type="number"></span>
+        <span class="crafts_pwr_armor"><button type="action"
+                                               name="act_pwr_armor">Pwr Armor</button><input
+                name="attr_pwr_armor_value" type="number"></span>
+        <span class="crafts_robots"><button type="action"
+                                            name="act_robots">Robots</button><input
+                name="attr_robots_value" type="number"></span>
+        <span class="crafts_construction"><button type="action" name="act_construction">Construction</button><input
+                name="attr_construction_value" type="number"></span>
 
 
         <div><h4>Knowledges</h4></div>
-        <span class="knowledges_computers"><button type="action" name="act_computers">Computers</button><input name="attr_computers_value" type="number"></span>
-        <span class="knowledges_science"><button type="action" name="act_science">Science</button><input name="attr_science_value" type="number"></span>
-        <span class="knowledges_local"><button type="action" name="act_local">Local</button><input name="attr_local_value" type="number"></span>
-        <span class="knowledges_history"><button type="action" name="act_history">History</button><input name="attr_history_value" type="number"></span>
-        <span class="knowledges_creatures"><button type="action" name="act_creatures">Creatures</button><input name="attr_creatures_value" type="number"></span>
-        <span class="knowledges_bos"><button type="action" name="act_bos">Bos</button><input name="attr_bos_value" type="number"></span>
-        <span class="knowledges_enclave"><button type="action" name="act_enclave">Enclave</button><input name="attr_enclave_value" type="number"></span>
-        <span class="knowledges_institute"><button type="action" name="act_institute">Institute</button><input name="attr_institute_value" type="number"></span>
-        <span class="knowledges_ceasars_legion"><button type="action" name="act_ceasars_legion">Ceasars Legion</button><input name="attr_ceasars_legion_value" type="number"></span>
-        <span class="knowledges_lone_star"><button type="action" name="act_lone_star">Lone Star</button><input name="attr_lone_star_value" type="number"></span>
-        <span class="knowledges_supermutants"><button type="action" name="act_supermutants">Supermutants</button><input name="attr_supermutants_value" type="number"></span>
+        <span class="knowledges_computers"><button type="action"
+                                                   name="act_computers">Computers</button><input
+                name="attr_computers_value" type="number"></span>
+        <span class="knowledges_science"><button type="action"
+                                                 name="act_science">Science</button><input
+                name="attr_science_value" type="number"></span>
+        <span class="knowledges_local"><button type="action"
+                                               name="act_local">Local</button><input
+                name="attr_local_value" type="number"></span>
+        <span class="knowledges_history"><button type="action"
+                                                 name="act_history">History</button><input
+                name="attr_history_value" type="number"></span>
+        <span class="knowledges_creatures"><button type="action"
+                                                   name="act_creatures">Creatures</button><input
+                name="attr_creatures_value" type="number"></span>
+        <span class="knowledges_bos"><button type="action" name="act_bos">Bos</button><input
+                name="attr_bos_value" type="number"></span>
+        <span class="knowledges_enclave"><button type="action"
+                                                 name="act_enclave">Enclave</button><input
+                name="attr_enclave_value" type="number"></span>
+        <span class="knowledges_institute"><button type="action"
+                                                   name="act_institute">Institute</button><input
+                name="attr_institute_value" type="number"></span>
+        <span class="knowledges_ceasars_legion"><button type="action" name="act_ceasars_legion">Ceasars Legion</button><input
+                name="attr_ceasars_legion_value" type="number"></span>
+        <span class="knowledges_lone_star"><button type="action"
+                                                   name="act_lone_star">Lone Star</button><input
+                name="attr_lone_star_value" type="number"></span>
+        <span class="knowledges_supermutants"><button type="action" name="act_supermutants">Supermutants</button><input
+                name="attr_supermutants_value" type="number"></span>
 
     </div>
 
@@ -93,7 +171,7 @@
         <!--        <div class="info_input"><label>Archetype</label> <input type="text" placeholder="Archetype" name="attr_archetype"></div>-->
         <!--        <div class="info_input"><label>Reputation</label> <input type="text" placeholder="Reputation" name="attr_reputation"></div>-->
         <!--        <div class="info_input"><label>Karma</label> <input type="text" placeholder="Karma" name="attr_karma"></div>-->
-        <div class="info_input"><input type="text" placeholder="Name" name="attr_name"></div>
+        <div class="info_input"><input type="text" placeholder="Name" name="attr_character_name"></div>
         <div class="info_input"><input type="text" placeholder="Player" name="attr_player">
         </div>
         <div class="info_input"><input type="text" placeholder="Hometown" name="attr_hometown">
@@ -121,7 +199,7 @@
             <!--            <button type="roll" class="main_roller" value="@{selected_attribute} @{selected_attribute_value}  +  @{selected_ability} @{selected_ability_value}">Roll</button>-->
             <!--            TODO: Make it so that the underscore is removed in the 2 letter names e.g "Energy Weapons" instead of "Energy_weapons (done)"-->
             <button type="roll" class="main_roller" name="act_main_roller"
-                    value="&{template:default} {{name=@{name} rolls @{selected_attribute} + @{selected_ability}}} {{Successes=[[@{num_dice}d20<[[@{selected_attribute_value}+@{selected_ability_value}+1]]cs1cf0]] }}">
+                    value="&{template:default} {{name=@{character_name} rolls @{selected_attribute} + @{selected_ability}}} {{Successes=[[@{num_dice}d20<[[@{selected_attribute_value}+@{selected_ability_value}+1]]cs1cf0]] }}">
                 Roll
             </button>
 
@@ -134,6 +212,9 @@
                 <input type="hidden" name="attr_selected_ability_value"/>
                 <span name="attr_selected_ability">no ability </span>
                 <button type="action" name="act_noabil">None</button>
+            </div>
+            <div>
+                <button type="roll" value="&{template:default} {{name=Initiative: @{character_name} }} {{Initiative=[[@{perception_value}+@{perception_value}+ d10 &{tracker}]] }}">Initiative</button>
             </div>
         </div>
         <div class="main_tabs">
@@ -309,9 +390,11 @@
                 <h4>perks and traits</h4>
                 <br>
                 <fieldset class="repeating_perks">
-                    <span name="perk_span" class="perk_name"><strong>Perk: </strong><input
-                            name="attr_perk_name" [type="text" placeholder="Perk Name"></span>
-                    <textarea name="attr_perk_descr" class="perk_descr" name="descr"
+                    <span name="perk_span" class="perk_name">
+                        Perk:<input name="attr_perk_name" [type="text" placeholder="Perk Name">
+                        <button type="roll" value="&{template:default} {{name= Perk: @{perk_name} }} {{description=@{perk_descr} }}"></button>
+                    </span>
+                    <textarea name="attr_perk_descr" class="perk_descr"
                               placeholder="Details about perk here..."></textarea>
                 </fieldset>
 
@@ -343,8 +426,8 @@
         <fieldset class="repeating_weapons">
             <input name="attr_atk_row_id" value="q" style="display: none;"/>
             <input name="attr_weapon_name" placeholder="Weapon Name" type="text">
-            <select name="attr_weapon_attribute" value="0">
-                <option value="0" selected></option>
+            <select name="attr_weapon_attribute" value="strength">
+                <!--                    <option value="0" selected></option>-->
                 <option value="strength">Strength</option>
                 <option value="perception">Perception</option>
                 <option value="endurance">Endurance</option>
@@ -353,17 +436,16 @@
                 <option value="agility">Agility</option>
                 <option value="luck">Luck</option>
             </select>
-            <select name="attr_weapon_skill" value="0">
-                <option value="0" selected></option>
-                <option value="small_guns">Small Guns</option>
-                <option value="energy_weapons">Energy Weapons</option>
-                <option value="big_guns">Big Guns</option>
-                <option value="close_combat">Close Combat</option>
-                <option value="throwing">Throwing</option>
-                <option value="explosives">Explosives</option>
+            <select name="attr_weapon_skill" value="small_guns">
+            <option value="small_guns">Small Guns</option>
+            <option value="energy_weapons">Energy Weapons</option>
+            <option value="big_guns">Big Guns</option>
+            <option value="close_combat">Close Combat</option>
+            <option value="throwing">Throwing</option>
+            <option value="explosives">Explosives</option>
             </select>
             <input name="attr_weapon_mod" type="number">
-            <select name="attr_weapon_damage_type" value="0">
+            <select name="attr_weapon_damage_type" value="PHY">
                 <option value="PHY">Physical</option>
                 <option value="ENE">Energy</option>
                 <option value="RAD">Radiation</option>
@@ -371,18 +453,17 @@
             </select>
             <input name="attr_weapon_damage" type="number">
             <!--            TODO: consider calculating penalties for range-->
-            <select name="attr_weapon_range" value="0">
+            <select name="attr_weapon_range" value="R">
                 <option value="R">R</option>
                 <option value="C">C</option>
                 <option value="M">M</option>
                 <option value="L">L</option>
                 <option value="E">E</option>
             </select>
-            <input name="attr_weapon_rate" type="number">
-            <input name="attr_weapon_clip" type="number">
+            <input name="attr_weapon_rate" type="number" value="0">
+            <input name="attr_weapon_clip" type="number" value="0">
             <input name="attr_weapon_ammo_type" placeholder="Ammo Type" type="text">
         </fieldset>
-
 
     </div>
 </div>
@@ -566,7 +647,7 @@
             //
             // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `rolling ${r_wep("weapon_name")} with ${r_wep("weapon_attribute")} and ${r_wep("weapon_skill")} for
             // ${r_wep("weapon_damage")} ${r_wep("weapon_damage_type")} damage!`
-            newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `&{template:default} {{name=@{name} attacks @{target|name} with ${r_wep("weapon_name")} }}{{Successes=[[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20cs1cf0<[[@{${r_wep("weapon_attribute")}_value} + @{${r_wep("weapon_skill")}_value}]] ]]}}{{Damage = [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")}}}`
+            newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `&{template:default} {{name=@{character_name} attacks @{target|name} with ${r_wep("weapon_name")} }}{{Successes=[[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20cs1cf0<[[@{${r_wep("weapon_attribute")}_value} + @{${r_wep("weapon_skill")}_value}]] ]]}}{{Damage = [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")}}}`
             // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `/em @{name} attacks @{target|name} with ${r_wep("weapon_name")} for [[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20cs1cf0<[[@{${r_wep("weapon_attribute")}_value} + @{${r_wep("weapon_skill")}_value}]] ]]success hitting the [[ 1t[Wound-Table] ]]  for [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")}`
 
             setAttrs(newrowattrs)
