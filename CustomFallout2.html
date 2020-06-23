@@ -122,7 +122,7 @@
             <!--            <button type="roll" class="main_roller" value="@{selected_attribute} @{selected_attribute_value}  +  @{selected_ability} @{selected_ability_value}">Roll</button>-->
             <!--            TODO: Make it so that the underscore is removed in the 2 letter names e.g "Energy Weapons" instead of "Energy_weapons (done)"-->
             <button type="roll" class="main_roller" name="act_main_roller"
-                    value="/em @{name} rolls @{selected_attribute} + @{selected_ability} for [[@{num_dice}d20<[[@{selected_attribute_value}+@{selected_ability_value}+1]]cs1cf0]] successes">
+                    value="&{template:default} {{name=@{name} rolls @{selected_attribute} + @{selected_ability}}} {{Successes=[[@{num_dice}d20<[[@{selected_attribute_value}+@{selected_ability_value}+1]]cs1cf0]] }}">
                 Roll
             </button>
 
@@ -567,7 +567,8 @@
             //
             // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `rolling ${r_wep("weapon_name")} with ${r_wep("weapon_attribute")} and ${r_wep("weapon_skill")} for
             // ${r_wep("weapon_damage")} ${r_wep("weapon_damage_type")} damage!`
-            newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `/em @{name} attacks @{target|name} with ${r_wep("weapon_name")} for [[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20cs1cf0<[[@{${r_wep("weapon_attribute")}_value} + @{${r_wep("weapon_skill")}_value}]] ]]success hitting the [[ 1t[Wound-Table] ]]  for [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")}`
+            newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `&{template:default} {{name=@{name} attacks @{target|name} with ${r_wep("weapon_name")} }}{{Successes=[[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20cs1cf0<[[@{${r_wep("weapon_attribute")}_value} + @{${r_wep("weapon_skill")}_value}]] ]]}}{{Damamge = [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")}}}`
+            // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `/em @{name} attacks @{target|name} with ${r_wep("weapon_name")} for [[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20cs1cf0<[[@{${r_wep("weapon_attribute")}_value} + @{${r_wep("weapon_skill")}_value}]] ]]success hitting the [[ 1t[Wound-Table] ]]  for [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")}`
 
             setAttrs(newrowattrs)
 

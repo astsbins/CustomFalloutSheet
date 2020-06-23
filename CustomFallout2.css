@@ -22,18 +22,28 @@ input {
     overflow: hidden;
     box-sizing : border-box;
 }
-
-
+input[type=number]{
+    -moz-appearance:textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 /*.sheet-grid{*/
 /*    display: grid;*/
 /*    grid-template-rows: 1fr 55fr;*/
 /*    grid-gap: 0.5em;*/
 /*    width: 850px;*/
 /*    height: 1400px;*/
-/*}*/
-button{
+/*!*}*!*/
+/*.charsheet button[type=roll] {*/
+
+/*   border: 0;    box-shadow: none;    text-align: left;    text-shadow: initial; }*/
+button, .charsheet button[type=roll]{
+    background-image: none;
     background-color: var(--button_colour);
-    border: 1px solid #002700;
+    border: 1px solid #206a20;
 }
 
 button:hover{
@@ -111,6 +121,7 @@ button:active{
 
 .sheet-skills > span > button{
     flex: 2;
+    text-align: left;
     /*justify-content: left;*/
     /*justify-self: left;*/
     /*justify-items: left;*/
@@ -531,3 +542,9 @@ button[name="act_trackers"]{
 }
 
 
+
+
+.sheet-rolltemplate-default > table> caption {
+    font-weight: bold;
+    background-color: #206a20;
+}
