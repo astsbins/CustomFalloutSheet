@@ -278,6 +278,35 @@ button:active{
 }
 
 
+
+.sheet-armor_tab,
+.sheet-wounds,
+.sheet-trackers {
+    display: none;
+}
+
+/* show the selected tab */
+.sheet-awt_tabstoggle[value="armor_tab"] ~ div.sheet-armor_tab,
+.sheet-awt_tabstoggle[value="wounds"] ~ div.sheet-wounds,
+.sheet-awt_tabstoggle[value="trackers"] ~ div.sheet-trackers {
+    display: grid;
+    min-width: 0;
+}
+
+button[name="act_armor_tab"],
+button[name="act_wounds"],
+button[name="act_trackers"]{
+    background-color: var(--unselected_tab_colour);
+}
+
+.sheet-awt_tabstoggle[value="armor_tab"] ~ div button[name="act_armor_tab"],
+.sheet-awt_tabstoggle[value="wounds"] ~ div button[name="act_wounds"],
+.sheet-awt_tabstoggle[value="trackers"] ~ div button[name="act_trackers"] {
+    background-color: var(--tile_colour);
+    border: 1px solid var(--tile_colour);
+}
+
+
 .sheet-attacks{
     /*max-height: 100%;*/
     grid-area: atk;
@@ -317,43 +346,15 @@ button:active{
     height: min-content;
     display: grid;
     grid-template-areas:  "rol rls wep amm"
-                          "rol eft eft eft";
+    "rol eft eft eft";
     grid-template-columns: 1fr 1fr 5fr 2fr;
     grid-template-rows: repeat(2, 1fr);
+    grid-gap: 0.2em;
 
 }
 button[name="attr_atk_roll"]{
     grid-area: rol;
 }
-
-.sheet-armor_tab,
-.sheet-wounds,
-.sheet-trackers {
-    display: none;
-}
-
-/* show the selected tab */
-.sheet-awt_tabstoggle[value="armor_tab"] ~ div.sheet-armor_tab,
-.sheet-awt_tabstoggle[value="wounds"] ~ div.sheet-wounds,
-.sheet-awt_tabstoggle[value="trackers"] ~ div.sheet-trackers {
-    display: grid;
-    min-width: 0;
-}
-
-button[name="act_armor_tab"],
-button[name="act_wounds"],
-button[name="act_trackers"]{
-    background-color: var(--unselected_tab_colour);
-}
-
-.sheet-awt_tabstoggle[value="armor_tab"] ~ div button[name="act_armor_tab"],
-.sheet-awt_tabstoggle[value="wounds"] ~ div button[name="act_wounds"],
-.sheet-awt_tabstoggle[value="trackers"] ~ div button[name="act_trackers"] {
-    background-color: var(--tile_colour);
-    border: 1px solid var(--tile_colour);
-}
-
-
 .sheet-awt{
     /*grid-column: 1/2;*/
     grid-area: awt;

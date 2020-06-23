@@ -1,8 +1,7 @@
 <!--TODO: Consider refactoring attribute names such that the value of attr_atrribute would be the number rather than the name
     TODO: attr_attribute_name could be the name instead-->
 
-
-
+<img src="" alt="">
 <div class="content">
     <div class="special">
         <div class="special_strength"><button type="action" name="act_strength">Strength</button>
@@ -567,7 +566,7 @@
             //
             // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `rolling ${r_wep("weapon_name")} with ${r_wep("weapon_attribute")} and ${r_wep("weapon_skill")} for
             // ${r_wep("weapon_damage")} ${r_wep("weapon_damage_type")} damage!`
-            newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `&{template:default} {{name=@{name} attacks @{target|name} with ${r_wep("weapon_name")} }}{{Successes=[[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20cs1cf0<[[@{${r_wep("weapon_attribute")}_value} + @{${r_wep("weapon_skill")}_value}]] ]]}}{{Damamge = [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")}}}`
+            newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `&{template:default} {{name=@{name} attacks @{target|name} with ${r_wep("weapon_name")} }}{{Successes=[[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20cs1cf0<[[@{${r_wep("weapon_attribute")}_value} + @{${r_wep("weapon_skill")}_value}]] ]]}}{{Damage = [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")}}}`
             // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `/em @{name} attacks @{target|name} with ${r_wep("weapon_name")} for [[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20cs1cf0<[[@{${r_wep("weapon_attribute")}_value} + @{${r_wep("weapon_skill")}_value}]] ]]success hitting the [[ 1t[Wound-Table] ]]  for [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")}`
 
             setAttrs(newrowattrs)
