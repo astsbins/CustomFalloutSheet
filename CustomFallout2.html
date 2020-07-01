@@ -199,7 +199,7 @@
             <!--            <button type="roll" class="main_roller" value="@{selected_attribute} @{selected_attribute_value}  +  @{selected_ability} @{selected_ability_value}">Roll</button>-->
             <!--            TODO: Make it so that the underscore is removed in the 2 letter names e.g "Energy Weapons" instead of "Energy_weapons (done)"-->
             <button type="roll" class="main_roller" name="act_main_roller"
-                    value="&{template:default} {{name=@{character_name} rolls @{selected_attribute} + @{selected_ability}}} {{Successes=[[@{num_dice}d20<[[@{selected_attribute_value}+@{selected_ability_value}+1]]cs1cf0]] }}">
+                    value="&{template:default} {{name=@{character_name} rolls @{selected_attribute} + @{selected_ability}}} {{Successes=[[@{num_dice}d20<[[@{selected_attribute_value}+@{selected_ability_value}+1]]cs<@{main_crit}cf>@{main_botch}]]}}&#010;!resetmaindice @{character_id}">
                 Roll
             </button>
 
@@ -207,14 +207,22 @@
                 <input type="hidden" name="attr_selected_attribute_value"/>
                 <span name="attr_selected_attribute">no attribute </span>
                 <button type="action" name="act_noattr">None</button>
+                <span type="hidden" name="noattr_value" value="0"></span>
             </div>
             <div>
                 <input type="hidden" name="attr_selected_ability_value"/>
                 <span name="attr_selected_ability">no ability </span>
                 <button type="action" name="act_noabil">None</button>
+                <span type="hidden" name="noabil_value" value="0"></span>
             </div>
             <div>
                 <button type="roll" value="&{template:default} {{name=Initiative: @{character_name} }} {{Initiative=[[@{perception_value}+@{perception_value}+ d10 &{tracker}]] }}">Initiative</button>
+            </div>
+            <div class="main_crit">
+                Crit <input type="number" name="attr_main_crit" value="1">
+            </div>
+            <div class="main_botch">
+                Botch <input type="number" name="attr_main_botch" value="20">
             </div>
         </div>
         <div class="main_tabs">
@@ -252,28 +260,36 @@
                 <!--                    <span name="attr_atk_weaponn">Weapon</span>-->
                 <fieldset class="repeating_attacks">
                     <input type="hidden" name="attr_atk_mod">
-                    <button name="attr_atk_roll" type="roll" value="attack roll!"></button>
+                    <button name="attr_atk_roll" type="roll" value="@{name}"></button>
                     <input name="attr_atk_num_dice" type="number" value="2" placeholder="d20s"/>
                     <span name="attr_atk_weapon">Weapon</span>
                     <input name="attr_ammo_cnt" type="number" placeholder="ammo"/>
                     <input class="damage_effects" name="attr_damage_effects"
                            placeholder="Damage Effects" type="text">
+                    <div class="atk_crit_botch">
+                        <span>C: <input type="number" name="attr_atk_crit" value="1"> </span>
+                        <span>B: <input type="number" name="attr_atk_botch" value="20"> </span>
+                    </div>
+
                     <br>
                 </fieldset>
             </div>
 
-            <!-- armor wounds trackers (aawt)-->
-            <div class="awt">
-                <input type='hidden' class='awt_tabstoggle' name='attr_awt_tab'
+            <!-- armor status_effects trackers (apst)-->
+            <div class="ast">
+<!--                hidden input to control which tab is shown-->
+                <input type='hidden' class='ast_tabstoggle' name='attr_ast_tab'
                        value='armor_tab'/>
-                <div class="awt_tab">
+
+<!--                tab buttons-->
+                <div class="ast_tab">
                     <!--                    append 'tab' to prevent conflict with the craft armor skill-->
                     <button type="action" name="act_armor_tab">Armor</button>
-                    <button type="action" name="act_wounds">Wounds</button>
+                    <button type="action" name="act_status_effects">status_effects</button>
                     <button type="action" name="act_trackers">Trackers</button>
                 </div>
 
-
+<!--              Armor Tab -->
                 <div class="armor_tab">
                     <h4 class="armor_title">Armor</h4>
 
@@ -383,7 +399,101 @@
 
 
                 </div>
-                <div class="wounds"><h3>Wounds</h3></div>
+
+<!--              status_effects Tab-->
+                <div class="status_effects">
+                    <h4 class="status_effects_title">status_effects</h4>
+                    <div class="status_effects_mods">
+                        <div class="status_effect_strength"><strong>Strength</strong> <span name="attr_status_effect_strength_mod">0</span></div>
+                        <div class="status_effect_perception"><strong>Perception</strong> <span name="attr_status_effect_perception_mod">0</span></div>
+                        <div class="status_effect_endurance"><strong>Endurance</strong> <span name="attr_status_effect_endurance_mod">0</span></div>
+                        <div class="status_effect_charisma"><strong>Charisma</strong> <span name="attr_status_effect_charisma_mod">0</span></div>
+                        <div class="status_effect_intelligence"><strong>Intelligence</strong> <span name="attr_status_effect_intelligence_mod">0</span></div>
+                        <div class="status_effect_agility"><strong>Agility</strong> <span name="attr_status_effect_agility_mod">0</span></div>
+                    </div>
+                    <div class="condition_status_effects">
+<!--                        <div class="status_effect_titles"><strong>Status Effects</strong></div>-->
+                        <div class="condition_row">
+                            <div><span style="font-family: 'Pictos'">3</span></div>
+                            <div><strong>Name</strong></div>
+                            <div><strong>Attr/Skill</strong></div>
+                            <div>Mod</div>
+                        </div>
+
+                        <fieldset class="repeating_conditions">
+                            <div class="condition_row">
+                                <div class="status_active">
+                                    <button class="checkbox">o</button>
+                                </div>
+                                <div><input  class="condition_name"type="text" placeholder="Condition Name" name="attr_condition_name"></div>
+                                <div class="affected_ability">
+                                    <select class="select_condition" name="attr_effected_attribute"
+                                            value="strength">
+                                        <!--                    <option value="0" selected></option>-->
+                                        <optgroup label="Attributes">
+                                            <option value="strength">Strength</option>
+                                            <option value="perception">Perception</option>
+                                            <option value="endurance">Endurance</option>
+                                            <option value="charisma">Charisma</option>
+                                            <option value="intelligence">Intelligence</option>
+                                            <option value="agility">Agility</option>
+                                            <option value="luck">Luck</option>
+                                        </optgroup>
+                                        <optgroup label="Abilities">
+                                            <optgroup label="Skills">
+                                                <option value="sneak">Sneak</option>
+                                                <option value="larceny">Larceny</option>
+                                                <option value="pilot">Pilot</option>
+                                                <option value="medicine">Medicine</option>
+                                                <option value="survival">Survival</option>
+                                                <option value="small_guns">Small Guns</option>
+                                                <option value="energy_weapons">Energy Weapons</option>
+                                                <option value="big_guns">Big Guns</option>
+                                                <option value="explosives">Explosives</option>
+                                                <option value="close_combat">Close Combat</option>
+                                                <option value="throwing">Throwing</option>
+                                                <option value="athletics">Athletics</option>
+                                                <option value="speech">Speech</option>
+                                                <option value="deception">Deception</option>
+                                                <option value="barter">Barter</option>
+                                                <option value="investigate">Investigate</option>
+                                                <option value="search">Search</option>
+                                            </optgroup>
+                                            <optgroup label="Crafts">
+                                                <option value="armor">Armor</option>
+                                                <option value="weapons">Weapons</option>
+                                                <option value="food">Food</option>
+                                                <option value="gear">Gear</option>
+                                                <option value="machine">Machine</option>
+                                                <option value="pwr_armor">Pwr Armor</option>
+                                                <option value="robots">Robots</option>
+                                                <option value="construction">Construction</option>
+                                            </optgroup>
+                                            <optgroup label="Knowledges">
+                                                <option value="computers">Computers</option>
+                                                <option value="science">Science</option>
+                                                <option value="local">Local</option>
+                                                <option value="history">History</option>
+                                                <option value="creatures">Creatures</option>
+                                                <option value="bos">Bos</option>
+                                                <option value="enclave">Enclave</option>
+                                                <option value="institute">Institute</option>
+                                                <option value="ceasars_legion">Ceasars Legion</option>
+                                                <option value="lone_star">Lone Star</option>
+                                                <option value="supermutants">Supermutants</option>
+                                            </optgroup>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="status_modifier">
+                                    <input type="number" name="attr_condition_modifier" value="0" >
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+<!--                Trackers Tab-->
                 <div class="trackers"><h3>Trackers</h3></div>
             </div>
             <div class="perks">
@@ -403,7 +513,14 @@
 
         <div class="companion">Companion</div>
         <div class="vehicle">Vehicle</div>
-        <div class="settlement">Settlement</div>
+        <div class="settlement">
+            <h3>Settlements</h3>
+            <div class="settlements_repeating_section">
+                <fieldset class="repeating_settlements">
+                <input class="placeholder" type="text" placeholder="placeholder">
+            </fieldset></div>
+
+        </div>
     </div>
 
 
@@ -539,7 +656,14 @@
             if (final_label === "Noattr") {
                 final_label = "No Attribute";
             }
+            // let final_value
+            // if (final_label === "No Attribute"){
+            //     final_value = 0;
+            // }else {
+            //     final_value = value[`${attribute}_value`]
+            // }
             getAttrs([`${attribute}_value`], value => {
+
                 setAttrs({
                     selected_attribute: final_label,
                     selected_attribute_value: value[`${attribute}_value`]
@@ -570,11 +694,11 @@
         setAttrs({"num_dice": 2})
     })
 
-    const awt_tabs = ["armor_tab", "wounds", "trackers"];
-    awt_tabs.forEach(button => {
+    const ast_tabs = ["armor_tab", "status_effects", "trackers"];
+    ast_tabs.forEach(button => {
         on(`clicked:${button}`, function () {
             setAttrs({
-                awt_tab: button
+                ast_tab: button
             });
         });
     });
@@ -613,14 +737,13 @@
     //     return Math.random() * (max - min + 1) + min
     // }
 
+    on("change:repeating_conditions", eventInfo =>{
+        let element = eventInfo.sourceAttribute
+        let row_id = element.match(/repeating_.*_-([^_]*)/)[1]
+        getAttrs([`repeating_conditions_-${row_id}_`])
+    })
     //TODO: make better (less repetition?)
-    on("change:repeating_weapons:atk_row_id " +
-            "change:repeating_weapons:weapon_name " +
-            "change:repeating_weapons:weapon_attribute " +
-            "change:repeating_weapons:weapon_skill " +
-            "change:repeating_weapons:weapon_mod " +
-            "change:repeating_weapons:weapon_damage " +
-            "change:repeating_weapons:weapon_damage_type", eventInfo => {
+    on("change:repeating_weapons", eventInfo => {
         let element = eventInfo.sourceAttribute
         let row_id = element.match(/repeating_.*_-([^_]*)/)[1]
         getAttrs([`repeating_weapons_-${row_id}_atk_row_id`,
@@ -628,7 +751,9 @@
             `repeating_weapons_-${row_id}_weapon_attribute`,
             `repeating_weapons_-${row_id}_weapon_skill`,
             `repeating_weapons_-${row_id}_weapon_damage_type`,
-            `repeating_weapons_-${row_id}_weapon_damage`,], info => {
+            `repeating_weapons_-${row_id}_weapon_damage`,
+            `repeating_weapons_-${row_id}_atk_crit`,
+            `repeating_weapons_-${row_id}_atk_botch`,], info => {
             function r_wep(name) {
                 return (info[`repeating_weapons_-${row_id}_${name}`])
             }
@@ -647,8 +772,8 @@
             //
             // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `rolling ${r_wep("weapon_name")} with ${r_wep("weapon_attribute")} and ${r_wep("weapon_skill")} for
             // ${r_wep("weapon_damage")} ${r_wep("weapon_damage_type")} damage!`
-            newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `&{template:default} {{name=@{character_name} attacks @{target|name} with ${r_wep("weapon_name")} }}{{Successes=[[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20cs1cf0<[[@{${r_wep("weapon_attribute")}_value} + @{${r_wep("weapon_skill")}_value}]] ]]}}{{Damage = [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")}}}`
-            // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `/em @{name} attacks @{target|name} with ${r_wep("weapon_name")} for [[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20cs1cf0<[[@{${r_wep("weapon_attribute")}_value} + @{${r_wep("weapon_skill")}_value}]] ]]success hitting the [[ 1t[Wound-Table] ]]  for [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")}`
+            newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `&{template:default} {{name=@{character_name} attacks @{target|name} with ${r_wep("weapon_name")} }}{{Successes=[[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20cs<@{atk_crit}cf>@{atk_botch}>[[@{${r_wep("weapon_attribute")}_value} + @{${r_wep("weapon_skill")}_value}]] ]]}}{{Damage = [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")}}}`
+            // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `/em @{name} attacks @{target|name} with ${r_wep("weapon_name")} for [[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20cs1cf0<[[@{${r_wep("weapon_attribute")}_value} + @{${r_wep("weapon_skill")}_value}]] ]]success hitting the [[ 1t[status_effect-Table] ]]  for [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")}`
 
             setAttrs(newrowattrs)
 

@@ -19,6 +19,7 @@ input {
     padding: 0.2em;
     float: none;
     width: 90%;
+    min-width: 0;
     overflow: hidden;
     box-sizing : border-box;
 }
@@ -176,7 +177,8 @@ button:active{
     background-color: var(--tile_colour);
     padding: 0.5em;
     display: grid;
-    grid-template-columns: 1fr repeat(3,3fr) 2fr;
+    /*                      numdice roll attribute ability initiative crit botch*/
+    grid-template-columns: 1fr        1fr 3fr       3fr         2fr     1fr 1fr;
     grid-gap: 0.5em;
 }
 
@@ -220,7 +222,7 @@ button:active{
 
 
 
-/*.sheet-awt > div{*/
+/*.sheet-ast > div{*/
 /*    border: var(--border);*/
 /*    background-color: var(--tile_colour);*/
 /*    padding: 0.5em;*/
@@ -233,11 +235,12 @@ button:active{
     /*grid-column: 1/6;*/
     grid-template-areas: "hdr hdr hdr prk prk"
                         "atk atk atk prk prk"
-                        "awt awt awt prk prk";
+                        "ast ast ast prk prk";
     grid-template-columns: repeat(5,1fr);
     grid-template-rows: 1.4fr 6fr 10fr;
     grid-gap: 0.3em;
     border: var(--border);
+
 }
 .sheet-character > div{
     min-height: 0;
@@ -287,28 +290,28 @@ button:active{
 
 
 .sheet-armor_tab,
-.sheet-wounds,
+.sheet-status_effects,
 .sheet-trackers {
     display: none;
 }
 
 /* show the selected tab */
-.sheet-awt_tabstoggle[value="armor_tab"] ~ div.sheet-armor_tab,
-.sheet-awt_tabstoggle[value="wounds"] ~ div.sheet-wounds,
-.sheet-awt_tabstoggle[value="trackers"] ~ div.sheet-trackers {
+.sheet-ast_tabstoggle[value="armor_tab"] ~ div.sheet-armor_tab,
+.sheet-ast_tabstoggle[value="status_effects"] ~ div.sheet-status_effects,
+.sheet-ast_tabstoggle[value="trackers"] ~ div.sheet-trackers {
     display: grid;
     min-width: 0;
 }
 
 button[name="act_armor_tab"],
-button[name="act_wounds"],
+button[name="act_status_effects"],
 button[name="act_trackers"]{
     background-color: var(--unselected_tab_colour);
 }
 
-.sheet-awt_tabstoggle[value="armor_tab"] ~ div button[name="act_armor_tab"],
-.sheet-awt_tabstoggle[value="wounds"] ~ div button[name="act_wounds"],
-.sheet-awt_tabstoggle[value="trackers"] ~ div button[name="act_trackers"] {
+.sheet-ast_tabstoggle[value="armor_tab"] ~ div button[name="act_armor_tab"],
+.sheet-ast_tabstoggle[value="status_effects"] ~ div button[name="act_status_effects"],
+.sheet-ast_tabstoggle[value="trackers"] ~ div button[name="act_trackers"] {
     background-color: var(--tile_colour);
     border: 1px solid var(--tile_colour);
 }
@@ -353,18 +356,26 @@ button[name="act_trackers"]{
     height: min-content;
     display: grid;
     grid-template-areas:  "rol rls wep amm"
-    "rol eft eft eft";
-    grid-template-columns: 1fr 1fr 5fr 2fr;
+    "rol eft eft cb";
+    grid-template-columns: 1fr 1fr 5fr 2.5fr;
     grid-template-rows: repeat(2, 1fr);
     grid-gap: 0.2em;
 
 }
+.sheet-atk_crit_botch{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.sheet-atk_crit_botch > span >input[type="number"]{
+    width: 2em;
+}
+
 button[name="attr_atk_roll"]{
     grid-area: rol;
 }
-.sheet-awt{
+.sheet-ast{
     /*grid-column: 1/2;*/
-    grid-area: awt;
+    grid-area: ast;
     min-width: 0;
     display: flex;
     flex-direction: column;
@@ -376,12 +387,12 @@ button[name="attr_atk_roll"]{
     /*border: var(--border);*/
 }
 
-.sheet-awt_tabs > button{
+.sheet-ast_tabs > button{
     background-color: var(--tile_colour);
     border: 1px solid var(--tile_colour);
 
 }
-.sheet-awt_tabs >button:hover{
+.sheet-ast_tabs >button:hover{
     color: black;
 }
 .sheet-armor_tab{
@@ -424,12 +435,106 @@ button[name="attr_atk_roll"]{
 .sheet-armor_location >div >input[type="text"]{
     height: 1.2em;
 }
-.sheet-wounds{
+.sheet-status_effects{
     padding: 0.5em;
     background-color: var(--tile_colour);
     /*max-height: 100%;*/
     height: 100%;
+    /*display: grid;*/
+    grid-template-areas: "title"
+                         "status"
+                         "conditions";
+    grid-template-rows: 0.3fr 1fr 5fr;
+    grid-gap: 0.4em;
+    min-height: 0;
 }
+.sheet-status_effects_title{
+    min-height: 0;
+    grid-area: title;
+}
+
+.sheet-status_effects_mods{
+    min-height: 0;
+    display: grid;
+    grid-area: status;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    background-color: var(--tile_colour);
+    padding: 0.4em;
+}
+
+
+
+.sheet-condition_status_effects{
+    min-height: 0;
+    grid-area: conditions;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 0.2em;
+    /*background-color: var(--tile_colour);*/
+    padding: 0.4em;
+}
+.repcontainer[data-groupname="repeating_conditions"]{
+    overflow: auto;
+}
+.repcontainer[data-groupname="repeating_conditions"] > .repitem >div{
+    height: 3em;
+    /*min-width: 0;*/
+    min-height: 1em;
+    border-bottom: 1px solid darkslategray;
+}
+.sheet-condition_row{
+    display: grid;
+    grid-template-columns: 0.7fr 3fr 2fr 1.2fr;
+    min-height: 0;
+    border-bottom: 1px solid darkslategray;
+    /*height: 4em;*/
+}
+.sheet-condition_row >div{
+    min-width: 0;
+    min-height: 0;
+    border: var(--border);
+    background-color: var(--tile_colour);
+    padding: 0.4em;
+    /*color: #FF0000;*/
+}
+
+/*button.sheet-checkbox{*/
+/*    width: 16px;*/
+/*    height: 16px;*/
+/*    !*min-width: 0;*!*/
+/*    !*min-height: 0;*!*/
+/*    min-width: 16px;*/
+/*}*/
+/*.sheet-status_status_effects > div{*/
+/*    !*border: 1px solid darkslategray;*!*/
+/*    align-self: center;*/
+/*    min-height: 0;*/
+/*}*/
+input.sheet-condition_name{
+    width: 110%;
+}
+.sheet-select_condition{
+        border: var(--border);
+        background-color: var(--tile_colour);
+        align-self: center;
+        width: 100%;
+        min-width: 0;
+}
+
+/*.sheet-status_status_effects > div >select{*/
+/*    !*border: 1px solid darkslategray;*!*/
+/*    align-self: center;*/
+/*    width: 100%;*/
+/*    min-width: 0;*/
+/*    color: #FF0000;*/
+/*}*/
+
+/*.sheet-condition_status_effects > div{*/
+/*    padding: 0.3em;*/
+/*    align-self: center;*/
+
+
 
 .sheet-trackers{
     padding: 0.5em;
@@ -552,7 +657,21 @@ button[name="attr_atk_roll"]{
 
 
 
+/*#################### Settlements ############################*/
+.sheet-settlement{
 
+    grid-area: cnt;
+    min-height: 0;
+    background-color: var(--tile_colour);
+    height: 100%;
+    padding: 0.5em;
+    grid-template-rows: 2em 1fr;
+}
+
+.repcontainer[data-groupname="repeating_settlements"] >.repitem >input{
+
+    border: 1px solid darkslategray;
+}
 .sheet-rolltemplate-default > table> caption {
     font-weight: bold;
     background-color: #206a20;

@@ -1,4 +1,4 @@
-const attribute_mods = {
+const abilities = {
 
     "skills" : ["sneak", "larceny", "pilot","medicine", "survival", "small_guns", "energy_weapons", "big_guns",
                 "explosives", "close_combat", "throwing", "athletics", "speech",
@@ -39,10 +39,10 @@ special.forEach(attr=>{
      <input name="attr_${attr}_value_max" placeholder="max" type="number" value=10></div>\n`);
 });
 
-for (let attributeModsKey in attribute_mods) {
-    console.log(`<div><h4>${capitalise(attributeModsKey)}</h4></div>`);
-    attribute_mods[attributeModsKey].forEach(modifier =>{
-        console.log(`<span class="${attributeModsKey}_${modifier}"><button type="action" name="act_${modifier}">${capitalise(modifier.replace("_"," "))}</button><input name="attr_${modifier}_value" type="number"></span>`);
+for (let abilityModsKey in abilities) {
+    console.log(`<div><h4>${capitalise(abilityModsKey)}</h4></div>`);
+    abilities[abilityModsKey].forEach(modifier =>{
+        console.log(`<span class="${abilityModsKey}_${modifier}"><button type="action" name="act_${modifier}">${capitalise(modifier.replace("_"," "))}</button><input name="attr_${modifier}_value" type="number"></span>`);
     })
     console.log("\n")
 
@@ -104,3 +104,14 @@ let armor_locations = ["eyes", "head", "right_arm", "left_arm", "torso", "groin"
                         </div>`)
     });
 
+special.forEach(special =>{
+    console.log(`<div class="wound_${special}_mod"><strong>${capitalise(special)}</strong> <span name="attr_wound_${special}_mod">0</span></div>`)
+});
+
+for (abilitySection in abilities){
+    console.log(`<optgroup label="${capitalise(abilitySection)}">`)
+    abilities[abilitySection].forEach(ability =>{
+        console.log(`<option value="${ability}">${capitalise(ability.replace("_", " "))}</option>`)
+    })
+    console.log(`</optgroup>`)
+}
