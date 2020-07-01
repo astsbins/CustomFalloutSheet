@@ -498,11 +498,11 @@
                 <div class="trackers"><h3>Trackers</h3></div>
             </div>
             <div class="perks">
-                <h4>perks and traits</h4>
+                <h4>Perks and Traits</h4>
                 <br>
                 <fieldset class="repeating_perks">
-                    Perk:<input name="attr_perk_name" [type="text" placeholder="Perk Name">
-                    <button type="roll" value="&{template:default} {{name= Perk: @{perk_name} }} {{description=@{perk_descr} }}"></button>
+                    <input class="perk_name" name="attr_perk_name" [type="text" placeholder="Perk Name">
+                    <button class="perk_roll" type="roll" value="&{template:default} {{name= Perk: @{perk_name} }} {{description=@{perk_descr} }}"></button>
                     <input type="checkbox" class="toggle_perk_description" checked="checked"/>
                     <textarea name="attr_perk_descr" class="perk_descr"
                               placeholder="Details about perk here...">
