@@ -362,12 +362,16 @@ button[name="act_trackers"]{
     grid-gap: 0.2em;
 
 }
+.sheet-attacks >.repcontainer[data-groupname="repeating_attacks"] >.repitem>*{
+    min-height: 0;
+    /*height: 2em;*/
+}
 .sheet-atk_crit_botch{
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 .sheet-atk_crit_botch > span >input[type="number"]{
-    width: 2em;
+    width: 1.8em;
 }
 
 button[name="attr_atk_roll"]{
@@ -499,13 +503,15 @@ button[name="attr_atk_roll"]{
     /*color: #FF0000;*/
 }
 
-/*button.sheet-checkbox{*/
-/*    width: 16px;*/
-/*    height: 16px;*/
-/*    !*min-width: 0;*!*/
-/*    !*min-height: 0;*!*/
-/*    min-width: 16px;*/
-/*}*/
+button.sheet-checkbox{
+    background-color: var(--tile_colour);
+    color:var(--tile_colour) ;
+    /*width: 6px;*/
+    /*height: 6px;*/
+    /*min-width: 6px;*/
+    /*min-height: 6px;*/
+    /*min-width: 16px;*/
+}
 /*.sheet-status_status_effects > div{*/
 /*    !*border: 1px solid darkslategray;*!*/
 /*    align-self: center;*/
@@ -554,25 +560,40 @@ input.sheet-condition_name{
     padding: 0.5em;
     min-width: 0;
     max-width: 100%;
+    min-height: 0;
 }
 .sheet-perk_descr  {
+    grid-column: 1/5;
     min-width: 0;
     height: 90%;
     width: 95%;
 }
-.sheet-perks > .repcontainer[data-groupname="repeating_perks"]{
+.repcontainer[data-groupname="repeating_perks"]{
     min-width: 0;
-    display: grid;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
     grid-gap: 0.5em;
+    overflow: auto;
+    max-height: 92%;
 }
 .sheet-perks > .repcontainer[data-groupname="repeating_perks"] >.repitem{
     min-width: 0;
     display: grid;
-    grid-template-rows: 1fr 3fr;
+    grid-template-columns: 2.5em 1fr 2.5em 1em;;
+    grid-template-rows: 1fr min-content;
     grid-gap: 0.3em;
+
 }
-.sheet-perk_name{
-    display: flex;
+.sheet-perk_descr  {
+    grid-column: 1/5;
+    min-width: 0;
+    height: 90%;
+    width: 95%;
+}
+input.sheet-toggle_perk_description:not(:checked) ~ textarea{
+ display: none;
+    height: 0;
 }
 /*.sheet-perks > .repcontainer[data-groupname="repeating_perks"] >.repitem > span > input[type=text]{*/
 /*    min-width: 0;*/
@@ -588,11 +609,6 @@ input.sheet-condition_name{
     flex-direction: column;
     justify-content: flex-start;
     min-height: 0;
-    /*display: grid;*/
-    /*grid-gap: 0.3em;*/
-    /*grid-template-columns: 1fr;*/
-    /*TODO: fix this hack*/
-    /*grid-template-rows: repeat(9,1fr);*/
 }
 
 .sheet-weapons > .sheet-weapon_titles,

@@ -423,7 +423,8 @@
                         <fieldset class="repeating_conditions">
                             <div class="condition_row">
                                 <div class="status_active">
-                                    <button class="checkbox">o</button>
+                                    <input class="Checkbox" type="checkbox" checked="checked" value="1">
+                                    <span class="checkmark"></span>
                                 </div>
                                 <div><input  class="condition_name"type="text" placeholder="Condition Name" name="attr_condition_name"></div>
                                 <div class="affected_ability">
@@ -500,12 +501,12 @@
                 <h4>perks and traits</h4>
                 <br>
                 <fieldset class="repeating_perks">
-                    <span name="perk_span" class="perk_name">
-                        Perk:<input name="attr_perk_name" [type="text" placeholder="Perk Name">
-                        <button type="roll" value="&{template:default} {{name= Perk: @{perk_name} }} {{description=@{perk_descr} }}"></button>
-                    </span>
+                    Perk:<input name="attr_perk_name" [type="text" placeholder="Perk Name">
+                    <button type="roll" value="&{template:default} {{name= Perk: @{perk_name} }} {{description=@{perk_descr} }}"></button>
+                    <input type="checkbox" class="toggle_perk_description" checked="checked"/>
                     <textarea name="attr_perk_descr" class="perk_descr"
-                              placeholder="Details about perk here..."></textarea>
+                              placeholder="Details about perk here...">
+                    </textarea>
                 </fieldset>
 
             </div>
@@ -524,7 +525,6 @@
                     <input name="attr_settlement_name" type="text" placeholder="Name"/>
                     <input class="settlement_description" name="attr_settlement_description"
                            placeholder="Description" type="textarea">
-                    </div>
             </fieldset></div>
 
         </div>
@@ -747,7 +747,7 @@
     on("change:repeating_conditions", eventInfo =>{
         let element = eventInfo.sourceAttribute
         let row_id = element.match(/repeating_.*_-([^_]*)/)[1]
-        getAttrs([`repeating_conditions_-${row_id}_`])
+        getAttrs([`repeating_conditions_-${row_id}_`,])
     })
     //TODO: make better (less repetition?)
     on("change:repeating_weapons", eventInfo => {
