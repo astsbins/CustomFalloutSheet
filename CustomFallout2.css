@@ -663,7 +663,7 @@ input.sheet-condition_name{
     grid-area: cnt;
     min-height: 0;
     background-color: var(--tile_colour);
-    height: 100%;
+    /*height: 100%;*/
     padding: 0.5em;
     grid-template-rows: 2em 1fr;
 }
