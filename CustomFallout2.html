@@ -517,7 +517,14 @@
             <h3>Settlements</h3>
             <div class="settlements_repeating_section">
                 <fieldset class="repeating_settlements">
-                <input class="placeholder" type="text" placeholder="placeholder">
+                    <input type="hidden" name="attr_atk_mod">
+                    <button type="roll" value="&{template:default} {{name= Settlement: @{settlement_name} }} {{description=@{settlement_description} }}"></button>
+                    <input name="attr_atk_num_dice" type="number" value="2" placeholder="d20s"/>
+                    <span name="attr_settlement_name_desc"></span>
+                    <input name="attr_settlement_name" type="text" placeholder="Name"/>
+                    <input class="settlement_description" name="attr_settlement_description"
+                           placeholder="Description" type="textarea">
+                    </div>
             </fieldset></div>
 
         </div>
