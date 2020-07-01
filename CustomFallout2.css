@@ -668,6 +668,11 @@ input.sheet-condition_name{
     grid-template-rows: 2em 1fr;
 }
 
+/*style the repeating container here*/
+.repcontainer[data-groupname="repeating_settlements"] >.repitem{
+
+}
+
 .repcontainer[data-groupname="repeating_settlements"] >.repitem >input{
 
     border: 1px solid darkslategray;
