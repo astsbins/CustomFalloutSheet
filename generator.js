@@ -35,6 +35,13 @@ function capitalise(word) {
 
 special.forEach(attr=>{
     console.log(`<div class="special_${attr}"><button type="action" name="act_${attr}">${capitalise(attr.replace("_"," "))}</button>
+            <div class="special_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_${attr}_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_${attr}_mod_total" type="text" value="3"></span>
+                <span class="hidden" name="attr_${attr}_conditions" value="test"></span>
+                <span class="tooltip" name="attr_${attr}_tooltip"></span>
+            </div>
      <input name="attr_${attr}_value"     placeholder="cur" type="number">
      <input name="attr_${attr}_value_max" placeholder="max" type="number" value=10></div>\n`);
 });
@@ -42,7 +49,17 @@ special.forEach(attr=>{
 for (let abilityModsKey in abilities) {
     console.log(`<div><h4>${capitalise(abilityModsKey)}</h4></div>`);
     abilities[abilityModsKey].forEach(modifier =>{
-        console.log(`<span class="${abilityModsKey}_${modifier}"><button type="action" name="act_${modifier}">${capitalise(modifier.replace("_"," "))}</button><input name="attr_${modifier}_value" type="number"></span>`);
+        console.log(`
+        <span class="skills_${modifier}">
+            <button type="action" name="act_${modifier}">${capitalise(modifier.replace("_"," "))}</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_${modifier}_visibility" value="0">
+                <span class="mod_total" name="attr_${modifier}_mod_total">+0</span>
+                <span class="hidden" name="attr_${modifier}_conditions"></span>
+                <span class="tooltip" name="attr_${modifier}_tooltip"></span>
+            </div>
+            <input name="attr_${modifier}_value" type="number">
+        </span>`);
     })
     console.log("\n")
 

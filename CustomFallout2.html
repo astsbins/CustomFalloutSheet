@@ -2,163 +2,539 @@
     TODO: attr_attribute_name could be the name instead-->
 
 
-
 <div class="main_title">
-    <img src="https://github.com/astsbins/CustomFalloutSheet/blob/master/sheet_title.png?raw=true" alt="">
+    <img src="https://github.com/astsbins/CustomFalloutSheet/blob/master/sheet_title.png?raw=true"
+         alt="">
 </div>
 <div class="content">
     <div class="special">
         <div class="special_strength">
             <button type="action" name="act_strength">Strength</button>
-            <input name="attr_strength_value"     placeholder="cur" type="number">
-            <input name="attr_strength_value_max" placeholder="max" type="number" value=10>
-        </div>
+            <div class="special_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_strength_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_strength_mod_total" type="text" value="3"></span>
+                <span class="hidden" name="attr_strength_conditions" value="test"></span>
+                <span class="tooltip" name="attr_strength_tooltip"></span>
+            </div>
+            <input name="attr_strength_value" placeholder="cur" type="number">
+            <input name="attr_strength_value_max" placeholder="max" type="number" value=10></div>
 
         <div class="special_perception">
             <button type="action" name="act_perception">Perception</button>
-            <input name="attr_perception_value"     placeholder="cur" type="number">
-            <input name="attr_perception_value_max" placeholder="max" type="number" value=10>
-        </div>
+            <div class="special_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_perception_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_perception_mod_total" type="text" value="3"></span>
+                <span class="hidden" name="attr_perception_conditions" value="test"></span>
+                <span class="tooltip" name="attr_perception_tooltip"></span>
+            </div>
+            <input name="attr_perception_value" placeholder="cur" type="number">
+            <input name="attr_perception_value_max" placeholder="max" type="number" value=10></div>
 
         <div class="special_endurance">
             <button type="action" name="act_endurance">Endurance</button>
-            <input name="attr_endurance_value"     placeholder="cur" type="number">
-            <input name="attr_endurance_value_max" placeholder="max" type="number" value=10>
-        </div>
+            <div class="special_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_endurance_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_endurance_mod_total" type="text" value="3"></span>
+                <span class="hidden" name="attr_endurance_conditions" value="test"></span>
+                <span class="tooltip" name="attr_endurance_tooltip"></span>
+            </div>
+            <input name="attr_endurance_value" placeholder="cur" type="number">
+            <input name="attr_endurance_value_max" placeholder="max" type="number" value=10></div>
 
         <div class="special_charisma">
             <button type="action" name="act_charisma">Charisma</button>
-            <input name="attr_charisma_value"     placeholder="cur" type="number">
-            <input name="attr_charisma_value_max" placeholder="max" type="number" value=10>
-        </div>
+            <div class="special_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_charisma_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_charisma_mod_total" type="text" value="3"></span>
+                <span class="hidden" name="attr_charisma_conditions" value="test"></span>
+                <span class="tooltip" name="attr_charisma_tooltip"></span>
+            </div>
+            <input name="attr_charisma_value" placeholder="cur" type="number">
+            <input name="attr_charisma_value_max" placeholder="max" type="number" value=10></div>
 
         <div class="special_intelligence">
             <button type="action" name="act_intelligence">Intelligence</button>
-            <input name="attr_intelligence_value"     placeholder="cur" type="number">
-            <input name="attr_intelligence_value_max" placeholder="max" type="number" value=10>
-        </div>
+            <div class="special_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_intelligence_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_intelligence_mod_total" type="text" value="3"></span>
+                <span class="hidden" name="attr_intelligence_conditions" value="test"></span>
+                <span class="tooltip" name="attr_intelligence_tooltip"></span>
+            </div>
+            <input name="attr_intelligence_value" placeholder="cur" type="number">
+            <input name="attr_intelligence_value_max" placeholder="max" type="number" value=10></div>
 
         <div class="special_agility">
             <button type="action" name="act_agility">Agility</button>
-            <input name="attr_agility_value"     placeholder="cur" type="number">
-            <input name="attr_agility_value_max" placeholder="max" type="number" value=10>
-        </div>
+            <div class="special_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_agility_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_agility_mod_total" type="text" value="3"></span>
+                <span class="hidden" name="attr_agility_conditions" value="test"></span>
+                <span class="tooltip" name="attr_agility_tooltip"></span>
+            </div>
+            <input name="attr_agility_value" placeholder="cur" type="number">
+            <input name="attr_agility_value_max" placeholder="max" type="number" value=10></div>
 
         <div class="special_luck">
             <button type="action" name="act_luck">Luck</button>
-            <input name="attr_luck_value"     placeholder="cur" type="number">
-            <input name="attr_luck_value_max" placeholder="max" type="number" value=10>
-        </div>
+            <div class="special_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_luck_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_luck_mod_total" type="text" value="3"></span>
+                <span class="hidden" name="attr_luck_conditions" value="test"></span>
+                <span class="tooltip" name="attr_luck_tooltip"></span>
+            </div>
+            <input name="attr_luck_value" placeholder="cur" type="number">
+            <input name="attr_luck_value_max" placeholder="max" type="number" value=10></div>
 
 
     </div>
 
     <div class="skills">
-
         <div><h4>Skills</h4></div>
-        <span class="skills_sneak"><button type="action" name="act_sneak">Sneak</button><input
-                name="attr_sneak_value" type="number"></span>
-        <span class="skills_larceny"><button type="action"
-                                             name="act_larceny">Larceny</button><input
-                name="attr_larceny_value" type="number"></span>
-        <span class="skills_pilot"><button type="action" name="act_pilot">Pilot</button><input
-                name="attr_pilot_value" type="number"></span>
-        <span class="skills_medicine"><button type="action"
-                                              name="act_medicine">Medicine</button><input
-                name="attr_medicine_value" type="number"></span>
-        <span class="skills_survival"><button type="action"
-                                              name="act_survival">Survival</button><input
-                name="attr_survival_value" type="number"></span>
-        <span class="skills_small_guns"><button type="action"
-                                                name="act_small_guns">Small Guns</button><input
-                name="attr_small_guns_value" type="number"></span>
-        <span class="skills_energy_weapons"><button type="action" name="act_energy_weapons">Energy Weapons</button><input
-                name="attr_energy_weapons_value" type="number"></span>
-        <span class="skills_big_guns"><button type="action"
-                                              name="act_big_guns">Big Guns</button><input
-                name="attr_big_guns_value" type="number"></span>
-        <span class="skills_explosives"><button type="action"
-                                                name="act_explosives">Explosives</button><input
-                name="attr_explosives_value" type="number"></span>
-        <span class="skills_close_combat"><button type="action" name="act_close_combat">Close Combat</button><input
-                name="attr_close_combat_value" type="number"></span>
-        <span class="skills_throwing"><button type="action"
-                                              name="act_throwing">Throwing</button><input
-                name="attr_throwing_value" type="number"></span>
-        <span class="skills_athletics"><button type="action"
-                                               name="act_athletics">Athletics</button><input
-                name="attr_athletics_value" type="number"></span>
-        <span class="skills_speech"><button type="action"
-                                            name="act_speech">Speech</button><input
-                name="attr_speech_value" type="number"></span>
-        <span class="skills_deception"><button type="action"
-                                               name="act_deception">Deception</button><input
-                name="attr_deception_value" type="number"></span>
-        <span class="skills_barter"><button type="action"
-                                            name="act_barter">Barter</button><input
-                name="attr_barter_value" type="number"></span>
-        <span class="skills_investigate"><button type="action" name="act_investigate">Investigate</button><input
-                name="attr_investigate_value" type="number"></span>
-        <span class="skills_search"><button type="action"
-                                            name="act_search">Search</button><input
-                name="attr_search_value" type="number"></span>
+
+        <span class="skills_sneak">
+            <button type="action" name="act_sneak">Sneak</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_sneak_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_sneak_mod_total">+0</span>
+                <span class="hidden" name="attr_sneak_conditions" value="test">test</span>
+                <span class="tooltip" name="attr_sneak_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_sneak_value" type="number">
+        </span>
+
+        <span class="skills_larceny">
+            <button type="action" name="act_larceny">Larceny</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_larceny_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_larceny_mod_total">+0</span>
+                <span class="hidden" name="attr_larceny_conditions">test</span>
+                <span class="tooltip" name="attr_larceny_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_larceny_value" type="number">
+        </span>
+
+        <span class="skills_pilot">
+            <button type="action" name="act_pilot">Pilot</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_pilot_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_pilot_mod_total">+0</span>
+                <span class="hidden" name="attr_pilot_conditions">test</span>
+                <span class="tooltip" name="attr_pilot_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_pilot_value" type="number">
+        </span>
+
+        <span class="skills_medicine">
+            <button type="action" name="act_medicine">Medicine</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_medicine_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_medicine_mod_total">+0</span>
+                <span class="hidden" name="attr_medicine_conditions">test</span>
+                <span class="tooltip" name="attr_medicine_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_medicine_value" type="number">
+        </span>
+
+        <span class="skills_survival">
+            <button type="action" name="act_survival">Survival</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_survival_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_survival_mod_total">+0</span>
+                <span class="hidden" name="attr_survival_conditions">test</span>
+                <span class="tooltip" name="attr_survival_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_survival_value" type="number">
+        </span>
+
+        <span class="skills_small_guns">
+            <button type="action" name="act_small_guns">Small Guns</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_small_guns_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_small_guns_mod_total">+0</span>
+                <span class="hidden" name="attr_small_guns_conditions">test</span>
+                <span class="tooltip" name="attr_small_guns_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_small_guns_value" type="number">
+        </span>
+
+        <span class="skills_energy_weapons">
+            <button type="action" name="act_energy_weapons">Energy Weapons</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility"
+                       name="attr_energy_weapons_visibility" value="0">
+                <span class="mod_total" name="attr_energy_weapons_mod_total">+0</span>
+                <span class="hidden" name="attr_energy_weapons_conditions">test</span>
+                <span class="tooltip" name="attr_energy_weapons_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_energy_weapons_value" type="number">
+        </span>
+
+        <span class="skills_big_guns">
+            <button type="action" name="act_big_guns">Big Guns</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_big_guns_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_big_guns_mod_total">+0</span>
+                <span class="hidden" name="attr_big_guns_conditions">test</span>
+                <span class="tooltip" name="attr_big_guns_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_big_guns_value" type="number">
+        </span>
+
+        <span class="skills_explosives">
+            <button type="action" name="act_explosives">Explosives</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_explosives_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_explosives_mod_total">+0</span>
+                <span class="hidden" name="attr_explosives_conditions">test</span>
+                <span class="tooltip" name="attr_explosives_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_explosives_value" type="number">
+        </span>
+
+        <span class="skills_close_combat">
+            <button type="action" name="act_close_combat">Close Combat</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility"
+                       name="attr_close_combat_visibility" value="0">
+                <span class="mod_total" name="attr_close_combat_mod_total">+0</span>
+                <span class="hidden" name="attr_close_combat_conditions">test</span>
+                <span class="tooltip" name="attr_close_combat_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_close_combat_value" type="number">
+        </span>
+
+        <span class="skills_throwing">
+            <button type="action" name="act_throwing">Throwing</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_throwing_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_throwing_mod_total">+0</span>
+                <span class="hidden" name="attr_throwing_conditions">test</span>
+                <span class="tooltip" name="attr_throwing_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_throwing_value" type="number">
+        </span>
+
+        <span class="skills_athletics">
+            <button type="action" name="act_athletics">Athletics</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_athletics_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_athletics_mod_total">+0</span>
+                <span class="hidden" name="attr_athletics_conditions">test</span>
+                <span class="tooltip" name="attr_athletics_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_athletics_value" type="number">
+        </span>
+
+        <span class="skills_speech">
+            <button type="action" name="act_speech">Speech</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_speech_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_speech_mod_total">+0</span>
+                <span class="hidden" name="attr_speech_conditions">test</span>
+                <span class="tooltip" name="attr_speech_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_speech_value" type="number">
+        </span>
+
+        <span class="skills_deception">
+            <button type="action" name="act_deception">Deception</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_deception_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_deception_mod_total">+0</span>
+                <span class="hidden" name="attr_deception_conditions">test</span>
+                <span class="tooltip" name="attr_deception_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_deception_value" type="number">
+        </span>
+
+        <span class="skills_barter">
+            <button type="action" name="act_barter">Barter</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_barter_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_barter_mod_total">+0</span>
+                <span class="hidden" name="attr_barter_conditions">test</span>
+                <span class="tooltip" name="attr_barter_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_barter_value" type="number">
+        </span>
+
+        <span class="skills_investigate">
+            <button type="action" name="act_investigate">Investigate</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_investigate_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_investigate_mod_total">+0</span>
+                <span class="hidden" name="attr_investigate_conditions">test</span>
+                <span class="tooltip" name="attr_investigate_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_investigate_value" type="number">
+        </span>
+
+        <span class="skills_search">
+            <button type="action" name="act_search">Search</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_search_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_search_mod_total">+0</span>
+                <span class="hidden" name="attr_search_conditions">test</span>
+                <span class="tooltip" name="attr_search_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_search_value" type="number">
+        </span>
 
 
         <div><h4>Crafts</h4></div>
-        <span class="crafts_armor"><button type="action" name="act_armor">Armor</button><input
-                name="attr_armor_value" type="number"></span>
-        <span class="crafts_weapons"><button type="action"
-                                             name="act_weapons">Weapons</button><input
-                name="attr_weapons_value" type="number"></span>
-        <span class="crafts_food"><button type="action" name="act_food">Food</button><input
-                name="attr_food_value" type="number"></span>
-        <span class="crafts_gear"><button type="action" name="act_gear">Gear</button><input
-                name="attr_gear_value" type="number"></span>
-        <span class="crafts_machine"><button type="action"
-                                             name="act_machine">Machine</button><input
-                name="attr_machine_value" type="number"></span>
-        <span class="crafts_pwr_armor"><button type="action"
-                                               name="act_pwr_armor">Pwr Armor</button><input
-                name="attr_pwr_armor_value" type="number"></span>
-        <span class="crafts_robots"><button type="action"
-                                            name="act_robots">Robots</button><input
-                name="attr_robots_value" type="number"></span>
-        <span class="crafts_construction"><button type="action" name="act_construction">Construction</button><input
-                name="attr_construction_value" type="number"></span>
+
+        <span class="skills_armor">
+            <button type="action" name="act_armor">Armor</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_armor_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_armor_mod_total">+0</span>
+                <span class="hidden" name="attr_armor_conditions">test</span>
+                <span class="tooltip" name="attr_armor_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_armor_value" type="number">
+        </span>
+
+        <span class="skills_weapons">
+            <button type="action" name="act_weapons">Weapons</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_weapons_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_weapons_mod_total">+0</span>
+                <span class="hidden" name="attr_weapons_conditions">test</span>
+                <span class="tooltip" name="attr_weapons_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_weapons_value" type="number">
+        </span>
+
+        <span class="skills_food">
+            <button type="action" name="act_food">Food</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_food_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_food_mod_total">+0</span>
+                <span class="hidden" name="attr_food_conditions">test</span>
+                <span class="tooltip" name="attr_food_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_food_value" type="number">
+        </span>
+
+        <span class="skills_gear">
+            <button type="action" name="act_gear">Gear</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_gear_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_gear_mod_total">+0</span>
+                <span class="hidden" name="attr_gear_conditions">test</span>
+                <span class="tooltip" name="attr_gear_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_gear_value" type="number">
+        </span>
+
+        <span class="skills_machine">
+            <button type="action" name="act_machine">Machine</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_machine_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_machine_mod_total">+0</span>
+                <span class="hidden" name="attr_machine_conditions">test</span>
+                <span class="tooltip" name="attr_machine_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_machine_value" type="number">
+        </span>
+
+        <span class="skills_pwr_armor">
+            <button type="action" name="act_pwr_armor">Pwr Armor</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_pwr_armor_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_pwr_armor_mod_total">+0</span>
+                <span class="hidden" name="attr_pwr_armor_conditions">test</span>
+                <span class="tooltip" name="attr_pwr_armor_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_pwr_armor_value" type="number">
+        </span>
+
+        <span class="skills_robots">
+            <button type="action" name="act_robots">Robots</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_robots_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_robots_mod_total">+0</span>
+                <span class="hidden" name="attr_robots_conditions">test</span>
+                <span class="tooltip" name="attr_robots_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_robots_value" type="number">
+        </span>
+
+        <span class="skills_construction">
+            <button type="action" name="act_construction">Construction</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility"
+                       name="attr_construction_visibility" value="0">
+                <span class="mod_total" name="attr_construction_mod_total">+0</span>
+                <span class="hidden" name="attr_construction_conditions">test</span>
+                <span class="tooltip" name="attr_construction_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_construction_value" type="number">
+        </span>
 
 
         <div><h4>Knowledges</h4></div>
-        <span class="knowledges_computers"><button type="action"
-                                                   name="act_computers">Computers</button><input
-                name="attr_computers_value" type="number"></span>
-        <span class="knowledges_science"><button type="action"
-                                                 name="act_science">Science</button><input
-                name="attr_science_value" type="number"></span>
-        <span class="knowledges_local"><button type="action"
-                                               name="act_local">Local</button><input
-                name="attr_local_value" type="number"></span>
-        <span class="knowledges_history"><button type="action"
-                                                 name="act_history">History</button><input
-                name="attr_history_value" type="number"></span>
-        <span class="knowledges_creatures"><button type="action"
-                                                   name="act_creatures">Creatures</button><input
-                name="attr_creatures_value" type="number"></span>
-        <span class="knowledges_bos"><button type="action" name="act_bos">Bos</button><input
-                name="attr_bos_value" type="number"></span>
-        <span class="knowledges_enclave"><button type="action"
-                                                 name="act_enclave">Enclave</button><input
-                name="attr_enclave_value" type="number"></span>
-        <span class="knowledges_institute"><button type="action"
-                                                   name="act_institute">Institute</button><input
-                name="attr_institute_value" type="number"></span>
-        <span class="knowledges_ceasars_legion"><button type="action" name="act_ceasars_legion">Ceasars Legion</button><input
-                name="attr_ceasars_legion_value" type="number"></span>
-        <span class="knowledges_lone_star"><button type="action"
-                                                   name="act_lone_star">Lone Star</button><input
-                name="attr_lone_star_value" type="number"></span>
-        <span class="knowledges_supermutants"><button type="action" name="act_supermutants">Supermutants</button><input
-                name="attr_supermutants_value" type="number"></span>
 
+        <span class="skills_computers">
+            <button type="action" name="act_computers">Computers</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_computers_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_computers_mod_total">+0</span>
+                <span class="hidden" name="attr_computers_conditions">test</span>
+                <span class="tooltip" name="attr_computers_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_computers_value" type="number">
+        </span>
+
+        <span class="skills_science">
+            <button type="action" name="act_science">Science</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_science_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_science_mod_total">+0</span>
+                <span class="hidden" name="attr_science_conditions">test</span>
+                <span class="tooltip" name="attr_science_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_science_value" type="number">
+        </span>
+
+        <span class="skills_local">
+            <button type="action" name="act_local">Local</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_local_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_local_mod_total">+0</span>
+                <span class="hidden" name="attr_local_conditions">test</span>
+                <span class="tooltip" name="attr_local_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_local_value" type="number">
+        </span>
+
+        <span class="skills_history">
+            <button type="action" name="act_history">History</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_history_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_history_mod_total">+0</span>
+                <span class="hidden" name="attr_history_conditions">test</span>
+                <span class="tooltip" name="attr_history_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_history_value" type="number">
+        </span>
+
+        <span class="skills_creatures">
+            <button type="action" name="act_creatures">Creatures</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_creatures_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_creatures_mod_total">+0</span>
+                <span class="hidden" name="attr_creatures_conditions">test</span>
+                <span class="tooltip" name="attr_creatures_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_creatures_value" type="number">
+        </span>
+
+        <span class="skills_bos">
+            <button type="action" name="act_bos">Bos</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_bos_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_bos_mod_total">+0</span>
+                <span class="hidden" name="attr_bos_conditions">test</span>
+                <span class="tooltip" name="attr_bos_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_bos_value" type="number">
+        </span>
+
+        <span class="skills_enclave">
+            <button type="action" name="act_enclave">Enclave</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_enclave_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_enclave_mod_total">+0</span>
+                <span class="hidden" name="attr_enclave_conditions">test</span>
+                <span class="tooltip" name="attr_enclave_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_enclave_value" type="number">
+        </span>
+
+        <span class="skills_institute">
+            <button type="action" name="act_institute">Institute</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_institute_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_institute_mod_total">+0</span>
+                <span class="hidden" name="attr_institute_conditions">test</span>
+                <span class="tooltip" name="attr_institute_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_institute_value" type="number">
+        </span>
+
+        <span class="skills_ceasars_legion">
+            <button type="action" name="act_ceasars_legion">Ceasars Legion</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility"
+                       name="attr_ceasars_legion_visibility" value="0">
+                <span class="mod_total" name="attr_ceasars_legion_mod_total">+0</span>
+                <span class="hidden" name="attr_ceasars_legion_conditions">test</span>
+                <span class="tooltip" name="attr_ceasars_legion_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_ceasars_legion_value" type="number">
+        </span>
+
+        <span class="skills_lone_star">
+            <button type="action" name="act_lone_star">Lone Star</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility" name="attr_lone_star_visibility"
+                       value="0">
+                <span class="mod_total" name="attr_lone_star_mod_total">+0</span>
+                <span class="hidden" name="attr_lone_star_conditions">test</span>
+                <span class="tooltip" name="attr_lone_star_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_lone_star_value" type="number">
+        </span>
+
+        <span class="skills_supermutants">
+            <button type="action" name="act_supermutants">Supermutants</button>
+            <div class="skill_mod">
+                <input type="hidden" class="mod_total_visibility"
+                       name="attr_supermutants_visibility" value="0">
+                <span class="mod_total" name="attr_supermutants_mod_total">+0</span>
+                <span class="hidden" name="attr_supermutants_conditions">test</span>
+                <span class="tooltip" name="attr_supermutants_tooltip">nothing here.</span>
+            </div>
+            <input name="attr_supermutants_value" type="number">
+        </span>
     </div>
 
     <div class="charinfo">
@@ -171,7 +547,8 @@
         <!--        <div class="info_input"><label>Archetype</label> <input type="text" placeholder="Archetype" name="attr_archetype"></div>-->
         <!--        <div class="info_input"><label>Reputation</label> <input type="text" placeholder="Reputation" name="attr_reputation"></div>-->
         <!--        <div class="info_input"><label>Karma</label> <input type="text" placeholder="Karma" name="attr_karma"></div>-->
-        <div class="info_input"><input type="text" placeholder="Name" name="attr_character_name"></div>
+        <div class="info_input"><input type="text" placeholder="Name" name="attr_character_name">
+        </div>
         <div class="info_input"><input type="text" placeholder="Player" name="attr_player">
         </div>
         <div class="info_input"><input type="text" placeholder="Hometown" name="attr_hometown">
@@ -216,7 +593,10 @@
                 <span type="hidden" name="noabil_value" value="0"></span>
             </div>
             <div>
-                <button type="roll" value="&{template:default} {{name=Initiative: @{character_name} }} {{Initiative=[[@{perception_value}+@{perception_value}+ d10 &{tracker}]] }}">Initiative</button>
+                <button type="roll"
+                        value="&{template:default} {{name=Initiative: @{character_name} }} {{Initiative=[[@{perception_value}+@{perception_value}+ d10 &{tracker}]] }}">
+                    Initiative
+                </button>
             </div>
             <div class="main_crit">
                 Crit <input type="number" name="attr_main_crit" value="1">
@@ -277,11 +657,11 @@
 
             <!-- armor status_effects trackers (apst)-->
             <div class="ast">
-<!--                hidden input to control which tab is shown-->
+                <!--                hidden input to control which tab is shown-->
                 <input type='hidden' class='ast_tabstoggle' name='attr_ast_tab'
                        value='armor_tab'/>
 
-<!--                tab buttons-->
+                <!--                tab buttons-->
                 <div class="ast_tab">
                     <!--                    append 'tab' to prevent conflict with the craft armor skill-->
                     <button type="action" name="act_armor_tab">Armor</button>
@@ -289,7 +669,7 @@
                     <button type="action" name="act_trackers">Trackers</button>
                 </div>
 
-<!--              Armor Tab -->
+                <!--              Armor Tab -->
                 <div class="armor_tab">
                     <h4 class="armor_title">Armor</h4>
 
@@ -400,19 +780,25 @@
 
                 </div>
 
-<!--              status_effects Tab-->
+                <!--              status_effects Tab-->
                 <div class="status_effects">
                     <h4 class="status_effects_title">status_effects</h4>
                     <div class="status_effects_mods">
-                        <div class="status_effect_strength"><strong>Strength</strong> <span name="attr_status_effect_strength_mod">0</span></div>
-                        <div class="status_effect_perception"><strong>Perception</strong> <span name="attr_status_effect_perception_mod">0</span></div>
-                        <div class="status_effect_endurance"><strong>Endurance</strong> <span name="attr_status_effect_endurance_mod">0</span></div>
-                        <div class="status_effect_charisma"><strong>Charisma</strong> <span name="attr_status_effect_charisma_mod">0</span></div>
-                        <div class="status_effect_intelligence"><strong>Intelligence</strong> <span name="attr_status_effect_intelligence_mod">0</span></div>
-                        <div class="status_effect_agility"><strong>Agility</strong> <span name="attr_status_effect_agility_mod">0</span></div>
+                        <div class="status_effect_strength"><strong>Strength</strong> <span
+                                name="attr_status_effect_strength_mod">0</span></div>
+                        <div class="status_effect_perception"><strong>Perception</strong> <span
+                                name="attr_status_effect_perception_mod">0</span></div>
+                        <div class="status_effect_endurance"><strong>Endurance</strong> <span
+                                name="attr_status_effect_endurance_mod">0</span></div>
+                        <div class="status_effect_charisma"><strong>Charisma</strong> <span
+                                name="attr_status_effect_charisma_mod">0</span></div>
+                        <div class="status_effect_intelligence"><strong>Intelligence</strong> <span
+                                name="attr_status_effect_intelligence_mod">0</span></div>
+                        <div class="status_effect_agility"><strong>Agility</strong> <span
+                                name="attr_status_effect_agility_mod">0</span></div>
                     </div>
                     <div class="condition_status_effects">
-<!--                        <div class="status_effect_titles"><strong>Status Effects</strong></div>-->
+                        <!--                        <div class="status_effect_titles"><strong>Status Effects</strong></div>-->
                         <div class="condition_row">
                             <div><span style="font-family: 'Pictos'">3</span></div>
                             <div><strong>Name</strong></div>
@@ -423,12 +809,16 @@
                         <fieldset class="repeating_conditions">
                             <div class="condition_row">
                                 <div class="status_active">
-                                    <input class="Checkbox" type="checkbox" checked="checked" value="1">
+                                    <input class="Checkbox" type="checkbox" checked="checked"
+                                           value="1" name="attr_condition_active">
                                     <span class="checkmark"></span>
                                 </div>
-                                <div><input  class="condition_name"type="text" placeholder="Condition Name" name="attr_condition_name"></div>
+                                <div><input class="condition_name" type="text"
+                                            placeholder="Condition Name" name="attr_condition_name">
+                                </div>
                                 <div class="affected_ability">
-                                    <select class="select_condition" name="attr_effected_attribute"
+                                    <select class="select_condition"
+                                            name="attr_condition_attribute"
                                             value="strength">
                                         <!--                    <option value="0" selected></option>-->
                                         <optgroup label="Attributes">
@@ -442,13 +832,16 @@
                                         </optgroup>
                                         <optgroup label="Abilities">
                                             <optgroup label="Skills">
-                                                <option value="sneak">Sneak</option>
+                                                <option
+                                                        value="sneak">Sneak
+                                                </option>
                                                 <option value="larceny">Larceny</option>
                                                 <option value="pilot">Pilot</option>
                                                 <option value="medicine">Medicine</option>
                                                 <option value="survival">Survival</option>
                                                 <option value="small_guns">Small Guns</option>
-                                                <option value="energy_weapons">Energy Weapons</option>
+                                                <option value="energy_weapons">Energy Weapons
+                                                </option>
                                                 <option value="big_guns">Big Guns</option>
                                                 <option value="explosives">Explosives</option>
                                                 <option value="close_combat">Close Combat</option>
@@ -479,7 +872,8 @@
                                                 <option value="bos">Bos</option>
                                                 <option value="enclave">Enclave</option>
                                                 <option value="institute">Institute</option>
-                                                <option value="ceasars_legion">Ceasars Legion</option>
+                                                <option value="ceasars_legion">Ceasars Legion
+                                                </option>
                                                 <option value="lone_star">Lone Star</option>
                                                 <option value="supermutants">Supermutants</option>
                                             </optgroup>
@@ -487,22 +881,24 @@
                                     </select>
                                 </div>
                                 <div class="status_modifier">
-                                    <input type="number" name="attr_condition_modifier" value="0" >
+                                    <input type="number" name="attr_condition_modifier" value="0">
                                 </div>
                             </div>
                         </fieldset>
                     </div>
                 </div>
 
-<!--                Trackers Tab-->
+                <!--                Trackers Tab-->
                 <div class="trackers"><h3>Trackers</h3></div>
             </div>
             <div class="perks">
                 <h4>Perks and Traits</h4>
                 <br>
                 <fieldset class="repeating_perks">
-                    <input class="perk_name" name="attr_perk_name" [type="text" placeholder="Perk Name">
-                    <button class="perk_roll" type="roll" value="&{template:default} {{name= Perk: @{perk_name} }} {{description=@{perk_descr} }}"></button>
+                    <input class="perk_name" name="attr_perk_name" [type="text"
+                           placeholder="Perk Name">
+                    <button class="perk_roll" type="roll"
+                            value="&{template:default} {{name= Perk: @{perk_name} }} {{description=@{perk_descr} }}"></button>
                     <input type="checkbox" class="toggle_perk_description" checked="checked"/>
                     <textarea name="attr_perk_descr" class="perk_descr"
                               placeholder="Details about perk here...">
@@ -518,14 +914,31 @@
             <h3>Settlements</h3>
             <div class="settlements_repeating_section">
                 <fieldset class="repeating_settlements">
-                    <input type="hidden" name="attr_atk_mod">
-                    <button type="roll" value="&{template:default} {{name= Settlement: @{settlement_name} }} {{description=@{settlement_description} }}"></button>
-                    <input name="attr_atk_num_dice" type="number" value="2" placeholder="d20s"/>
-                    <span name="attr_settlement_name_desc"></span>
-                    <input name="attr_settlement_name" type="text" placeholder="Name"/>
-                    <input class="settlement_description" name="attr_settlement_description"
-                           placeholder="Description" type="textarea">
-            </fieldset></div>
+                    <button class="settlement_roll" type="roll"
+                            value="&{template:default} {{name= Settlement: @{settlement_name} }} {{description=@{settlement_description} }}"></button>
+                    <input class="settlement_name" name="attr_settlement_name" type="text" placeholder="Name"/>
+                    <div class="settlement_level_section">
+                        <input type="hidden" name="attr_settlement_level" class="dot" value="1"/>
+                        <button type="action" name="act_settlement_level_1" class="dot">
+                            <span class="checked"></span>
+                        </button>
+                        <button type="action" name="act_settlement_level_2" class="dot gt-1">
+                            <span class="checked"></span>
+                        </button>
+                        <button type="action" name="act_settlement_level_3" class="dot gt-1 gt-2">
+                            <span class="checked"></span>
+                        </button>
+                        <button type="action" name="act_settlement_level_4" class="dot gt-1 gt-2 gt-3">
+                            <span class="checked"></span>
+                        </button>
+                        <button type="action" name="act_settlement_level_5" class="dot gt-1 gt-2 gt-3 gt-4">
+                            <span class="checked"></span>
+                        </button>
+                    </div>
+                    <textarea class="settlement_description" name="attr_settlement_description" type="text" placeholder="Description"></textarea>
+                    <input class="settlement_effects" name="attr_settlement_effects" type="text" placeholder="Effects">
+                </fieldset>
+            </div>
 
         </div>
     </div>
@@ -556,17 +969,18 @@
                 <option value="perception">Perception</option>
                 <option value="endurance">Endurance</option>
                 <option value="charisma">Charisma</option>
-                <option value="intelligence">Intelligence</option>
+                <option value="intelligence">Intelligence
+                </option>
                 <option value="agility">Agility</option>
                 <option value="luck">Luck</option>
             </select>
             <select name="attr_weapon_skill" value="small_guns">
-            <option value="small_guns">Small Guns</option>
-            <option value="energy_weapons">Energy Weapons</option>
-            <option value="big_guns">Big Guns</option>
-            <option value="close_combat">Close Combat</option>
-            <option value="throwing">Throwing</option>
-            <option value="explosives">Explosives</option>
+                <option value="small_guns">Small Guns</option>
+                <option value="energy_weapons">Energy Weapons</option>
+                <option value="big_guns">Big Guns</option>
+                <option value="close_combat">Close Combat</option>
+                <option value="throwing">Throwing</option>
+                <option value="explosives">Explosives</option>
             </select>
             <input name="attr_weapon_mod" type="number">
             <select name="attr_weapon_damage_type" value="PHY">
@@ -648,6 +1062,7 @@
         "deception", "barter", "investigate", "search", "computers", "science", "local", "history", "creatures", "bos", "enclave", "institute", "ceasars_legion", "lone_star",
         "supermutants", "noabil"];
 
+    const allStats = attributes.concat(abilities);
 
     function capitalise(word) {
         text = word.toLowerCase()
@@ -656,6 +1071,46 @@
                 .join(' ')
         return (text);
     }
+
+    //intialise attribute backed spans
+    on('sheet:opened', function () {
+        //produce list on the names of all attributes that are backed by spans
+
+        let stat_attr_names = ["mod_total", "conditions", "tooltip"]
+        let all_stat_attrs = []
+        allStats.forEach(stat => {
+            stat_attr_names.forEach(stat_attr_name => {
+                all_stat_attrs.push(`${stat}_${stat_attr_name}`)
+            })
+        })
+
+        //produce list of attributes that are already
+        let unset_stat_attrs = []
+        getAttrs(all_stat_attrs, stat_attr => {
+            all_stat_attrs.forEach(attr => {
+                if (stat_attr[attr] == undefined) {
+                    unset_stat_attrs.push(attr)
+                }
+            })
+            console.log("set", stat_attr)
+            console.log("unset", unset_stat_attrs)
+            //initialise unset attributes
+            let update = {}
+            unset_stat_attrs.forEach(unset_attr => {
+                update[unset_attr] = "0"
+            })
+            console.log("update", update)
+            setAttrs(update)
+
+            console.log("Sheet Opened")
+            getAttrs(all_stat_attrs, stat_attr => {
+                console.log("end", stat_attr)
+            })
+        })
+
+
+    })
+
 
     attributes.forEach(attribute => {
         on(`clicked:${attribute}`, () => {
@@ -709,46 +1164,158 @@
             });
         });
     });
-    // function genname(repeating_section, id.){
-    //     return(`repeating_${name}_-`)
-    // }
-    // function bodypart(num) {
-    //     function numIsBetween(n1, n2) {
-    //         if (num >= n1 && num <= n2) {
-    //             return true;
-    //         } else {
-    //             return false;
-    //         }
-    //     }
-    //
-    //     if (num == 1) {
-    //         return "eyes"
-    //     } else if (num == 2) {
-    //         return "head"
-    //     } else if (numIsBetween(3, 5)) {
-    //         return "r_arm"
-    //     } else if (numIsBetween(6, 8)) {
-    //         return "l_arm"
-    //     } else if (numIsBetween(9, 12)) {
-    //         return "torso"
-    //     } else if (numIsBetween(13, 14)) {
-    //         return "groin"
-    //     } else if (numIsBetween(15, 17)) {
-    //         return "r_leg"
-    //     } else if (numIsBetween(18, 20)) {
-    //         return "l_leg"
-    //     }
-    // }
-    //
+
     // function randrange(min, max) {
     //     return Math.random() * (max - min + 1) + min
     // }
+    // update stat mod when conditions effecting it change
+    allStats.forEach(stat => {
+        on(`change:${stat}_conditions`, () => {
+            getAttrs([`${stat}_conditions`], conditions => {
+                console.log(`conditions ${JSON.stringify(conditions)}`)
+                //calculate total modifier
+                let statConditions = conditions[`${stat}_conditions`].split(",")
+                statConditions.pop()
+                let update = {}
+                if (typeof (statConditions) != "string") {
+                    let total_modifier = 0;
+                    console.log("str")
+                    statConditions.forEach(row => {
+                        console.log("row " + row)
+                        total_modifier += parseInt(row.split(":")[1]);
+                    });
+                    if (total_modifier > 0) {
+                        total_modifier = `+${total_modifier}`
+                    }
+                    console.log(`mod ${total_modifier}`)
+                    update[`${stat}_mod_total`] = total_modifier
+                }
 
-    on("change:repeating_conditions", eventInfo =>{
-        let element = eventInfo.sourceAttribute
-        let row_id = element.match(/repeating_.*_-([^_]*)/)[1]
-        getAttrs([`repeating_conditions_-${row_id}_`,])
+                setAttrs(update)
+
+            })
+
+        })
     })
+    on("change:repeating_conditions", eventInfo => {
+        let element = eventInfo.sourceAttribute
+        console.log("element " + element)
+        let row_id = element.match(/repeating_.*_-([^_]*)/)[1]
+        // console.log(`source attribute ${source_attribute_name}`)
+        getAttrs([`repeating_conditions_-${row_id}_condition_active`,
+            `repeating_conditions_-${row_id}_condition_name`,
+            `repeating_conditions_-${row_id}_condition_attribute`,
+            `repeating_conditions_-${row_id}_condition_modifier`], condition => {
+
+            function r_cond(name) {
+                return (condition[`repeating_conditions_-${row_id}_condition_${name}`])
+            }
+
+            function statName(name) {
+                return (`${r_cond("attribute")}_${name}`)
+            }
+
+
+            //check if the what is changed is the attribute
+            let attribute_changed = (element.match(/-.*_(.*)/)[1] == "attribute")
+            let grabbingConditions = [`${statName("conditions")}`]
+            // console.log(attribute_changed)
+            let prev_attr;
+            if (attribute_changed) {
+                prev_attr = `${eventInfo.previousValue}_conditions`
+                console.log("prev attr " + prev_attr)
+                grabbingConditions.push(prev_attr)
+            }
+
+            console.log("gconds " + grabbingConditions)
+            getAttrs(grabbingConditions, stat => {
+                console.log(stat)
+                function addComma(s){
+                    if(s[s.length-1] != ","){
+                        return(s+",")
+                    }else{
+                        return s
+                    }
+                }
+                let update = {}
+                // update conditions attribute
+                log(`statcond ${stat[statName("conditions")]}`)
+                let statConditions = stat[statName("conditions")].split(",")
+                statConditions.pop()
+                // console.log("pre", statCondtions)
+                let currentRow = `repeating_conditions_-${row_id}`;
+                let current_entry = `${currentRow}:${r_cond("modifier")},`
+                let new_condition = true;
+                if (typeof (statConditions) == "string") {
+                    // console.log("isString")
+                    statConditions = [current_entry]
+                }
+
+                for (let i = 0; i < statConditions.length; i++) {
+                    if (statConditions[i].includes(currentRow)) {
+                        statConditions[i] = current_entry;
+                        new_condition = false;
+                        break;
+                    }
+                }
+                if (new_condition) {
+                    statConditions.push(current_entry);
+                }
+                // console.log(`conditionstr ${statCondtions.toString()}`)
+                update[statName("conditions")] = addComma(statConditions.toString());
+
+                function remove(attrCond) {
+                    console.log("prev2 " + attrCond)
+                    let oldStatConditions = stat[attrCond].split(",")
+                    oldStatConditions.pop()
+                    console.log("old " + oldStatConditions + " " + oldStatConditions.length)
+                    for (let i = 0; i < oldStatConditions.length; i++) {
+                        if (oldStatConditions[i].includes(currentRow)) {
+                            oldStatConditions.splice(i, 1)
+                            let updatedStr = addComma(oldStatConditions.toString())
+                            log("just before " + updatedStr)
+                            if (updatedStr == ",") {
+                                update[attrCond] = "none"
+                                console.log("e " + attrCond)
+                            } else {
+                                update[attrCond] = updatedStr
+                                console.log("f " + attrCond)
+                            }
+                            break;
+                        }
+                    }
+                }
+
+                // update if attributed changed
+
+                if (attribute_changed) {
+                    remove(prev_attr)
+                }
+                console.log(`active? ${r_cond("active")}`)
+                if(r_cond("active") == 0){
+                    remove(statName("conditions"))
+                    console.log("removed?")
+                }
+                console.log("update " + JSON.stringify(update))
+                setAttrs(update);
+            });
+
+        });
+    });
+
+    on("remove:repeating_conditions", function(eventinfo) {
+        // console.log(eventinfo.removedInfo.keys());
+        console.log(eventinfo.removedInfo["repeating_conditions_attribute"]);
+    });
+    const settlement_levelValues = ["1", "2", "3", "4", "5"];
+    settlement_levelValues.forEach(function (value) {
+        on(`clicked:settlement_level_${value}`, function () {
+            setAttrs({
+                "settlement_level": value
+            });
+        });
+    });
+
     //TODO: make better (less repetition?)
     on("change:repeating_weapons", eventInfo => {
         let element = eventInfo.sourceAttribute

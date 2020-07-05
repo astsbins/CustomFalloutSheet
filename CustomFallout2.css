@@ -31,6 +31,18 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+/*input[type=number]:hover::-webkit-inner-spin-button,*/
+/*input[type=number]:hover::-webkit-outer-spin-button {*/
+/*    -webkit-appearance: inner-spin-button;*/
+/*}*/
+
+span.sheet-hidden{
+    display: none;
+}
+/*span.sheet-testws{*/
+/*    white-space: pre-line;*/
+/*}*/
 /*.sheet-grid{*/
 /*    display: grid;*/
 /*    grid-template-rows: 1fr 55fr;*/
@@ -100,7 +112,7 @@ button:active{
     padding: 0.5em;
     display: grid;
     /*grid-template-columns: 0.8fr;*/
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: 0.6fr 0.4fr repeat(2, 1fr);
     justify-items: center;
 }
 .sheet-special > div > input[type="number"]{
@@ -109,9 +121,25 @@ button:active{
     justify-self: center;
 }
 .sheet-special > div > button{
+    grid-column: 1;
+    min-width: 0;
+    height: 100%;
     width: 80%;
+    border-bottom: none;
 }
 
+.sheet-special_mod {
+    width: 100%;
+    border: 1px solid #206a20;
+    border-top: none;
+    display: flex;
+    justify-content: center;
+    background-color: var(--button_colour);
+
+}
+.sheet-special_mod:hover span{
+    visibility: visible;
+}
 .sheet-skills{
     border: var(--border);
     background-color: var(--tile_colour);
@@ -120,21 +148,67 @@ button:active{
     padding: 0.5em;
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .sheet-skills >  *{
     display: flex;
+    min-width: 0;
 }
 
-
 .sheet-skills > span > button{
-    flex: 2;
+    flex: 2.5;
     text-align: left;
+    border-right: none;
     /*justify-content: left;*/
     /*justify-self: left;*/
     /*justify-items: left;*/
 }
+.sheet-skills > span > input[type="number"] {
+    width: 2.5em;
+}
+button:hover ~ .sheet-skill_mod,
+button:hover ~ .sheet-special_mod{
+    background-color: var(--buton_hover_colour);
+}
+/*.sheet-mod_total_visibility[value="0"] ~ .sheet-mod_total{*/
+/*    visibility: hidden;*/
+/*}*/
+.sheet-skill_mod{
+    font-weight: normal;
+    background-color: var(--button_colour);
+    border: 1px solid #206a20;
+    border-left: none ;
+    padding-right: 0.5em;
+}
+.sheet-mod_total:hover,
+.sheet-special_mod:hover{
+    /*color: #000089;*/
+    font-weight: bold;
+}
+.sheet-mod_total{
+    color: #FF0000;
+    /*visibility: visible;*/
+}
 
+.sheet-tooltip{
+    /*color: black;*/
+    font-weight: normal;
+    visibility: hidden;
+    position: absolute;
+    /*display: inline-block;*/
+    margin-left: 3em;
+    background-color: var(--button_colour);
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    border: 1px solid #206a20;
+    z-index: 1;
+    white-space: pre-line;
+    /*display: inline-block;*/
+}
+.sheet-skill_mod:hover span{
+    visibility: visible;
+}
 .sheet-charinfo{
     border: var(--border);
     background-color: var(--tile_colour);
@@ -164,6 +238,8 @@ button:active{
     /*grid-template-columns: repeat(5,1fr);*/
     grid-template-rows: 0.6fr 0.1fr 12fr;
     grid-gap: 0.5em;
+    min-width: 0;
+
 }
 .sheet-main{
     min-height: 0;
@@ -178,14 +254,16 @@ button:active{
     padding: 0.5em;
     display: grid;
     /*                      numdice roll attribute ability initiative crit botch*/
-    grid-template-columns: 1fr        1fr 3fr       3fr         2fr     1fr 1fr;
+    grid-template-columns: 1fr        2fr 3fr       3fr         2fr     1fr 1fr;
     grid-gap: 0.5em;
+    min-width: 0;
 }
 
 .sheet-rolls > *{
     justify-self: center;
     align-self: center;
     padding: 0.5em;
+    min-width: 0;
 
     /*border: var(--border);*/
 }
@@ -258,6 +336,7 @@ button:active{
 /*}*/
 
 .sheet-hdr{
+    min-width: 0;
     grid-area: hdr;
     min-width: 0;
     display: grid;
@@ -364,6 +443,7 @@ button[name="act_trackers"]{
 }
 .sheet-attacks >.repcontainer[data-groupname="repeating_attacks"] >.repitem>*{
     min-height: 0;
+    min-width: 0;
     /*height: 2em;*/
 }
 .sheet-atk_crit_botch{
@@ -451,13 +531,16 @@ button[name="attr_atk_roll"]{
     grid-template-rows: 0.3fr 1fr 5fr;
     grid-gap: 0.4em;
     min-height: 0;
+    min-width: 0;
 }
 .sheet-status_effects_title{
     min-height: 0;
     grid-area: title;
+    min-width: 0;
 }
 
 .sheet-status_effects_mods{
+    min-width: 0;
     min-height: 0;
     display: grid;
     grid-area: status;
@@ -470,6 +553,7 @@ button[name="attr_atk_roll"]{
 
 
 .sheet-condition_status_effects{
+    min-width: 0;
     min-height: 0;
     grid-area: conditions;
     display: flex;
@@ -479,15 +563,23 @@ button[name="attr_atk_roll"]{
     padding: 0.4em;
 }
 .repcontainer[data-groupname="repeating_conditions"]{
+    min-width: 0;
     overflow: auto;
 }
+.repcontainer[data-groupname="repeating_conditions"] > repitem{
+    min-width: 0;
+    width: 100%;
+
+}
 .repcontainer[data-groupname="repeating_conditions"] > .repitem >div{
+    min-width: 0;
     height: 3em;
     /*min-width: 0;*/
     min-height: 1em;
     border-bottom: 1px solid darkslategray;
 }
 .sheet-condition_row{
+    min-width: 0;
     display: grid;
     grid-template-columns: 0.7fr 3fr 2fr 1.2fr;
     min-height: 0;
@@ -520,12 +612,12 @@ button.sheet-checkbox{
 input.sheet-condition_name{
     width: 110%;
 }
-.sheet-select_condition{
-        border: var(--border);
-        background-color: var(--tile_colour);
-        align-self: center;
-        width: 100%;
-        min-width: 0;
+select.sheet-select_condition{
+    border: var(--border);
+    background-color: var(--tile_colour);
+    align-self: center;
+    min-width: 0;
+    width: 100%;
 }
 
 /*.sheet-status_status_effects > div >select{*/
@@ -696,8 +788,79 @@ input.sheet-toggle_perk_description:not(:checked) ~ textarea{
 }
 
 /*style the repeating container here*/
-.repcontainer[data-groupname="repeating_settlements"] >.repitem{
+.repcontainer[data-groupname="repeating_settlements"] >.repitem {
+    display: grid;
+    grid-template-areas: "btn name name lvls"
+                         "btn dscr dscr dscr"
+                         "btn dscr dscr dscr"
+                         "eft eft  eft  eft";
+    grid-template-columns: 0.5fr repeat(3,1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height: 10em;
+    min-height:0;
+    grid-gap: 0.4em;
+}
 
+.sheet-settlement_roll {
+    min-height: 0;
+    /*height: 4em;*/
+    grid-area: btn;
+
+}
+
+.sheet-settlement_name{
+    min-height:0;
+    /*height: 2em;*/
+    grid-area: name;
+}
+.sheet-settlement_level_section{
+    display: flex;
+}
+button.sheet-dot {
+    padding: 0;
+    border: solid 1px #a8a8a8;
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.sheet-dot > span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: buttontext;
+}
+
+/* Hide the "checked" section of the radio if the hidden attribute value is greater than the button value */
+input.sheet-dot[value="1"] ~ button.sheet-gt-1 > span.sheet-checked {
+    display: none;
+}
+input.sheet-dot[value="2"] ~ button.sheet-gt-2 > span.sheet-checked {
+    display: none;
+}
+input.sheet-dot[value="3"] ~ button.sheet-gt-3 > span.sheet-checked {
+    display: none;
+}
+input.sheet-dot[value="4"] ~ button.sheet-gt-4 > span.sheet-checked {
+    display: none;
+}
+
+.sheet-settlement_description{
+    min-height:0;
+    min-width: 0;
+    height: 90%;
+    width: 98%;
+    grid-area: dscr;
+}
+.sheet-settlement_effects{
+    min-height:0;
+    min-width: 0;
+    height: 100%;
+    grid-area: eft;
 }
 
 .repcontainer[data-groupname="repeating_settlements"] >.repitem >input{
