@@ -113,11 +113,11 @@ let armor_locations = ["eyes", "head", "right_arm", "left_arm", "torso", "groin"
         console.log(    `                    
                         <div class="armor_location" name="attr_armor_${loc}">
                             <div class="location"><strong>${capitalise(loc.replace("_"," "))}</strong></div>
-                            <div class="armor_name"><input type="text" placeholder="Armor Name"></div>
-                            <div class="phy_dr_${loc}">PHY<input type="number" placeholder="DR"></div>
-                            <div class="ene_dr_${loc}">ENE<input type="number" placeholder="DR"></div>
-                            <div class="rad_rd_${loc}">RAD<input type="number" placeholder="DR"></div>
-                            <div class="poi_dr_${loc}">POI<input type="number" placeholder="DR"></div>
+                            <div class="armor_name"><input type="text" name="attr_${loc}_armor_name" placeholder="Armor Name"></div>
+                            <div class="phy_dr_${loc}" >PHY<input type="number" name="attr_phy_dr_${loc}" placeholder="DR" ></div>
+                            <div class="ene_dr_${loc}" >ENE<input type="number" name="attr_ene_dr_${loc}" placeholder="DR" ></div>
+                            <div class="rad_rd_${loc}" >RAD<input type="number" name="attr_rad_rd_${loc}" placeholder="DR" ></div>
+                            <div class="poi_dr_${loc}" >POI<input type="number" name="attr_poi_dr_${loc}" placeholder="DR" ></div>
                         </div>`)
     });
 
