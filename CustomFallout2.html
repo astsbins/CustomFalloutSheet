@@ -1179,7 +1179,7 @@
                 let update = {}
                 if (typeof (statConditions) != "string") {
                     let total_modifier = 0;
-                    console.log("str")
+                    // console.log("str")
                     statConditions.forEach(row => {
                         console.log("row " + row)
                         total_modifier += parseInt(row.split(":")[1]);
@@ -1206,6 +1206,7 @@
             `repeating_conditions_-${row_id}_condition_name`,
             `repeating_conditions_-${row_id}_condition_attribute`,
             `repeating_conditions_-${row_id}_condition_modifier`], condition => {
+            console.log("repcond " + JSON.stringify(condition))
 
             function r_cond(name) {
                 return (condition[`repeating_conditions_-${row_id}_condition_${name}`])
@@ -1230,13 +1231,15 @@
             console.log("gconds " + grabbingConditions)
             getAttrs(grabbingConditions, stat => {
                 console.log(stat)
-                function addComma(s){
-                    if(s[s.length-1] != ","){
-                        return(s+",")
-                    }else{
+
+                function addComma(s) {
+                    if (s[s.length - 1] != ",") {
+                        return (s + ",")
+                    } else {
                         return s
                     }
                 }
+
                 let update = {}
                 // update conditions attribute
                 log(`statcond ${stat[statName("conditions")]}`)
@@ -1292,7 +1295,7 @@
                     remove(prev_attr)
                 }
                 console.log(`active? ${r_cond("active")}`)
-                if(r_cond("active") == 0){
+                if (r_cond("active") == 0) {
                     remove(statName("conditions"))
                     console.log("removed?")
                 }
@@ -1303,10 +1306,65 @@
         });
     });
 
-    on("remove:repeating_conditions", function(eventinfo) {
-        // console.log(eventinfo.removedInfo.keys());
-        console.log(eventinfo.removedInfo["repeating_conditions_attribute"]);
-    });
+    on("remove:repeating_conditions", eventInfo => {
+        //TODO: fix awful amount of duplication in here
+        let element = eventInfo.sourceAttribute
+        let row_id = element.match(/repeating_.*_-([^_]*)/)[1]
+        let currentRow = `repeating_conditions_-${row_id}`;
+        console.log("removed " + Object.keys(eventInfo.removedInfo));
+        console.log("rem eventINFO " + JSON.stringify(eventInfo))
+
+        function r_cond(name) {
+            return (eventInfo.removedInfo[`repeating_conditions_-${row_id}_condition_${name}`])
+        }
+
+        let attr = r_cond("attribute")
+        if (attr == undefined) {
+            console.log("undef")
+            attr = "strength"
+        }
+        console.log(`rem attr ${attr}`)
+        getAttrs([`${attr}_conditions`], stat => {
+            console.log("rem stat " + JSON.stringify(stat))
+            function addComma(s) {
+                if (s[s.length - 1] != ",") {
+                    return (s + ",")
+                } else {
+                    return s
+                }
+            }
+
+            let update = {}
+
+            function remove(attrCond) {
+                let oldStatConditions = stat[attrCond].split(",")
+                oldStatConditions.pop()
+                for (let i = 0; i < oldStatConditions.length; i++) {
+                    if (oldStatConditions[i].includes(currentRow.toLowerCase())) {
+                        oldStatConditions.splice(i, 1)
+                        let updatedStr = addComma(oldStatConditions.toString().toLowerCase())
+                        log("just before " + updatedStr)
+                        if (updatedStr == ",") {
+                            update[attrCond] = "none"
+                            console.log("e " + attrCond)
+                        } else {
+                            update[attrCond] = updatedStr
+                            console.log("f " + attrCond)
+                        }
+                        break;
+                    }
+                }
+            }
+
+            remove(`${attr}_conditions`)
+            console.log("rem update " + JSON.stringify(update))
+            setAttrs(update);
+
+        })
+
+
+    })
+
     const settlement_levelValues = ["1", "2", "3", "4", "5"];
     settlement_levelValues.forEach(function (value) {
         on(`clicked:settlement_level_${value}`, function () {
