@@ -576,7 +576,7 @@
             <!--            <button type="roll" class="main_roller" value="@{selected_attribute} @{selected_attribute_value}  +  @{selected_ability} @{selected_ability_value}">Roll</button>-->
             <!--            TODO: Make it so that the underscore is removed in the 2 letter names e.g "Energy Weapons" instead of "Energy_weapons (done)"-->
             <button type="roll" class="main_roller" name="act_main_roller"
-                    value="&{template:default} {{name=@{character_name} rolls @{selected_attribute} + @{selected_ability}}}{{Successes=[[@{num_dice}d20<[[@{selected_attribute_value}+@{selected_ability_value}+1]]cs<@{main_crit}cf>@{main_botch}]]}}&#010;!resetmaindice @{character_id}">
+                    value="&{template:default} {{name=@{character_name} rolls @{selected_attribute} + @{selected_ability}}}{{Successes=[[@{num_dice}d20<[[@{selected_attribute_value}+@{selected_ability_value}]]cs<@{main_crit}cf>@{main_botch}]]}}&#010;!resetmaindice @{character_id}">
                 Roll
             </button>
 
@@ -1095,8 +1095,9 @@
 
                 setAttrs({
                     selected_attribute: final_label,
-                    selected_attribute_value: value[`${attribute}_value`]
+                    selected_attribute_value: value[`${attribute}_value`],
                 });
+                // updateMainModifier()
             });
         });
     });
@@ -1114,6 +1115,7 @@
                     selected_ability: final_label,
                     selected_ability_value: value[`${ability}_value`],
                 });
+                // updateMainModifier()
             });
 
         });
@@ -1122,6 +1124,10 @@
     on("clicked:reset_dice", () => {
         setAttrs({"num_dice": 2})
     })
+
+    function updateMainModifier() {
+
+    }
 
     const ast_tabs = ["armor_tab", "status_effects", "trackers"];
     ast_tabs.forEach(button => {
@@ -1144,26 +1150,46 @@
                 let statConditions = conditions[`${stat}_conditions`].split(",")
                 statConditions.pop()
                 let update = {}
+                let visibility = 0
                 if (typeof (statConditions) != "string") {
                     let total_modifier = 0;
-                    // console.log("str")
+                    console.log("str")
+                    let tooltip = "none"
                     statConditions.forEach(row => {
                         console.log("row " + row)
-                        total_modifier += parseInt(row.split(":")[1]);
+                        let mod = parseInt(row.split(":")[1]);
+                        total_modifier += mod;
+                        let modstr = `${mod}`;
+                        if (mod > 0) {
+                            modstr = `+${mod}`
+                        }
+
+                        tooltip += `${modstr}  ${row.split(":")[2]}\n`
                     });
-                    if (total_modifier > 0) {
+                    if (tooltip == "none") {
+                        visibility = 0
+                    } else if (total_modifier > 0) {
                         total_modifier = `+${total_modifier}`
+                        visibility = "positive"
+                    } else if (total_modifier < 0) {
+                        visibility = "negative"
+                    } else if (total_modifier == 0) {
+                        visibility = "zero"
                     }
                     console.log(`mod ${total_modifier}`)
+                    update[`${stat}_tooltip`] = tooltip
                     update[`${stat}_mod_total`] = total_modifier
-                }
 
+                }
+                update[`${stat}_visibility`] = visibility
                 setAttrs(update)
 
             })
 
         })
     })
+
+
     on("change:repeating_conditions", eventInfo => {
         let element = eventInfo.sourceAttribute
         console.log("element " + element)
@@ -1214,7 +1240,7 @@
                 statConditions.pop()
                 // console.log("pre", statCondtions)
                 let currentRow = `repeating_conditions_-${row_id}`;
-                let current_entry = `${currentRow}:${r_cond("modifier")},`
+                let current_entry = `${currentRow}:${r_cond("modifier")}:${r_cond("name")}`
                 let new_condition = true;
                 if (typeof (statConditions) == "string") {
                     // console.log("isString")
@@ -1293,6 +1319,7 @@
         console.log(`rem attr ${attr}`)
         getAttrs([`${attr}_conditions`], stat => {
             console.log("rem stat " + JSON.stringify(stat))
+
             function addComma(s) {
                 if (s[s.length - 1] != ",") {
                     return (s + ",")

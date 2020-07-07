@@ -171,9 +171,21 @@ button:hover ~ .sheet-skill_mod,
 button:hover ~ .sheet-special_mod{
     background-color: var(--buton_hover_colour);
 }
-/*.sheet-mod_total_visibility[value="0"] ~ .sheet-mod_total{*/
-/*    visibility: hidden;*/
-/*}*/
+.sheet-mod_total_visibility[value="0"] ~ .sheet-mod_total{
+    visibility: hidden;
+}
+.sheet-mod_total_visibility[value="positive"] ~ .sheet-mod_total{
+    visibility: visible;
+    color: #206d00;
+}
+.sheet-mod_total_visibility[value="negative"] ~ .sheet-mod_total{
+    visibility: visible;
+    color: #890000;
+}
+.sheet-mod_total_visibility[value="zero"] ~ .sheet-mod_total{
+    visibility: visible;
+    color: black;
+}
 .sheet-skill_mod{
     font-weight: normal;
     background-color: var(--button_colour);
@@ -186,10 +198,10 @@ button:hover ~ .sheet-special_mod{
     /*color: #000089;*/
     font-weight: bold;
 }
-.sheet-mod_total{
-    color: #FF0000;
-    /*visibility: visible;*/
-}
+/*.sheet-mod_total{*/
+/*    color: #FF0000;*/
+/*    !*visibility: visible;*!*/
+/*}*/
 
 .sheet-tooltip{
     /*color: black;*/
