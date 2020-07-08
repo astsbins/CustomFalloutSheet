@@ -102,7 +102,8 @@ button:active{
     grid-column: 1/2;
     grid-row: 1/9;
     border: none;
-    grid-gap: 2em;
+    grid-gap: 1em;
+    min-height: 0;
 }
 
 .sheet-special > div{
@@ -112,7 +113,7 @@ button:active{
     padding: 0.5em;
     display: grid;
     /*grid-template-columns: 0.8fr;*/
-    grid-template-rows: 0.6fr 0.4fr repeat(2, 1fr);
+    grid-template-rows:  repeat(3, 1fr);
     justify-items: center;
 }
 .sheet-special > div > input[type="number"]{
@@ -125,16 +126,16 @@ button:active{
     min-width: 0;
     height: 100%;
     width: 80%;
-    border-bottom: none;
+    /*border-bottom: none;*/
 }
 
 .sheet-special_mod {
     width: 100%;
-    border: 1px solid #206a20;
+    /*border: 1px solid #206a20;*/
     border-top: none;
     display: flex;
     justify-content: center;
-    background-color: var(--button_colour);
+    /*background-color: var(--button_colour);*/
 
 }
 .sheet-special_mod:hover span{
@@ -216,6 +217,7 @@ button:hover ~ .sheet-special_mod{
     border: 1px solid #206a20;
     z-index: 1;
     white-space: pre-line;
+    color: black;
     /*display: inline-block;*/
 }
 .sheet-skill_mod:hover span{
@@ -441,6 +443,7 @@ button[name="act_trackers"]{
     min-width: 0;
     display: grid;
     grid-gap: 0.4em;
+    grid-template-columns: 1fr;
 }
 .sheet-attacks >.repcontainer[data-groupname="repeating_attacks"] >.repitem{
     min-width: 0;
@@ -670,8 +673,8 @@ select.sheet-select_condition{
 .repcontainer[data-groupname="repeating_perks"]{
     min-width: 0;
     min-height: 0;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     grid-gap: 0.5em;
     overflow: auto;
     max-height: 92%;
