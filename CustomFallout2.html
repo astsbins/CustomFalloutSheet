@@ -1147,40 +1147,48 @@
             getAttrs([`${stat}_conditions`], conditions => {
                 console.log(`conditions ${JSON.stringify(conditions)}`)
                 //calculate total modifier
+                console.log(`asfe ${stat} ${conditions[`${stat}_conditions`]}`)
                 let statConditions = conditions[`${stat}_conditions`].split(",")
+                console.log(`nopop ${statConditions} ${typeof (statConditions)}`)
                 statConditions.pop()
+                console.log(`pop ${statConditions} ${typeof (statConditions)} ${statConditions == ""}`)
                 let update = {}
                 let visibility = 0
-                if (typeof (statConditions) != "string") {
-                    let total_modifier = 0;
-                    console.log("str")
-                    let tooltip = "none"
+                let total_modifier = 0;
+                let tooltip = ""
+                if (statConditions != "") {
                     statConditions.forEach(row => {
-                        console.log("row " + row)
+                        // console.log("row " + row)
                         let mod = parseInt(row.split(":")[1]);
                         total_modifier += mod;
                         let modstr = `${mod}`;
                         if (mod > 0) {
                             modstr = `+${mod}`
                         }
+                        if (mod != 0) {
+                            tooltip += `${modstr}  ${row.split(":")[2]}\n`
+                        }
 
-                        tooltip += `${modstr}  ${row.split(":")[2]}\n`
                     });
-                    if (tooltip == "none") {
-                        visibility = 0
-                    } else if (total_modifier > 0) {
-                        total_modifier = `+${total_modifier}`
-                        visibility = "positive"
-                    } else if (total_modifier < 0) {
-                        visibility = "negative"
-                    } else if (total_modifier == 0) {
-                        visibility = "zero"
-                    }
-                    console.log(`mod ${total_modifier}`)
-                    update[`${stat}_tooltip`] = tooltip
-                    update[`${stat}_mod_total`] = total_modifier
 
                 }
+                if (tooltip == "") {
+                    tooltip = "none"
+                }
+                if (tooltip == "none") {
+                    visibility = 0
+                } else if (total_modifier > 0) {
+                    total_modifier = `+${total_modifier}`
+                    visibility = "positive"
+                } else if (total_modifier < 0) {
+                    visibility = "negative"
+                } else if (total_modifier == 0) {
+                    visibility = "zero"
+                }
+                console.log(`mod ${total_modifier}`)
+
+                update[`${stat}_tooltip`] = tooltip
+                update[`${stat}_mod_total`] = total_modifier
                 update[`${stat}_visibility`] = visibility
                 setAttrs(update)
 

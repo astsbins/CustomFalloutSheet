@@ -23,14 +23,14 @@ input {
     overflow: hidden;
     box-sizing : border-box;
 }
-input[type=number]{
+input[type=number]:not(:hover){
     -moz-appearance:textfield;
 }
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
+/*input[type=number]::-webkit-inner-spin-button,*/
+/*input[type=number]::-webkit-outer-spin-button {*/
+/*    -webkit-appearance: none;*/
+/*    margin: 0;*/
+/*}*/
 
 /*input[type=number]:hover::-webkit-inner-spin-button,*/
 /*input[type=number]:hover::-webkit-outer-spin-button {*/
@@ -176,11 +176,11 @@ button:hover ~ .sheet-special_mod{
 }
 .sheet-mod_total_visibility[value="positive"] ~ .sheet-mod_total{
     visibility: visible;
-    color: #206d00;
+    color: #3FB315;
 }
 .sheet-mod_total_visibility[value="negative"] ~ .sheet-mod_total{
     visibility: visible;
-    color: #890000;
+    color: red;
 }
 .sheet-mod_total_visibility[value="zero"] ~ .sheet-mod_total{
     visibility: visible;
