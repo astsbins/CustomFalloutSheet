@@ -588,20 +588,20 @@
             </strong>
             <!--            <button type="roll" class="main_roller" value="@{selected_attribute} @{selected_attribute_value}  +  @{selected_ability} @{selected_ability_value}">Roll</button>-->
             <!--            TODO: Make it so that the underscore is removed in the 2 letter names e.g "Energy Weapons" instead of "Energy_weapons (done)"-->
-            <button type="roll" class="main_roller" name="act_main_roller"
+            <button type="roll" class="main_roller" name="attr_main_roller"
                     value="&{template:default} {{name=@{character_name} rolls @{selected_attribute} + @{selected_ability}}}{{Successes=[[@{num_dice}d20<[[@{selected_attribute_value}+@{selected_ability_value}]]cs<@{main_crit}cf>@{main_botch}]]}}&#010;!resetmaindice @{character_id}">
                 Roll
             </button>
 
             <div>
                 <input type="hidden" name="attr_selected_attribute_value"/>
-                <span name="attr_selected_attribute">no attribute </span>
+                <span name="attr_selected_attribute">No Attribute </span>
                 <button type="action" name="act_noattr">None</button>
                 <span type="hidden" name="noattr_value" value="0"></span>
             </div>
             <div>
                 <input type="hidden" name="attr_selected_ability_value"/>
-                <span name="attr_selected_ability">no ability </span>
+                <span name="attr_selected_ability">No Ability </span>
                 <button type="action" name="act_noabil">None</button>
                 <span type="hidden" name="noabil_value" value="0"></span>
             </div>
@@ -676,7 +676,7 @@
                 <div class="ast_tab">
                     <!--                    append 'tab' to prevent conflict with the craft armor skill-->
                     <button type="action" name="act_armor_tab">Armor</button>
-                    <button type="action" name="act_status_effects">status_effects</button>
+                    <button type="action" name="act_status_effects">Status Effects</button>
                     <button type="action" name="act_trackers">Trackers</button>
                 </div>
 
@@ -1108,7 +1108,7 @@
                     selected_attribute: final_label,
                     selected_attribute_value: value[`${attribute}_value`],
                 });
-                // updateMainModifier()
+                updateMainModifier()
             });
         });
     });
@@ -1126,7 +1126,7 @@
                     selected_ability: final_label,
                     selected_ability_value: value[`${ability}_value`],
                 });
-                // updateMainModifier()
+                updateMainModifier()
             });
 
         });
@@ -1137,6 +1137,61 @@
     })
 
     function updateMainModifier() {
+        //TODO: find some better way to do this, too much hard coding.
+        update = {}
+        getAttrs([`selected_attribute`, `selected_ability`,], selected_stat => {
+            let attribute = selected_stat[`selected_attribute`].toLowerCase().replace(" ", "_")
+            let attribute_name = selected_stat[`selected_attribute`]
+            let ability = selected_stat[`selected_ability`].toLowerCase().replace(" ", "_")
+            let ability_name = selected_stat[`selected_ability`]
+            let active_stats = []
+            console.log(`rollupdate ${attribute} ${ability}`)
+            let roll = "&{template:default} {{name=@{character_name} rolls "
+            //title
+            if (attribute == "no_attribute" && ability == "no_ability") {
+                roll += "Nothing at all"
+            } else if (attribute != "no_attribute" && ability != "no_ability") {
+                roll += `${attribute_name} + ${ability_name}`
+                active_stats = [attribute, ability]
+            } else {
+                if (attribute != "no_attribute") {
+                    roll += `${attribute_name}`
+                    active_stats = [attribute]
+                }
+                if (ability != "no_ability") {
+                    roll += `${ability_name}`
+                    active_stats = [ability]
+                }
+            }
+            roll += "}}"
+
+            //modifiers
+            let statModInfo = []
+            active_stats.forEach(stat =>{
+                statModInfo.push(`${stat}_value`)
+                statModInfo.push(`${stat}_tooltip`)
+                statModInfo.push(`${stat}_mod_total`)
+            })
+            getAttrs(statModInfo, values =>{
+                active_stats.forEach(stat =>{
+                    let total = parseInt(values[`${stat}_value`]) + parseInt(values[`${stat}_mod_total`])
+                    roll += `{{${capitalise(stat.replace("_", " "))}: ${total} = @{${stat}_value} Base`
+                    console.log(`none? ${values[`${stat}_tooltip`]}`)
+                    if (values[`${stat}_tooltip`] != "none"){
+                        roll += `\n@{${stat}_tooltip}`
+                    }
+                    roll += "}}"
+                })
+
+                // if (attribute_active) {
+                //     roll += `Strength=Base:`
+                // }
+                update["main_roller"] = roll
+                setAttrs(update)
+            })
+
+            })
+
 
     }
 
@@ -1356,7 +1411,7 @@
                     if (oldStatConditions[i].includes(currentRow.toLowerCase())) {
                         oldStatConditions.splice(i, 1)
                         let updatedStr = addComma(oldStatConditions.toString().toLowerCase())
-                        log("just before " + updatedStr)
+                        console.log("just before " + updatedStr)
                         if (updatedStr == ",") {
                             update[attrCond] = "none"
                             console.log("e " + attrCond)
