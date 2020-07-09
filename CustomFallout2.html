@@ -1151,15 +1151,15 @@
             if (attribute == "no_attribute" && ability == "no_ability") {
                 roll += "Nothing at all"
             } else if (attribute != "no_attribute" && ability != "no_ability") {
-                roll += `${attribute_name} + ${ability_name}`
+                roll += `@{selected_attribute} + @{selected_ability}`
                 active_stats = [attribute, ability]
             } else {
                 if (attribute != "no_attribute") {
-                    roll += `${attribute_name}`
+                    roll += `@{selected_attribute}`
                     active_stats = [attribute]
                 }
                 if (ability != "no_ability") {
-                    roll += `${ability_name}`
+                    roll += `$@{selected_ability}`
                     active_stats = [ability]
                 }
             }
@@ -1173,16 +1173,19 @@
                 statModInfo.push(`${stat}_mod_total`)
             })
             getAttrs(statModInfo, values =>{
+                let total_mod = ""
                 active_stats.forEach(stat =>{
-                    let total = parseInt(values[`${stat}_value`]) + parseInt(values[`${stat}_mod_total`])
-                    roll += `{{${capitalise(stat.replace("_", " "))}: ${total} = @{${stat}_value} Base`
+                    let stat_mod = `[[@{${stat}_value}@{${stat}_mod_total}]]`
+                    total_mod += `@{${stat}_value}@{${stat}_mod_total}+`
+                    roll += `{{${capitalise(stat.replace("_", " "))}: ${stat_mod} = @{${stat}_value} Base`
                     console.log(`none? ${values[`${stat}_tooltip`]}`)
                     if (values[`${stat}_tooltip`] != "none"){
                         roll += `\n@{${stat}_tooltip}`
                     }
                     roll += "}}"
                 })
-
+                total_mod = total_mod.slice(0,-1)
+                roll +=`{{Successes=[[@{num_dice}d20<[[${total_mod}]]cs<@{main_crit}cf>@{main_botch}]]}}&#010;!resetmaindice @{character_id}`
                 // if (attribute_active) {
                 //     roll += `Strength=Base:`
                 // }
