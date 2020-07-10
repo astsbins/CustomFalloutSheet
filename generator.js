@@ -45,8 +45,9 @@ ${capitalise(attr.replace("_"," "))}
             </div>
 </button>
            
-     <input name="attr_${attr}_value"     placeholder="cur" type="number">
-     <input name="attr_${attr}_value_max" placeholder="max" type="number" value=10></div>\n`);
+     <input name="attr_${attr}_value"     type="number" placeholder="cur" value="3"  min="0" max="18">
+     <input name="attr_${attr}_value_max" type="number" value="10" min="6" max="18">
+     </div>`);
 });
 
 for (let abilityModsKey in abilities) {
@@ -61,7 +62,7 @@ for (let abilityModsKey in abilities) {
                 <span class="hidden" name="attr_${modifier}_conditions"></span>
                 <span class="tooltip" name="attr_${modifier}_tooltip"></span>
             </div>
-            <input name="attr_${modifier}_value" type="number">
+            <input name="attr_${modifier}_value" type="number" value="0" min="0" max="18">
         </span>`);
     })
     console.log("\n")

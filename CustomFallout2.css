@@ -180,6 +180,9 @@ button:hover ~ .sheet-special_mod{
     visibility: visible;
     color: #3FB315;
 }
+.sheet-mod_total_visibility[value="positive"] ~ .sheet-mod_total::before{
+    content: "+"
+}
 .sheet-mod_total_visibility[value="negative"] ~ .sheet-mod_total{
     visibility: visible;
     color: red;
