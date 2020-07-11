@@ -854,26 +854,25 @@
         <div class="vehicle">Vehicle</div>
         <div class="settlement">
             <h3>Settlements</h3>
-            <div class="settlements_repeating_section">
                 <fieldset class="repeating_settlements">
                     <button class="settlement_roll" type="roll"
-                            value="&{template:default} {{name= Settlement: @{settlement_name} }} {{description=@{settlement_description} }}"></button>
+                            value="&{template:default} {{name= Settlement: @{settlement_name} Level: @{settlement_name}} {{description=@{settlement_description} }}"></button>
                     <input class="settlement_name" name="attr_settlement_name" type="text" placeholder="Name"/>
                     <div class="settlement_level_section">
                         <input type="hidden" name="attr_settlement_level" class="dot" value="1"/>
-                        <button type="action" name="act_settlement_level_1" class="dot">
+                        <button type="action" name="act_setlv1" class="dot">
                             <span class="checked"></span>
                         </button>
-                        <button type="action" name="act_settlement_level_2" class="dot gt-1">
+                        <button type="action" name="act_setlv2" class="dot gt-1">
                             <span class="checked"></span>
                         </button>
-                        <button type="action" name="act_settlement_level_3" class="dot gt-1 gt-2">
+                        <button type="action" name="act_setlv3" class="dot gt-1 gt-2">
                             <span class="checked"></span>
                         </button>
-                        <button type="action" name="act_settlement_level_4" class="dot gt-1 gt-2 gt-3">
+                        <button type="action" name="act_setlv4" class="dot gt-1 gt-2 gt-3">
                             <span class="checked"></span>
                         </button>
-                        <button type="action" name="act_settlement_level_5" class="dot gt-1 gt-2 gt-3 gt-4">
+                        <button type="action" name="act_setlv5" class="dot gt-1 gt-2 gt-3 gt-4">
                             <span class="checked"></span>
                         </button>
                     </div>
@@ -1113,7 +1112,7 @@
             let roll = "&{template:default} {{name=@{character_name} rolls "
             //title
             if (attribute == "no_attribute" && ability == "no_ability") {
-                roll += "Nothing at all"
+                roll += "Nothing"
             } else if (attribute != "no_attribute" && ability != "no_ability") {
                 roll += `@{selected_attribute} + @{selected_ability}`
                 active_stats = [attribute, ability]
@@ -1123,7 +1122,7 @@
                     active_stats = [attribute]
                 }
                 if (ability != "no_ability") {
-                    roll += `$@{selected_ability}`
+                    roll += `@{selected_ability}`
                     active_stats = [ability]
                 }
             }
@@ -1149,7 +1148,12 @@
                     roll += "}}"
                 })
                 total_mod = total_mod.slice(0, -1)
-                roll += `{{Successes=[[@{num_dice}d20<[[${total_mod}]]cs<@{main_crit}cf>@{main_botch}]]}}&#010;!resetmaindice @{character_id}`
+                if (total_mod.length<2) {
+                    roll += `{{Successes=[[@{num_dice}d20<1cs<@{main_crit}cf>@{main_botch}]]}}&#010;!resetmaindice @{character_id}`
+                } else {
+                    roll += `{{Successes=[[@{num_dice}d20<[[${total_mod}]]cs<@{main_crit}cf>@{main_botch}]]}}&#010;!resetmaindice @{character_id}`
+                }
+
                 // if (attribute_active) {
                 //     roll += `Strength=Base:`
                 // }
@@ -1170,6 +1174,19 @@
             });
         });
     });
+    let settlement_levelValues = ["1", "2", "3", "4", "5"];
+    settlement_levelValues.forEach(value => {
+        on(`clicked:repeating_settlements:setlv${value}`, event => {
+            let element = event.sourceAttribute
+            let row_id = element.match(/repeating_.*_-([^_]*)/)[1]
+            let update = {}
+            update[`repeating_settlements_-${row_id}_settlement_level`] = value
+            setAttrs(update);
+        });
+    });
+
+    // on('clicked:repeating_settlements:setlv1', (event)=>{console.log(`clicked:repeating_section:mod event: ${JSON.stringify(event)}`)});//This event will only be triggered if position:relative/absolute is NOT applied to the filter-container div.
+    // on('clicked:repeating_settlements', (event)=>{console.log(`clicked:mod event: ${JSON.stringify(event)}`)});//This event will only be triggered if position is applied to the filter-container div. However it will not have repeating row info.
 
     // function randrange(min, max) {
     //     return Math.random() * (max - min + 1) + min
@@ -1399,14 +1416,6 @@
 
     })
 
-    const settlement_levelValues = ["1", "2", "3", "4", "5"];
-    settlement_levelValues.forEach(function (value) {
-        on(`clicked:settlement_level_${value}`, function () {
-            setAttrs({
-                "settlement_level": value
-            });
-        });
-    });
 
     //TODO: make better (less repetition?)
     on("change:repeating_weapons", eventInfo => {
@@ -1440,16 +1449,16 @@
             // ${r_wep("weapon_damage")} ${r_wep("weapon_damage_type")} damage!`
 
             let atk_roll = `&{template:default} {{name=@{character_name} attacks @{target|character_name} with ${r_wep("weapon_name")}}}`
-            let wep_stats = [r_wep("weapon_attribute"),r_wep("weapon_skill")]
-            getAttrs([`${r_wep("weapon_attribute")}_mod_total`,`${r_wep("weapon_attribute")}_tooltip`,
-                    `${r_wep("weapon_skill")}_mod_total`,`${r_wep("weapon_skill")}_tooltip`], values => {
+            let wep_stats = [r_wep("weapon_attribute"), r_wep("weapon_skill")]
+            getAttrs([`${r_wep("weapon_attribute")}_mod_total`, `${r_wep("weapon_attribute")}_tooltip`,
+                `${r_wep("weapon_skill")}_mod_total`, `${r_wep("weapon_skill")}_tooltip`], values => {
                 let total_mod = ""
                 wep_stats.forEach(stat => {
                     let stat_mod = `[[@{${stat}_value}+@{${stat}_mod_total}]]`
                     total_mod += `@{${stat}_value}+@{${stat}_mod_total}+`
                     atk_roll += `{{${capitalise(stat.replace("_", " "))}: ${stat_mod} = @{${stat}_value} Base`
                     console.log(`none? ${values[`${stat}_tooltip`]}`)
-                    if (values[`${stat}_tooltip`] != "none" && values[`${stat}_tooltip`] != undefined ) {
+                    if (values[`${stat}_tooltip`] != "none" && values[`${stat}_tooltip`] != undefined) {
                         atk_roll += `\n@{${stat}_tooltip}`
                     }
                     atk_roll += "}}"

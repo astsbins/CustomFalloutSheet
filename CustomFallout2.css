@@ -816,7 +816,7 @@ input.sheet-toggle_perk_description:not(:checked) ~ textarea{
                          "btn dscr dscr dscr"
                          "btn dscr dscr dscr"
                          "eft eft  eft  eft";
-    grid-template-columns: 0.5fr repeat(3,1fr);
+    grid-template-columns: 0.5fr repeat(2,1fr) 0.6fr;
     grid-template-rows: repeat(3, 1fr);
     height: 10em;
     min-height:0;
@@ -837,13 +837,14 @@ input.sheet-toggle_perk_description:not(:checked) ~ textarea{
 }
 .sheet-settlement_level_section{
     display: flex;
+    align-items: center;
 }
 button.sheet-dot {
     padding: 0;
     border: solid 1px #a8a8a8;
     cursor: pointer;
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -851,8 +852,8 @@ button.sheet-dot {
 }
 
 button.sheet-dot > span {
-    width: 6px;
-    height: 6px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background: buttontext;
 }
