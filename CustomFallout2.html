@@ -1142,8 +1142,8 @@
                     total_mod += `@{${stat}_value}+@{${stat}_mod_total}+`
                     roll += `{{${capitalise(stat.replace("_", " "))}: ${stat_mod} = @{${stat}_value} Base`
                     console.log(`none? ${values[`${stat}_tooltip`]}`)
-                    if (values[`${stat}_tooltip`] != "none") {
-                        roll += `\n@{${stat}_tooltip}`
+                    if (`${values[`${stat}_tooltip`]}`.length > 5 && values[`${stat}_tooltip`] != undefined) {
+                        atk_roll += `\n@{${stat}_tooltip}`
                     }
                     roll += "}}"
                 })
@@ -1458,7 +1458,7 @@
                     total_mod += `@{${stat}_value}+@{${stat}_mod_total}+`
                     atk_roll += `{{${capitalise(stat.replace("_", " "))}: ${stat_mod} = @{${stat}_value} Base`
                     console.log(`none? ${values[`${stat}_tooltip`]}`)
-                    if (values[`${stat}_tooltip`] != "none" && values[`${stat}_tooltip`] != undefined) {
+                    if (`${values[`${stat}_tooltip`]}`.length > 5 && values[`${stat}_tooltip`] != undefined) {
                         atk_roll += `\n@{${stat}_tooltip}`
                     }
                     atk_roll += "}}"
