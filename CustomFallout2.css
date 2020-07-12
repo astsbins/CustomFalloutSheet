@@ -25,7 +25,7 @@ input {
 }
 input[type=number]:not(:hover){
     -moz-appearance:textfield;
-    -webkit-appearance: none;
+    /*-webkit-appearance: none;*/
 }
 input[type=number]:not(:hover)::-webkit-outer-spin-button,
 input[type=number]:not(:hover)::-webkit-inner-spin-button {
