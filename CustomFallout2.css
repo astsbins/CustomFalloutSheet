@@ -25,10 +25,16 @@ input {
 }
 input[type=number]:not(:hover){
     -moz-appearance:textfield;
+    -webkit-appearance: none;
+}
+input[type=number]:not(:hover)::-webkit-outer-spin-button,
+input[type=number]:not(:hover)::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 /*input[type=number]::-webkit-inner-spin-button,*/
 /*input[type=number]::-webkit-outer-spin-button {*/
-/*    -webkit-appearance: none;*/
+
 /*    margin: 0;*/
 /*}*/
 
@@ -457,11 +463,10 @@ button[name="act_trackers"]{
     height: min-content;
     display: grid;
     grid-template-areas:  "rol rls wep amm"
-    "rol eft eft cb";
+                          "rol eft eft cb";
     grid-template-columns: 1fr 1fr 5fr 2.5fr;
     grid-template-rows: repeat(2, 1fr);
     grid-gap: 0.2em;
-
 }
 .sheet-attacks >.repcontainer[data-groupname="repeating_attacks"] >.repitem>*{
     min-height: 0;
@@ -470,14 +475,18 @@ button[name="act_trackers"]{
 }
 .sheet-atk_crit_botch{
     display: grid;
+    grid-area: cb;
     grid-template-columns: 1fr 1fr;
 }
 .sheet-atk_crit_botch > span >input[type="number"]{
-    width: 1.8em;
+    width: 2.1em;
 }
 
 button[name="attr_atk_roll"]{
     grid-area: rol;
+}
+sheet-atk_ammo{
+    grid-area: amm;
 }
 .sheet-ast{
     /*grid-column: 1/2;*/
