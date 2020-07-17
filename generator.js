@@ -50,6 +50,7 @@ ${capitalise(attr.replace("_"," "))}
      </div>`);
 });
 
+
 for (let abilityModsKey in abilities) {
     console.log(`<div><h4>${capitalise(abilityModsKey)}</h4></div>`);
     abilities[abilityModsKey].forEach(modifier =>{

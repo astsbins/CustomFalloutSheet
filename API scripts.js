@@ -136,7 +136,9 @@ on("chat:message", function (msg) {
 //################# resets
 on("chat:message", function (msg) {
     if (msg.type == "api" && msg.content.indexOf("!resetmaindice") !== -1) {
-        let charid = msg.content.replace("!resetmaindice ", "")
+        let charid = msg.content.replace("!resetmaindice" , "").replace(" ", "")
+        // sendChat("ese", `charid ${charid}`)
+        // sendChat("ese", JSON.stringify(msg))
         let attr = findObjs({
             "type": "attribute",
             "_characterid" : charid,
@@ -145,16 +147,15 @@ on("chat:message", function (msg) {
         // strength = getAttrByName("-M9sB3Dge23yg9HW_lCu", 'selected_attribute')
         attr.set("current", 2)
 
-    let attr2 = findObjs({
-        "name" : "atk_mod"
-    })[0]
+        let attr2 = findObjs({
+            "name" : "atk_mod"
+        })[0]
 
-    sendChat("ese", charid)
-    // sendChat("ese", attr2.get("name"))
+
+        // sendChat("ese", attr2.get("name"))
     }
 
 });
-
 
 
 //################### tables
@@ -162,7 +163,7 @@ on("chat:message", function (msg) {
     if (msg.type == "api" && msg.content.indexOf("!table") !== -1) {
         let tables = findObjs({
             "_type" : "rollabletable",
-            "name"  : "Wound-Table"
+            "name"  : "Combat-Dice"
         })[0];
         table_id = tables.get("_id")
 
@@ -170,10 +171,92 @@ on("chat:message", function (msg) {
             "_type" : "tableitem",
             "_rollabletableid": table_id
         });
+        let table = {}
+        let count = 1
         table_objects.forEach( item =>{
-            sendChat("table", `${item.get("name")}   ${item.get("weight")}`)
+            for (let i = 0; i < item.get("weight"); i++) {
+                table[count] = item.get("name")
+                count++;
+            }
+            // sendChat("table", `${item.get("name")}   ${item.get("weight")}`)
         });
+        sendChat("table", JSON.stringify(table))
         // sendChat("table", table_objects.get("_id"))
         // sendChat("table", "done")
     }
 });
+/##just testing ###
+on("chat:message", function (msg) {
+    if (msg.type == "api" && msg.content.indexOf("!rt") !== -1) {
+        let charid = msg.content.replace("!rt", "").replace(" ", "")
+        // sendChat("ese", `charid ${charid}`)
+        // sendChat("ese", JSON.stringify(msg))
+        let attr = findObjs({
+            "type": "attribute",
+            "name": "atk_dice"
+        })
+        sendChat("ese", JSON.stringify(attr))
+    }
+})
+
+//attack
+on("chat:message", function (msg) {
+    if (msg.type == "api" && msg.content.indexOf("!apiAttac2") !== -1) {
+        let atk_roll_str = msg.content.toString().replace(/!apiAttac2|\r\n|\n|\r/gm  , "")
+        // sendChat("2", atk_roll_str)
+        // let atk_list = atk_roll_str.toString().split("||||")
+        log(111111111111111111)
+        let atkobj = JSON.parse(atk_roll_str)
+        sendChat("charid", atkobj["charid"])
+        sendChat("2", atkobj["rowid"])
+        sendChat(msg.who, atkobj["stats"][0])
+        let atk_num_dice = findObjs({
+            "type": "attribute",
+            "name" : `repeating_attacks_${atkobj["rowid"]}_atk_num_dice`,
+            "_characterid" : atkobj["charid"]
+            // "name" : `repeating_attacks_-MCB3rok66Fn1oLGri02_atk_num_dice`
+        },{caseInsensitive: true})[0].get("current")
+        sendChat("atk_num_dice", atk_num_dice.toString())
+        // sendChat("atk_num_dice", `keys ${atk_num_dice.get("current")}`)
+
+
+        let stat1 = findObjs({
+            "type": "attribute",
+            "name" : `${atkobj["stats"][0]}_tooltip`,
+            "_characterid" : atkobj["charid"]
+        },{caseInsensitive: true})[0].get("current")
+        sendChat("stat1", `${atkobj["stats"][0]} ${stat1}`)
+        // sendChat("stat1", `${atkobj["stats"][0]} ${stat1}`)
+
+        let stat2 = findObjs({
+            "type": "attribute",
+            "name" : `${atkobj["stats"][1]}_tooltip`,
+            "_characterid" : atkobj["charid"]
+        },{caseInsensitive: true})[0].get("current")
+        sendChat("stat2", `@{${atkobj["character_name"]}|${atkobj["stats"][1]}_tooltip}`)
+        //  sendChat("2", "what")
+        //  sendChat("2a", JSON.stringify(atk_num_dice))
+
+        atk_roll = atkobj["title"]
+        let total_mod = ""
+
+        atkobj["stats"].forEach(item => {
+            let stat = `${atkobj["charid"]}|${item}`
+            let stat_mod = `[[@{${stat}_value}+@{${stat}_mod_total}]]`
+            total_mod += `@{${stat}_value}+@{${stat}_mod_total}+`
+            atk_roll += `{{${capitalise(stat.replace("_", " "))}: ${stat_mod} = @{${stat}_value} Base`
+            let tooltip = findObjs({
+                "type": "attribute",
+                "name" : `${stat}_tooltip`,
+                "_characterid" : atkobj["charid"]
+            },{caseInsensitive: true})[0].get("current")
+            log(`tooltip ${tooltip}`)
+
+            if (`${tooltip}`.length > 5 && tooltip != undefined) {
+                atk_roll += `\n@{${stat}_tooltip}`
+            }
+            atk_roll += "}}"
+        })
+        sendChat("test", atk_roll)
+    }
+})

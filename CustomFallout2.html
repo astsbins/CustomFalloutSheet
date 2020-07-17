@@ -560,25 +560,25 @@
             <!--            <button type="roll" class="main_roller" value="@{selected_attribute} @{selected_attribute_value}  +  @{selected_ability} @{selected_ability_value}">Roll</button>-->
             <!--            TODO: Make it so that the underscore is removed in the 2 letter names e.g "Energy Weapons" instead of "Energy_weapons (done)"-->
             <button type="roll" class="main_roller" name="attr_main_roller"
-                    value="&{template:default} {{name=@{character_name} rolls @{selected_attribute} + @{selected_ability}}}{{Successes=[[@{num_dice}d20<[[@{selected_attribute_value}+@{selected_ability_value}]]cs<@{main_crit}cf>@{main_botch}]]}}&#010;!resetmaindice @{character_id}">
+                    value="&{template:custom} {{title=@{character_name} rolls @{selected_attribute} + @{selected_ability}}}{{Successes=[[@{num_dice}d20<[[@{selected_attribute_value}+@{selected_ability_value}]]cs<@{main_crit}cf>@{main_botch}]]}}&#010;!resetmaindice @{character_id}">
                 Roll
             </button>
 
             <div>
                 <input type="hidden" name="attr_selected_attribute_value"/>
-                <span name="attr_selected_attribute">No Attribute </span>
+                <span name="attr_selected_attribute">noattr</span>
                 <button type="action" name="act_noattr">None</button>
                 <span type="hidden" name="noattr_value" value="0"></span>
             </div>
             <div>
                 <input type="hidden" name="attr_selected_ability_value"/>
-                <span name="attr_selected_ability">No Ability </span>
+                <span name="attr_selected_ability">noabil</span>
                 <button type="action" name="act_noabil">None</button>
                 <span type="hidden" name="noabil_value" value="0"></span>
             </div>
             <div>
                 <button type="roll"
-                        value="&{template:default} {{name=Initiative: @{character_name} }} {{Initiative=[[@{perception_value}+@{perception_value}+ d10 &{tracker}]] }}">
+                        value="&{template:custom} {{title=Initiative: @{character_name} }} {{Initiative=[[@{perception_value}+@{perception_value}+ d10 &{tracker}]] }}">
                     Initiative
                 </button>
             </div>
@@ -847,7 +847,7 @@
                     <input class="perk_name" name="attr_perk_name" [type="text"
                            placeholder="Perk Name">
                     <button class="perk_roll" type="roll"
-                            value="&{template:default} {{name= Perk: @{perk_name} }} {{description=@{perk_descr} }}"></button>
+                            value="&{template:custom} {{title=Perk: @{perk_name} }} {{desc=@{perk_descr} }}"></button>
                     <input type="checkbox" class="toggle_perk_description" checked="checked"/>
                     <textarea name="attr_perk_descr" class="perk_descr"
                               placeholder="Details about perk here...">
@@ -952,6 +952,43 @@
 
     </div>
 </div>
+<div class="tooltip_test">
+    <div class="hover-word">hover here</div>
+    <div class="hover-text">text to appear on hover</div>
+</div>
+<rolltemplate class="sheet-rolltemplate-custom">
+    <div class="sheet-container sheet-color-{{color}}">
+        <div class="sheet-header">
+            {{#title}}<div class="sheet-title">{{title}}</div>{{/title}}
+            {{#subtitle}}<div class="sheet-subtitle">{{subtitle}}</div>{{/subtitle}}
+        </div>
+        <div class="sheet-rolltemplate-content">
+            {{#allprops() title subtitle desc color hover tooltip}}
+            <div class="sheet-key">{{key}}</div>
+            <div class="sheet-value">{{value}}</div>
+            {{/allprops() title subtitle desc color hover tooltip}}
+            {{#desc}}<div class="sheet-desc">{{desc}}</div>{{/desc}}
+            <div class="hover-section">
+                {{#hover}} <div class="sheet-template-hover">{{hover}}</div>{{/hover}}
+                {{#tooltip}}<div class="sheet-template-tooltip">{{tooltip}}</div>{{/tooltip}}
+            </div>
+
+        </div>
+    </div>
+</rolltemplate>
+
+<rolltemplate class="sheet-rolltemplate-hovertest">
+    <div class="sheet-template-container">
+<!--        {{#allprops() hover hovertext}}-->
+        {{#hover}}
+        <div class="sheet-hoverword">{{hover}}</div>
+        {{/hover}}
+        {{#hovertext}}
+        <div class="sheet-hover-text">{{hovertext}}</div>
+        {{/hovertext}}
+<!--        {{/allprops() hover hovertext}}-->
+    </div>
+</rolltemplate>
 <!--<div class="companion">-->
 <!--    <h2>Companion</h2>-->
 <!--</div>-->
@@ -1115,7 +1152,7 @@
             let ability_name = selected_stat[`selected_ability`]
             let active_stats = []
             console.log(`rollupdate ${attribute} ${ability}`)
-            let roll = "&{template:default} {{name=@{character_name} rolls "
+            let roll = "&{template:custom} {{title=@{character_name} rolls "
             //title
             if (attribute == "no_attribute" && ability == "no_ability") {
                 roll += "Nothing"
@@ -1149,15 +1186,17 @@
                     roll += `{{${capitalise(stat.replace("_", " "))}: ${stat_mod} = @{${stat}_value} Base`
                     console.log(`none? ${values[`${stat}_tooltip`]}`)
                     if (`${values[`${stat}_tooltip`]}`.length > 5 && values[`${stat}_tooltip`] != undefined) {
-                        atk_roll += `\n@{${stat}_tooltip}`
+                        roll += `\n@{${stat}_tooltip}`
                     }
                     roll += "}}"
                 })
                 total_mod = total_mod.slice(0, -1)
                 if (total_mod.length < 2) {
-                    roll += `{{Successes=[[@{num_dice}d20<1cs<@{main_crit}cf>@{main_botch}]]}}&#010;!resetmaindice @{character_id}`
+                    roll += `{{Successes=[[@{num_dice}d20<1cs<@{main_crit}cf>@{main_botch}]]}}  \n!resetmaindice @{character_id}`
                 } else {
-                    roll += `{{Successes=[[@{num_dice}d20<[[${total_mod}]]cs<@{main_crit}cf>@{main_botch}]]}}&#010;!resetmaindice @{character_id}`
+                    roll += `{{Successes=[[@{num_dice}d20<[[${total_mod}]]cs<@{main_crit}cf>@{main_botch}]]}}  \n!resetmaindice @{character_id}`
+                    // roll += `{{Successes=[[@{num_dice}d20<[[${total_mod}]]cs<@{main_crit}cf>@{main_botch}]]}}&#010;/r d20`
+
                 }
 
                 // if (attribute_active) {
@@ -1453,13 +1492,18 @@
             //
             // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `rolling ${r_wep("weapon_name")} with ${r_wep("weapon_attribute")} and ${r_wep("weapon_skill")} for
             // ${r_wep("weapon_damage")} ${r_wep("weapon_damage_type")} damage!`
-
-            let atk_roll = `&{template:default} {{name=@{character_name} attacks @{target|character_name} with ${r_wep("weapon_name")}}}`
+            let atk_roll_obj = {}
+            let atk_roll = `&{template:default}{{name=@{character_name} attacks @{target|character_name} with ${r_wep("weapon_name")}}}`
+            atk_roll_obj["charid"] = `@{character_id}`
+            atk_roll_obj["character_name"] = "@{character_name}"
+            atk_roll_obj["title"] = atk_roll
             let wep_stats = [r_wep("weapon_attribute"), r_wep("weapon_skill")]
             getAttrs([`${r_wep("weapon_attribute")}_mod_total`, `${r_wep("weapon_attribute")}_tooltip`,
                 `${r_wep("weapon_skill")}_mod_total`, `${r_wep("weapon_skill")}_tooltip`], values => {
                 let total_mod = ""
+                atk_roll_obj["stats"] = []
                 wep_stats.forEach(stat => {
+                    atk_roll_obj["stats"].push(stat)
                     let stat_mod = `[[@{${stat}_value}+@{${stat}_mod_total}]]`
                     total_mod += `@{${stat}_value}+@{${stat}_mod_total}+`
                     atk_roll += `{{${capitalise(stat.replace("_", " "))}: ${stat_mod} = @{${stat}_value} Base`
@@ -1472,8 +1516,14 @@
                 total_mod = total_mod.slice(0, -1)
                 console.log(total_mod)
                 atk_roll += `{{Successes=[[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20<[[${total_mod}]]cs<@{atk_crit}cf>@{atk_botch}]]}}`
-                atk_roll += `{{Damage = [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")} to the [[t[Wound-Table]]]}}`
-                newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = atk_roll
+                // atk_roll += `{{Damage = [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")} damage to the [[t[Wound-Table]]]}}`
+                atk_roll_obj["rowid"] = atk_row_id
+                atk_roll_obj["roll"] = atk_roll
+                console.log(`sfse ${atk_row_id} \n ${row_id}`)
+                // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `!apiAttack ${atk_row_id}||||${atk_roll}`
+                newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `!apiAttac2 ${JSON.stringify(atk_roll_obj)}`
+                // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = atk_roll
+                console.log(`update ${JSON.stringify(newrowattrs)}`)
                 setAttrs(newrowattrs)
 
             })
