@@ -1,0 +1,912 @@
+.charsheet{
+    --border: none;
+    --tile_colour: rgba(213, 237, 190, 0.8);
+    --background_image: url("https://raw.githubusercontent.com/astsbins/CustomFalloutSheet/master/fallout%20Background%20texture.jpg");
+    --button_colour: #b0e178;
+    --buton_hover_colour: #002700;
+    --unselected_tab_colour: #82bd75;
+    color: black;
+}
+
+input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px dotted black;
+    /*background-color: rgba(213, 237, 190,0.5);*/
+    background-color: transparent;
+    height: 1em;
+    padding: 0.2em;
+    float: none;
+    width: 90%;
+    min-width: 0;
+    overflow: hidden;
+    box-sizing : border-box;
+}
+input[type=number]:not(:hover){
+    -moz-appearance:textfield;
+    /*-webkit-appearance: none;*/
+}
+input[type=number]:not(:hover)::-webkit-outer-spin-button,
+input[type=number]:not(:hover)::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/*input[type=number]::-webkit-inner-spin-button,*/
+/*input[type=number]::-webkit-outer-spin-button {*/
+
+/*    margin: 0;*/
+/*}*/
+
+/*input[type=number]:hover::-webkit-inner-spin-button,*/
+/*input[type=number]:hover::-webkit-outer-spin-button {*/
+/*    -webkit-appearance: inner-spin-button;*/
+/*}*/
+
+span.sheet-hidden{
+    display: none;
+}
+/*span.sheet-testws{*/
+/*    white-space: pre-line;*/
+/*}*/
+/*.sheet-grid{*/
+/*    display: grid;*/
+/*    grid-template-rows: 1fr 55fr;*/
+/*    grid-gap: 0.5em;*/
+/*    width: 850px;*/
+/*    height: 1400px;*/
+/*!*}*!*/
+/*.charsheet button[type=roll] {*/
+
+/*   border: 0;    box-shadow: none;    text-align: left;    text-shadow: initial; }*/
+button, .charsheet button[type=roll]{
+    background-image: none;
+    background-color: var(--button_colour);
+    border: 1px solid #206a20;
+}
+
+button:hover{
+    background-color: var(--buton_hover_colour);
+    border: 1px solid var(--buton_hover_colour);
+    color: var(--tile_colour) ;
+    /*transition-duration: 0.3s;*/
+}
+
+button:active{
+    border: 1px solid #3FB315;
+}
+.sheet-main_title{
+    /*background-image: var(--background_image);*/
+    background-color: var(--tile_colour);
+    display: flex;
+    justify-self: center;
+    justify-items: center;
+    justify-content: center;
+    width: 926px;
+}
+.sheet-content{
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(9,1fr);
+    grid-template-rows: repeat(11,1fr);
+    grid-gap: 0.5em;
+    background-image: var(--background_image);
+    width: 900px;
+    height: 1400px;
+    max-height: 1400px;
+    padding: 1em;
+    min-height: 0;
+}
+
+
+
+
+.sheet-special{
+    display: grid;
+    grid-template-columns: 1fr;
+    /*grid-template-rows: repeat(7,1fr);*/
+    grid-column: 1/2;
+    grid-row: 1/9;
+    border: none;
+    grid-gap: 1em;
+    min-height: 0;
+}
+
+.sheet-special > div{
+    grid-column: 1;
+    border: var(--border);
+    background-color: var(--tile_colour);
+    padding: 0.5em;
+    display: grid;
+    /*grid-template-columns: 0.8fr;*/
+    grid-template-rows:  repeat(3, 1fr);
+    justify-items: center;
+}
+.sheet-special > div > input[type="number"]{
+    min-width: 0;
+    width: 100%;
+    justify-self: center;
+}
+.sheet-special > div > button{
+    grid-column: 1;
+    min-width: 0;
+    height: 100%;
+    width: 80%;
+    /*border-bottom: none;*/
+}
+
+.sheet-special_mod {
+    width: 100%;
+    /*border: 1px solid #206a20;*/
+    border-top: none;
+    display: flex;
+    justify-content: center;
+    /*background-color: var(--button_colour);*/
+
+}
+.sheet-special_mod:hover span{
+    visibility: visible;
+}
+.sheet-skills{
+    border: var(--border);
+    background-color: var(--tile_colour);
+    grid-column: 2/4;
+    grid-row: 1/9;
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.sheet-skills >  *{
+    display: flex;
+    min-width: 0;
+}
+
+.sheet-skills > span > button{
+    flex: 2.5;
+    text-align: left;
+    border-right: none;
+    /*justify-content: left;*/
+    /*justify-self: left;*/
+    /*justify-items: left;*/
+}
+.sheet-skills > span > input[type="number"] {
+    width: 2.5em;
+}
+button:hover ~ .sheet-skill_mod,
+button:hover ~ .sheet-special_mod{
+    background-color: var(--buton_hover_colour);
+}
+.sheet-mod_total_visibility[value="0"] ~ .sheet-mod_total,
+.sheet-mod_total_visibility[value="0"] ~ .sheet-tooltip{
+    visibility: hidden;
+}
+.sheet-mod_total_visibility[value="positive"] ~ .sheet-mod_total{
+    visibility: visible;
+    color: #3FB315;
+}
+.sheet-mod_total_visibility[value="positive"] ~ .sheet-mod_total::before{
+    content: "+"
+}
+.sheet-mod_total_visibility[value="negative"] ~ .sheet-mod_total{
+    visibility: visible;
+    color: red;
+}
+.sheet-mod_total_visibility[value="zero"] ~ .sheet-mod_total{
+    visibility: visible;
+    color: black;
+}
+.sheet-skill_mod{
+    font-weight: normal;
+    background-color: var(--button_colour);
+    border: 1px solid #206a20;
+    border-left: none ;
+    padding-right: 0.5em;
+}
+.sheet-mod_total:hover{
+    /*color: #000089;*/
+    font-weight: bold;
+}
+/*.sheet-mod_total{*/
+/*    color: #FF0000;*/
+/*    !*visibility: visible;*!*/
+/*}*/
+
+.sheet-tooltip{
+    color: black;
+    visibility: hidden;
+    position: absolute;
+    background-color: var(--button_colour);
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    border: 1px solid #206a20;
+    z-index: 1;
+    white-space: pre-line;
+    text-align: left;
+}
+.sheet-special_mod > .sheet-tooltip{
+    margin-top: 2em;
+}
+.sheet-skill_mod > .sheet-tooltip{
+    margin-left: 3em;
+    margin-top: -1em;
+}
+
+.sheet-skill_mod:hover span{
+    visibility: visible;
+}
+.sheet-charinfo{
+    border: var(--border);
+    background-color: var(--tile_colour);
+    grid-column: 4/10;
+    grid-row: 1/2;
+    padding: 0.5em;
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    /*grid-gap: 0.5em;*/
+    grid-column-gap: 0.5em;
+    grid-row-gap: 0.3em;
+}
+
+.sheet-info_input > input[type="number"]{
+    width: 40%
+}
+
+.sheet-main{
+    grid-column: 4/10;
+    grid-row: 2/9;
+    /*border: var(--border);*/
+    display: grid;
+    grid-template-areas: "rll"
+                         "tab"
+                         "cnt";
+    /*grid-template-columns: repeat(5,1fr);*/
+    grid-template-rows: 0.6fr 0.1fr 12fr;
+    grid-gap: 0.5em;
+    min-width: 0;
+
+}
+.sheet-main{
+    min-height: 0;
+    max-height: 100%;
+}
+.sheet-rolls{
+    /*grid-column: 1/6;*/
+    /*grid-row: 1/2;*/
+    grid-area: rll;
+    border: var(--border);
+    background-color: var(--tile_colour);
+    padding: 0.5em;
+    display: grid;
+    /*                      numdice roll attribute ability initiative crit botch*/
+    grid-template-columns: 1fr        2fr 3fr       3fr         2fr     1fr 1fr;
+    grid-gap: 0.5em;
+    min-width: 0;
+}
+
+.sheet-rolls > *{
+    justify-self: center;
+    align-self: center;
+    padding: 0.5em;
+    min-width: 0;
+
+    /*border: var(--border);*/
+}
+.sheet-main_tabs{
+    grid-area: tab;
+    display: grid;
+    border: var(--border);
+    /*background-color: var(--tile_colour);*/
+    /*padding: 0.5em;*/
+}
+.sheet-main_tabstoggle[value="vehicle"] ~   div.sheet-vehicle{
+    display: block;
+}
+.sheet-main_tabs > div >button{
+    font-size: 1em;
+    /*color: red;*/
+
+
+}
+
+.sheet-character,
+.sheet-companion,
+.sheet-vehicle,
+.sheet-settlement{
+    display: none;
+}
+/*main tabs*/
+.sheet-main_tabstoggle[value="character"] ~ div.sheet-character,
+.sheet-main_tabstoggle[value="companion"] ~ div.sheet-companion,
+.sheet-main_tabstoggle[value="settlement"] ~ div.sheet-settlement {
+    display: grid;
+}
+
+
+
+
+/*.sheet-ast > div{*/
+/*    border: var(--border);*/
+/*    background-color: var(--tile_colour);*/
+/*    padding: 0.5em;*/
+/*}*/
+.sheet-character{
+    min-height: 0;
+    min-width: 0;
+    /*display: grid;*/
+    grid-area: cnt;
+    /*grid-column: 1/6;*/
+    grid-template-areas: "hdr hdr hdr prk prk"
+                        "atk atk atk prk prk"
+                        "ast ast ast prk prk";
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: 1.4fr 6fr 10fr;
+    grid-gap: 0.3em;
+    border: var(--border);
+
+}
+.sheet-character > div{
+    min-height: 0;
+}
+/*.sheet-middle {*/
+/*    !*min-height: 0;*!*/
+/*    min-width: 0;*/
+/*    display: grid;*/
+/*    grid-column: 1/4;*/
+/*    grid-row: 2/13;*/
+/*    grid-template-columns: 1fr;*/
+/*    grid-template-rows: repeat(13,1fr);*/
+/*    !*grid-column-gap: 0.5em;*!*/
+/*    grid-gap: 0.5em;*/
+/*}*/
+
+.sheet-hdr{
+    min-width: 0;
+    grid-area: hdr;
+    min-width: 0;
+    display: grid;
+    grid-row: 1/2;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 0.5em;
+    /*border: var(--border);*/
+    /*padding: 0.5em;*/
+}
+
+.sheet-hdr > div{
+    grid-template-areas:   "title title"
+    "cur  max";
+    grid-template-columns: 1fr   1fr;
+    grid-template-rows:    1fr   1fr;
+    border: var(--border);
+    background-color: var(--tile_colour);
+    padding: 0.5em;
+}
+
+.sheet-hdr >div > h4{
+    grid-area: title;
+}
+.sheet-hdr >div > input[type="number"]{
+    min-width: 0;
+    width: 50%;
+    justify-self: center;
+}
+
+
+
+.sheet-armor_tab,
+.sheet-status_effects,
+.sheet-trackers {
+    display: none;
+}
+
+/* show the selected tab */
+.sheet-ast_tabstoggle[value="armor_tab"] ~ div.sheet-armor_tab,
+.sheet-ast_tabstoggle[value="status_effects"] ~ div.sheet-status_effects,
+.sheet-ast_tabstoggle[value="trackers"] ~ div.sheet-trackers {
+    display: grid;
+    min-width: 0;
+}
+
+button[name="act_armor_tab"],
+button[name="act_status_effects"],
+button[name="act_trackers"]{
+    background-color: var(--unselected_tab_colour);
+}
+
+.sheet-ast_tabstoggle[value="armor_tab"] ~ div button[name="act_armor_tab"],
+.sheet-ast_tabstoggle[value="status_effects"] ~ div button[name="act_status_effects"],
+.sheet-ast_tabstoggle[value="trackers"] ~ div button[name="act_trackers"] {
+    background-color: var(--tile_colour);
+    border: 1px solid var(--tile_colour);
+}
+
+
+.sheet-attacks{
+    /*max-height: 100%;*/
+    grid-area: atk;
+    min-height: 0;
+    min-width: 0;
+    overflow: auto;
+    /*grid-column: 1/2;*/
+    /*grid-row: 2/6;*/
+    display: flex;
+    flex-direction: column;
+    border: var(--border);
+    background-color: var(--tile_colour);
+    padding: 0.5em;
+    /*TODO: Fix this hack, should need to do this to make to stay up top*/
+    /*grid-template-rows: repeat(9,1fr);*/
+}
+.sheet-attacks > div > input[type="number"]{
+    width: 100%;
+}
+.sheet-damage_effects{
+    grid-area: eft;
+    justify-self: center;
+    width: 100%;
+}
+.sheet-attacks > div > *{
+    border: var(--border);
+    /*background-color: var(--tile_colour);*/
+}
+
+.sheet-attacks >.repcontainer[data-groupname="repeating_attacks"]{
+    min-width: 0;
+    display: grid;
+    grid-gap: 0.4em;
+    grid-template-columns: 1fr;
+}
+.sheet-attacks >.repcontainer[data-groupname="repeating_attacks"] >.repitem{
+    min-width: 0;
+    height: min-content;
+    display: grid;
+    grid-template-areas:  "rol rls wep amm"
+                          "rol eft eft cb";
+    grid-template-columns: 1fr 1fr 5fr 2.5fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 0.2em;
+}
+.sheet-attacks >.repcontainer[data-groupname="repeating_attacks"] >.repitem>*{
+    min-height: 0;
+    min-width: 0;
+    /*height: 2em;*/
+}
+.sheet-atk_crit_botch{
+    display: grid;
+    grid-area: cb;
+    grid-template-columns: 1fr 1fr;
+}
+.sheet-atk_crit_botch > span >input[type="number"]{
+    width: 2.1em;
+}
+
+button[name="attr_atk_roll"]{
+    grid-area: rol;
+}
+sheet-atk_ammo{
+    grid-area: amm;
+}
+.sheet-ast{
+    /*grid-column: 1/2;*/
+    grid-area: ast;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    /*grid-row: 6/14;*/
+    grid-template-areas: "tabs"
+    "content";
+
+    /*border: var(--border);*/
+    /*border: var(--border);*/
+}
+
+.sheet-ast_tabs > button{
+    background-color: var(--tile_colour);
+    border: 1px solid var(--tile_colour);
+
+}
+.sheet-ast_tabs >button:hover{
+    color: black;
+}
+.sheet-armor_tab{
+    /*display: grid;*/
+    grid-area: content;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr repeat(7,2fr);
+    background-color: var(--tile_colour);
+    min-height: 0;
+    height: 100%;
+    padding: 0.5em;
+    grid-gap: 0.2em;
+}
+.sheet-armor_tab > div{
+    border: var(--border);
+    background-color: var(--tile_colour);
+    padding: 0.2em;
+}
+
+.sheet-armor_title{
+    grid-row: 1;
+}
+.sheet-armor_location{
+    display: grid;
+    grid-template-areas: "loc nam nam nam"
+                         "phy ene rad poi";
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: 1fr 1fr;
+}
+
+.sheet-armor_location > .sheet-armor_name{
+    grid-area: nam;
+    min-height: 0;
+}
+
+.sheet-armor_location >div >input[type="number"]{
+    min-width: 0;
+    height: 1.2em;
+}
+.sheet-armor_location >div >input[type="text"]{
+    height: 1.2em;
+}
+.sheet-status_effects{
+    padding: 0.5em;
+    background-color: var(--tile_colour);
+    /*max-height: 100%;*/
+    height: 100%;
+    /*display: grid;*/
+    grid-template-areas: "title"
+                         "status"
+                         "conditions";
+    grid-template-rows: 0.3fr 1fr 5fr;
+    grid-gap: 0.4em;
+    min-height: 0;
+    min-width: 0;
+}
+.sheet-status_effects_title{
+    min-height: 0;
+    grid-area: title;
+    min-width: 0;
+}
+
+.sheet-status_effects_mods{
+    min-width: 0;
+    min-height: 0;
+    display: grid;
+    grid-area: status;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    background-color: var(--tile_colour);
+    padding: 0.4em;
+}
+
+
+
+.sheet-condition_status_effects{
+    min-width: 0;
+    min-height: 0;
+    grid-area: conditions;
+    display: flex;
+    flex-direction: column;
+    grid-gap: 0.2em;
+    /*background-color: var(--tile_colour);*/
+    padding: 0.4em;
+}
+.repcontainer[data-groupname="repeating_conditions"]{
+    min-width: 0;
+    overflow: auto;
+}
+.repcontainer[data-groupname="repeating_conditions"] > repitem{
+    min-width: 0;
+    width: 100%;
+
+}
+.repcontainer[data-groupname="repeating_conditions"] > .repitem >div{
+    min-width: 0;
+    height: 3em;
+    /*min-width: 0;*/
+    min-height: 1em;
+    border-bottom: 1px solid darkslategray;
+}
+.sheet-condition_row{
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 0.7fr 3fr 2fr 1.2fr;
+    min-height: 0;
+    border-bottom: 1px solid darkslategray;
+    /*height: 4em;*/
+}
+.sheet-condition_row >div{
+    min-width: 0;
+    min-height: 0;
+    border: var(--border);
+    background-color: var(--tile_colour);
+    padding: 0.4em;
+    /*color: #FF0000;*/
+}
+
+button.sheet-checkbox{
+    background-color: var(--tile_colour);
+    color:var(--tile_colour) ;
+    /*width: 6px;*/
+    /*height: 6px;*/
+    /*min-width: 6px;*/
+    /*min-height: 6px;*/
+    /*min-width: 16px;*/
+}
+/*.sheet-status_status_effects > div{*/
+/*    !*border: 1px solid darkslategray;*!*/
+/*    align-self: center;*/
+/*    min-height: 0;*/
+/*}*/
+input.sheet-condition_name{
+    width: 110%;
+}
+select.sheet-select_condition{
+    border: var(--border);
+    background-color: var(--tile_colour);
+    align-self: center;
+    min-width: 0;
+    width: 100%;
+}
+
+/*.sheet-status_status_effects > div >select{*/
+/*    !*border: 1px solid darkslategray;*!*/
+/*    align-self: center;*/
+/*    width: 100%;*/
+/*    min-width: 0;*/
+/*    color: #FF0000;*/
+/*}*/
+
+/*.sheet-condition_status_effects > div{*/
+/*    padding: 0.3em;*/
+/*    align-self: center;*/
+
+
+
+.sheet-trackers{
+    padding: 0.5em;
+    background-color: var(--tile_colour);
+    /*max-height: 100%;*/
+    height: 100%;
+}
+
+
+
+.sheet-perks{
+    grid-area: prk;
+    /*grid-column: 4/6;*/
+    /*grid-row: 2/14;*/
+    border: var(--border);
+    background-color: var(--tile_colour);
+    padding: 0.5em;
+    min-width: 0;
+    max-width: 100%;
+    min-height: 0;
+}
+
+.repcontainer[data-groupname="repeating_perks"]{
+    min-width: 0;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0.5em;
+    overflow: auto;
+    max-height: 92%;
+}
+.sheet-perks > .repcontainer[data-groupname="repeating_perks"] >.repitem{
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 1fr 2.5em 1.2em;;
+    grid-template-rows: 1fr min-content;
+    grid-gap: 0.3em;
+
+}
+input.sheet-perk_name{
+    /*color: red;*/
+    /*width: 100%;*/
+    /*min-width: 100%;*/
+}
+.sheet-perk_roll{
+    min-width: 0;
+}
+
+.sheet-perk_descr  {
+    grid-column: 1/4;
+    min-width: 0;
+    height: 90%;
+    width: 92%;
+}
+input.sheet-toggle_perk_description{
+    margin: 0;
+    padding: 0;
+
+    /*width: 1em;*/
+    /*max-width: 1em;*/
+}
+input.sheet-toggle_perk_description:not(:checked) ~ textarea{
+ display: none;
+    height: 0;
+}
+/*.sheet-perks > .repcontainer[data-groupname="repeating_perks"] >.repitem > span > input[type=text]{*/
+/*    min-width: 0;*/
+/*    width: 70%;*/
+/*}*/
+.sheet-weapons{
+    border: var(--border);
+    background-color: var(--tile_colour);
+    grid-column: 1/10;
+    grid-row: 9/12;
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 0;
+}
+
+.sheet-weapons > .sheet-weapon_titles,
+.sheet-weapons > .repcontainer[data-groupname="repeating_weapons"] >.repitem{
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*grid-column: 1/2;*/
+    /*height: min-content;*/
+    height: min-content;
+    width: 100%;
+    display: grid;
+    grid-gap: 0.4em;
+    grid-template-areas:    "wep atr skl   mod dmt   dmg rng rte clp amt";
+    grid-template-columns:   3fr 2fr 2.5fr 1fr 1.5fr 1fr 1fr 1fr 1fr 1.5fr;
+}
+
+
+.sheet-weapons > .repcontainer[data-groupname="repeating_weapons"]{
+    display: grid;
+    grid-gap: 0.4em;
+}
+.sheet-weapons > div > *{
+    border: var(--border);
+    /*background-color: var(--tile_colour);*/
+    /*padding: 0.2em;*/
+    max-width: 100%;
+    min-width: 0;
+    /*align-self: center;*/
+    /*justify-self: center;*/
+    /*color: #FF0000;*/
+    /*height: 1.5em;*/
+}
+.repitem > *{
+    border: var(--border);
+    background-color: var(--tile_colour);
+    max-width: 100%;
+    min-width: 0;
+}
+
+.repitem> input[type="number"],
+.repitem> input[type = "text"],
+.repitem> select{
+    min-width: 0;
+    width: 100%;
+    height: 100%;
+    /*height:2em;*/
+}
+
+.sheet-vehicle {
+    width: 100%;
+}
+
+.sheet-vehicle > *{
+    width: 100%;
+    border: var(--border);
+    min-height: 0;
+}
+
+.repcontainer[data-groupname="repeating_vehicles"] > .repcontainer{
+    padding: 0.5em;
+}
+
+
+
+/*#################### Settlements ############################*/
+.sheet-settlement{
+
+    grid-area: cnt;
+    min-height: 0;
+    background-color: var(--tile_colour);
+    /*height: 100%;*/
+    padding: 0.5em;
+    grid-template-rows: 2em 1fr;
+}
+
+/*style the repeating container here*/
+.repcontainer[data-groupname="repeating_settlements"] >.repitem {
+    display: grid;
+    grid-template-areas: "btn name name lvls"
+                         "btn dscr dscr dscr"
+                         "btn dscr dscr dscr"
+                         "eft eft  eft  eft";
+    grid-template-columns: 0.5fr repeat(2,1fr) 0.6fr;
+    grid-template-rows: repeat(3, 1fr);
+    height: 10em;
+    min-height:0;
+    grid-gap: 0.4em;
+}
+
+.sheet-settlement_roll {
+    min-height: 0;
+    /*height: 4em;*/
+    grid-area: btn;
+
+}
+
+.sheet-settlement_name{
+    min-height:0;
+    /*height: 2em;*/
+    grid-area: name;
+}
+.sheet-settlement_level_section{
+    display: flex;
+    align-items: center;
+}
+button.sheet-dot {
+    padding: 0;
+    border: solid 1px #a8a8a8;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.sheet-dot > span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: buttontext;
+}
+
+/* Hide the "checked" section of the radio if the hidden attribute value is greater than the button value */
+input.sheet-dot[value="1"] ~ button.sheet-gt-1 > span.sheet-checked {
+    display: none;
+}
+input.sheet-dot[value="2"] ~ button.sheet-gt-2 > span.sheet-checked {
+    display: none;
+}
+input.sheet-dot[value="3"] ~ button.sheet-gt-3 > span.sheet-checked {
+    display: none;
+}
+input.sheet-dot[value="4"] ~ button.sheet-gt-4 > span.sheet-checked {
+    display: none;
+}
+
+.sheet-settlement_description{
+    min-height:0;
+    min-width: 0;
+    height: 90%;
+    width: 98%;
+    grid-area: dscr;
+}
+.sheet-settlement_effects{
+    min-height:0;
+    min-width: 0;
+    height: 100%;
+    grid-area: eft;
+}
+
+.repcontainer[data-groupname="repeating_settlements"] >.repitem >input{
+
+    border: 1px solid darkslategray;
+}
+.sheet-rolltemplate-default > table> caption {
+    font-weight: bold;
+    background-color: #206a20;
+}
+
+.sheet-rolltemplate-default > table{
+    text-align: left;
+}
+.sheet-rolltemplate-default > table >td{
+    text-align: left;
+}
