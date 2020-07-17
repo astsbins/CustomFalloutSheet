@@ -920,6 +920,7 @@ input.sheet-dot[value="4"] ~ button.sheet-gt-4 > span.sheet-checked {
 }
 .withoutavatars .sheet-rolltemplate-custom {
     margin-left: -7px;
+
 }
 
 .sheet-rolltemplate-custom .sheet-container {
@@ -946,7 +947,7 @@ input.sheet-dot[value="4"] ~ button.sheet-gt-4 > span.sheet-checked {
 /* example colors */
 .sheet-rolltemplate-custom .sheet-container {
     /* this is the default color */
-    --header-bg-color: rgba(112,32,130,1);
+    --header-bg-color: #206a20;
     --header-text-color: #FFF;
 }
 
@@ -996,23 +997,56 @@ input.sheet-dot[value="4"] ~ button.sheet-gt-4 > span.sheet-checked {
     display: block;
     position: absolute;
 }
-/*.sheet-rolltemplate-hover{*/
+
+.sheet-rolltemplate-custom .userscript-test{
+    color: red;
+    background-color: yellow;
+    padding: 0.2em;
+    border: 2px dotted blue;
+}
+.sheet-rolltemplate-custom .userscript-roll:not(:hover) ~ .userscript-roll_tooltip{
+    display: none;
+}
+
+.sheet-rolltemplate-custom  .userscript-roll{
+    /*color: blueviolet;*/
+    font-weight: bold;
+    padding: 0.2em;
+    background-color: yellow;
+    border: 2px solid yellow;
+}
+
+.sheet-rolltemplate-custom  .userscript-roll:hover ~ .userscript-roll_tooltip {
+    display: block;
+
+}
+.sheet-rolltemplate-custom .userscript-roll_tooltip{
+    position: absolute;
+    text-align: center;
+    transform: translateX(-70%);
+    height: min-content;
+    color: white;
+    background-color: black;
+    padding: 0.2em;
+    width: 15em;
+    max-width: 15em;
+    z-index: 1;
+}
+    /*.sheet-rolltemplate-hover{*/
 /*    visibility: hidden;*/
 /*}*/
 
 /*######################testing#########################*/
-.sheet-rolltemplate-hover:hover{
-    color: gold;
-}
 
-.sheet-rolltemplate-hovertest{
-    border: 1px solid;
-    border-color: var(--header-bg-color);
-    display: block;
-}
-.sheet-hover-word:not(:hover) ~ .sheet-hover-text{
-    display: none;
-}
+
+/*.sheet-rolltemplate-hovertest{*/
+/*    border: 1px solid;*/
+/*    border-color: var(--header-bg-color);*/
+/*    display: block;*/
+/*}*/
+/*.sheet-hover-word:not(:hover) ~ .sheet-hover-text{*/
+/*    display: none;*/
+/*}*/
 .sheet-hover-word:hover ~ .sheet-hover-text{
     display: block;
 }

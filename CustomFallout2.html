@@ -952,10 +952,10 @@
 
     </div>
 </div>
-<div class="tooltip_test">
-    <div class="hover-word">hover here</div>
-    <div class="hover-text">text to appear on hover</div>
-</div>
+<!--<div class="tooltip_test">-->
+<!--    <div class="hover-word">hover here</div>-->
+<!--    <div class="hover-text">text to appear on hover</div>-->
+<!--</div>-->
 <rolltemplate class="sheet-rolltemplate-custom">
     <div class="sheet-container sheet-color-{{color}}">
         <div class="sheet-header">
@@ -968,14 +968,15 @@
             <div class="sheet-value">{{value}}</div>
             {{/allprops() title subtitle desc color hover tooltip}}
             {{#desc}}<div class="sheet-desc">{{desc}}</div>{{/desc}}
-            <div class="hover-section">
-                {{#hover}} <div class="sheet-template-hover">{{hover}}</div>{{/hover}}
-                {{#tooltip}}<div class="sheet-template-tooltip">{{tooltip}}</div>{{/tooltip}}
-            </div>
+<!--            <div class="sheet-hover-section">-->
+<!--                {{#hover}} <div class="sheet-template-hover">{{hover}}</div>{{/hover}}-->
+<!--                {{#tooltip}}<div class="sheet-template-tooltip">{{tooltip}}</div>{{/tooltip}}-->
+<!--            </div>-->
 
         </div>
     </div>
 </rolltemplate>
+<!--<span class="testt"></span>-->
 
 <rolltemplate class="sheet-rolltemplate-hovertest">
     <div class="sheet-template-container">
@@ -1493,7 +1494,7 @@
             // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `rolling ${r_wep("weapon_name")} with ${r_wep("weapon_attribute")} and ${r_wep("weapon_skill")} for
             // ${r_wep("weapon_damage")} ${r_wep("weapon_damage_type")} damage!`
             let atk_roll_obj = {}
-            let atk_roll = `&{template:default}{{name=@{character_name} attacks @{target|character_name} with ${r_wep("weapon_name")}}}`
+            let atk_roll = `&{template:custom}{{title=@{character_name} attacks @{target|character_name} with ${r_wep("weapon_name")}}}`
             atk_roll_obj["charid"] = `@{character_id}`
             atk_roll_obj["character_name"] = "@{character_name}"
             atk_roll_obj["title"] = atk_roll
@@ -1517,8 +1518,9 @@
                 console.log(total_mod)
                 atk_roll += `{{Successes=[[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20<[[${total_mod}]]cs<@{atk_crit}cf>@{atk_botch}]]}}`
                 // atk_roll += `{{Damage = [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")} damage to the [[t[Wound-Table]]]}}`
-                atk_roll_obj["rowid"] = atk_row_id
+                atk_roll_obj["rowid"] = atk_row_id.toLowerCase()
                 atk_roll_obj["roll"] = atk_roll
+                atk_roll_obj["wepid"] = row_id
                 console.log(`sfse ${atk_row_id} \n ${row_id}`)
                 // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `!apiAttack ${atk_row_id}||||${atk_roll}`
                 newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `!apiAttac2 ${JSON.stringify(atk_roll_obj)}`
