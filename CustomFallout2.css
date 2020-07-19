@@ -168,12 +168,14 @@ button:active{
     flex: 2.5;
     text-align: left;
     border-right: none;
+    height: 1.4em;
     /*justify-content: left;*/
     /*justify-self: left;*/
     /*justify-items: left;*/
 }
 .sheet-skills > span > input[type="number"] {
     width: 2.5em;
+    height: 1.4em;
 }
 button:hover ~ .sheet-skill_mod,
 button:hover ~ .sheet-special_mod{
@@ -204,6 +206,7 @@ button:hover ~ .sheet-special_mod{
     border: 1px solid #206a20;
     border-left: none ;
     padding-right: 0.5em;
+    height: 1.4em;
 }
 .sheet-mod_total:hover{
     /*color: #000089;*/

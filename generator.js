@@ -53,7 +53,7 @@ ${capitalise(attr.replace("_"," "))}
 
 for (let abilityModsKey in abilities) {
     console.log(`<div><h4>${capitalise(abilityModsKey)}</h4></div>`);
-    abilities[abilityModsKey].forEach(modifier =>{
+    abilities[abilityModsKey].sort().forEach(modifier =>{
         console.log(`
         <span class="skills_${modifier}">
             <button type="action" name="act_${modifier}">${capitalise(modifier.replace("_"," "))}</button>
@@ -132,7 +132,7 @@ special.forEach(special =>{
 
 for (abilitySection in abilities){
     console.log(`<optgroup label="${capitalise(abilitySection)}">`)
-    abilities[abilitySection].forEach(ability =>{
+    abilities[abilitySection].sort().forEach(ability =>{
         console.log(`<option value="${ability}">${capitalise(ability.replace("_", " "))}</option>`)
     })
     console.log(`</optgroup>`)
