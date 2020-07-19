@@ -116,7 +116,7 @@
     </div>
 
     <div class="skills">
-        <div><h4>Skills</h4></div>
+        <div><h4>Skills</h4>&nbsp;&nbsp;&nbsp; <button type="action" name="act_reset_mods">Reset Mods</button></div>
 
         <span class="skills_sneak">
             <button type="action" name="act_sneak">Sneak</button>
@@ -1238,7 +1238,16 @@
 
 
     }
-
+    on("clicked:reset_mods", () =>{
+        let update = {}
+        allStats.forEach(stat =>{
+            update[`${stat}_visibility`] = 0
+            update[`${stat}_mod_total`] = 0
+            update[`${stat}_mod_conditions`] = 0
+            update[`${stat}_tooltip`] = 0
+        })
+        setAttrs(update)
+    })
     const ast_tabs = ["armor_tab", "status_effects", "trackers"];
     ast_tabs.forEach(button => {
         on(`clicked:${button}`, function () {
@@ -1257,6 +1266,7 @@
             setAttrs(update);
         });
     });
+
 
     // on('clicked:repeating_settlements:setlv1', (event)=>{console.log(`clicked:repeating_section:mod event: ${JSON.stringify(event)}`)});//This event will only be triggered if position:relative/absolute is NOT applied to the filter-container div.
     // on('clicked:repeating_settlements', (event)=>{console.log(`clicked:mod event: ${JSON.stringify(event)}`)});//This event will only be triggered if position is applied to the filter-container div. However it will not have repeating row info.
