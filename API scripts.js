@@ -157,59 +157,11 @@ on("chat:message", function (msg) {
 
 });
 
-
-//################### tables
-on("chat:message", function (msg) {
-    if (msg.type == "api" && msg.content.indexOf("!table") !== -1) {
-        let table_id = findObjs({
-            "_type" : "rollabletable",
-            "name"  : "Combat-Dice"
-        })[0].get("_id")
-
-        let table_objects = findObjs({
-            "_type" : "tableitem",
-            "_rollabletableid": table_id
-        });
-        let table = {}
-        let count = 1
-        let table_output = `&{template:custom}{{title=table}}`
-        table_objects.forEach( item =>{
-            for (let i = 0; i < item.get("weight"); i++) {
-                table[count] = [item.get("name"), item.get("avatar")]
-                table_output += `{{${item.get("name")} : ${item.get("weight")}= <img src="${item.get("avatar")}">}}`
-                count++;
-            }
-            // sendChat("table", `${item.get("name")}   ${item.get("weight")} [ [[ ](http://tinyurl.com/B14Star1#.png)`)
-        });
-        table["num_items"] = count-1
-        log(JSON.stringify(table))
-        table_output += `{{Num Items=${table["num_items"]} }}`
-        sendChat("table out", table_output)
-        // sendChat("table", table_objects.get("_id"))
-        // sendChat("table", "done")
-    }
-});
-// /##just testing ###
-on("chat:message", function (msg) {
-    if (msg.type == "api" && msg.content.indexOf("!rt") !== -1) {
-        let charid = msg.content.replace("!rt", "").replace(" ", "")
-        // sendChat("ese", `charid ${charid}`)
-        // sendChat("ese", JSON.stringify(msg))
-        let attr = findObjs({
-            "type": "attribute",
-            "name": "atk_dice"
-        })
-        sendChat("ese", JSON.stringify(attr))
-    }
-})
-
-//attack
+//##########################attacks
 on("chat:message", function (msg) {
     if (msg.type == "api" && msg.content.indexOf("!apiAttac2") !== -1) {
         let atk_roll_str = msg.content.toString().replace(/!apiAttac2|\r\n|\n|\r/gm  , "")
-        // sendChat("2", atk_roll_str)
-        // let atk_list = atk_roll_str.toString().split("||||")
-        function getAttr(name){
+        function getAttr(name, suppress_error = false){
             let attr = findObjs({
                 "type": "attribute",
                 "name" : name,
@@ -218,24 +170,20 @@ on("chat:message", function (msg) {
             },{caseInsensitive: true})[0]
 
             if (attr == undefined) {
-                sendChat("Error", `${name} is not initialised, it will probably cause errors`)
+                if (suppress_error==false){
+                    sendChat("Error", `${name} is not initialised or invalid, it will probably cause errors`)
+                }
+                console.log("Error", `${name} is not initialised or invalid, it will probably cause errors`)
+                return undefined
             } else {
                 return attr.get("current")
             }
-
         }
         let atkobj = JSON.parse(atk_roll_str)
-        sendChat("charid", atkobj["charid"])
-        sendChat("2", atkobj["rowid"])
-        sendChat(msg.who, atkobj["stats"][0])
-        log(111111111111111111)
-        let atk_num_dice = getAttr(`repeating_attacks_${atkobj["rowid"]}_atk_num_dice`)
-        sendChat("atk_num_dice", atk_num_dice.toString())
-        // sendChat("atk_num_dice", `keys ${atk_num_dice.get("current")}`)
 
-        //  sendChat("2", "what")
-        //  sendChat("2a", JSON.stringify(atk_num_dice))
-        log(22222222222222222222)
+        let atk_num_dice = getAttr(`repeating_attacks_${atkobj["rowid"]}_atk_num_dice`)
+        // sendChat("atk_num_dice", atk_num_dice.toString())
+
         let atk_roll = atkobj["title"]
         let total_mod = ""
         let target_number = 0
@@ -253,18 +201,40 @@ on("chat:message", function (msg) {
             }
             atk_roll += "}}"
         })
+
+        //weapon mod
+        let weapon_mod = getAttr(`repeating_weapons_-${atkobj["wepid"]}_weapon_mod`)
+        if (weapon_mod != undefined && weapon_mod !=0){
+            atk_roll += `{{Weapon=${weapon_mod} }}`
+            target_number += parseInt(weapon_mod)
+        }
+
         let rolls = [];
         let roll_html = `<span class="roll">`;
         let roll_successes = 0;
+        let crit =  parseInt(`${getAttr(`repeating_attacks_${atkobj["rowid"]}_atk_crit`)}`)
+        let botch =  parseInt(`${getAttr(`repeating_attacks_${atkobj["rowid"]}_atk_botch`)}`)
         log(`atknumdice ${atk_num_dice}`)
         let roll_tooltip = `<div class="roll_tooltip">Rolling ${atk_num_dice}d20<${target_number} = \n`
         for (let i = 0; i < parseInt(atk_num_dice) ; i++) {
             let roll = Math.ceil(Math.random()*20)
             rolls.push(roll)
             if (roll <= target_number) {
-                roll_successes += 1
+                roll_successes++;
             }
-            roll_tooltip += `${roll}+`
+            let roll_display = `${roll}`
+            if (roll <= crit) {
+                roll_display = `<span class="roll_crit" style="background-color: black; font-weight: bold">${roll}</span>`
+                roll_successes++;
+            }
+
+            if (roll >= botch) {
+                roll_display = `<span class="roll_botch" style="background-color: black; font-weight: bold">${roll}</span>`
+                roll_successes--;
+            }
+
+
+            roll_tooltip += `${roll_display}+`
         }
         roll_html += roll_successes.toString()
         roll_html += `</span>`
@@ -272,6 +242,8 @@ on("chat:message", function (msg) {
         roll_tooltip += `</div>`
         let test_html = `<span class="test">test</span>`
         atk_roll += `{{Successes=${roll_html}${roll_tooltip} }}`
+
+
         //generate table
         function genTable(table_name){
             let table_id = findObjs({
@@ -298,15 +270,35 @@ on("chat:message", function (msg) {
             log(JSON.stringify(table))
             return table
         }
-        let table = genTable("Combat_Dice")
-        let damages = []
-        let damage =parseInt(getAttr(`repeating_weapons_${atkobj["wepid"]}_weapon_damage`))
+        let table = genTable("Combat-Dice")
+        let weapon_damage =parseInt(getAttr(`repeating_weapons_-${atkobj["wepid"]}_weapon_damage`))
+        let damage_done = 0
+        let num_special_events = 0
+        // sendChat("damage", `${weapon_damage}`)
         let damage_output = `{{desc=`
-        for (let i = 0; i <damage ; i++) {
+        for (let i = 0; i <weapon_damage ; i++) {
             let roll = Math.ceil(Math.random()*table["num_items"])
-            damage_output += ` <img src${table[roll][1]}"> `
+            damage_output += ` <img src="${table[roll][1]}"> `
+            let roll_result = table[roll][0].toLowerCase()
+            if (roll_result.includes("special")) {
+                num_special_events += 1
+            }
+            roll_result =parseInt(roll_result.replace(/([a-zA-Z\+])/gm,""))
+            damage_done += roll_result
+
+        }
+        damage_output += `\n${damage_done} ${getAttr(`repeating_weapons_-${atkobj["wepid"]}_weapon_damage_type`)} damage`
+        if (num_special_events > 0) {
+            damage_output += ` with ${num_special_events} `
+            let special_events = getAttr(`repeating_attacks_${atkobj["rowid"]}_damage_effects`,true)
+            if (special_events!=undefined && special_events!="") {
+                damage_output += `${special_events}`
+            } else {
+                damage_output += "Special Events"
+            }
         }
         damage_output += "}}"
-        sendChat("test", "&{template:custom}"+atk_roll)
+        atk_roll += damage_output
+        sendChat(msg.who, "&{template:custom}"+atk_roll)
     }
 })

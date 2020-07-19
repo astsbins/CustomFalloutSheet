@@ -106,9 +106,9 @@ button:active{
     grid-template-columns: 1fr;
     /*grid-template-rows: repeat(7,1fr);*/
     grid-column: 1/2;
-    grid-row: 1/9;
+    grid-row: 1/5;
     border: none;
-    grid-gap: 1em;
+    grid-gap: 0.5em;
     min-height: 0;
 }
 
@@ -116,11 +116,12 @@ button:active{
     grid-column: 1;
     border: var(--border);
     background-color: var(--tile_colour);
-    padding: 0.5em;
+    padding: 0.4em;
     display: grid;
     /*grid-template-columns: 0.8fr;*/
-    grid-template-rows:  repeat(3, 1fr);
+    grid-template-rows:  repeat(2, 1fr);
     justify-items: center;
+    min-height: 0;
 }
 .sheet-special > div > input[type="number"]{
     min-width: 0;
@@ -130,7 +131,7 @@ button:active{
 .sheet-special > div > button{
     grid-column: 1;
     min-width: 0;
-    height: 100%;
+    height: 90%;
     width: 80%;
     /*border-bottom: none;*/
 }
@@ -250,10 +251,23 @@ button:hover ~ .sheet-special_mod{
     grid-row-gap: 0.3em;
 }
 
-.sheet-info_input > input[type="number"]{
-    width: 40%
-}
+.sheet-info_input > label{
+    font-size: 1em;
+    align-items: center;
 
+}
+.sheet-info_input{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+}
+.sheet-info_input > input{
+    display: inline-block;
+    align-items: center;
+}
+/*.sheet-info_input > label{*/
+/*    flex: 2;*/
+/*}*/
 .sheet-main{
     grid-column: 4/10;
     grid-row: 2/9;
@@ -978,8 +992,8 @@ input.sheet-dot[value="4"] ~ button.sheet-gt-4 > span.sheet-checked {
 */
 
 /* Make even-numbered rows grey */
-.sheet-rolltemplate-custom .sheet-rolltemplate-content :nth-child(4n+3),
-.sheet-rolltemplate-custom .sheet-rolltemplate-content :nth-child(4n) {
+.sheet-rolltemplate-custom  .sheet-rolltemplate-content :nth-child(4n+3),
+.sheet-rolltemplate-custom  .sheet-rolltemplate-content :nth-child(4n) {
     background:#EEE;
 }
 
@@ -1018,7 +1032,7 @@ input.sheet-dot[value="4"] ~ button.sheet-gt-4 > span.sheet-checked {
 
 .sheet-rolltemplate-custom  .userscript-roll:hover ~ .userscript-roll_tooltip {
     display: block;
-
+    background-color: black;
 }
 .sheet-rolltemplate-custom .userscript-roll_tooltip{
     position: absolute;
@@ -1031,6 +1045,21 @@ input.sheet-dot[value="4"] ~ button.sheet-gt-4 > span.sheet-checked {
     width: 15em;
     max-width: 15em;
     z-index: 1;
+}
+
+.sheet-rolltemplate-custom span.userscript-roll_crit,
+.sheet-rolltemplate-custom span.userscript-roll_crit :nth-of-type(2n)
+{
+    color: #3FB315;
+    font-weight: bold;
+    background-color: black;
+}
+
+.sheet-rolltemplate-custom span.userscript-roll_botch,
+.sheet-rolltemplate-custom span.userscript-roll_botch :nth-of-type(1n){
+    color: red;
+    font-weight: bold;
+    background-color: #000000;
 }
     /*.sheet-rolltemplate-hover{*/
 /*    visibility: hidden;*/

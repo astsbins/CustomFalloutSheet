@@ -39,14 +39,14 @@ ${capitalise(attr.replace("_"," "))}
  <div class="special_mod">
                 <input type="hidden" class="mod_total_visibility" name="attr_${attr}_visibility"
                        value="0">
-                <span class="mod_total" name="attr_${attr}_mod_total" type="text" value="3"></span>
+                <span class="mod_total" name="attr_${attr}_mod_total" type="text"></span>
                 <span class="hidden" name="attr_${attr}_conditions" value="test"></span>
                 <span class="tooltip" name="attr_${attr}_tooltip"></span>
             </div>
 </button>
            
-     <input name="attr_${attr}_value"     type="number" placeholder="cur" value="3"  min="0" max="18">
-     <input name="attr_${attr}_value_max" type="number" value="10" min="6" max="18">
+     <input name="attr_${attr}_value"     type="number" placeholder="cur" min="0" max="18">
+<!--     <input name="attr_${attr}_value_max" type="number" value="10" min="6" max="18">-->
      </div>`);
 });
 
@@ -63,7 +63,7 @@ for (let abilityModsKey in abilities) {
                 <span class="hidden" name="attr_${modifier}_conditions"></span>
                 <span class="tooltip" name="attr_${modifier}_tooltip"></span>
             </div>
-            <input name="attr_${modifier}_value" type="number" value="0" min="0" max="18">
+            <input name="attr_${modifier}_value" type="number" min="0" max="18">
         </span>`);
     })
     console.log("\n")
