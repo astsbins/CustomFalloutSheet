@@ -475,6 +475,7 @@ button[name="act_trackers"]{
     grid-gap: 0.4em;
     grid-template-columns: 1fr;
 }
+
 .sheet-attacks >.repcontainer[data-groupname="repeating_attacks"] >.repitem{
     min-width: 0;
     height: min-content;
@@ -506,6 +507,11 @@ button[name="attr_atk_roll"]{
 sheet-atk_ammo{
     grid-area: amm;
 }
+
+.repcontrol[data-groupname="repeating_attacks"] > button.repcontrol_add{
+    display: none;
+}
+
 .sheet-ast{
     /*grid-column: 1/2;*/
     grid-area: ast;
@@ -782,6 +788,7 @@ input.sheet-toggle_perk_description:not(:checked) ~ textarea{
     display: grid;
     grid-gap: 0.4em;
 }
+
 .sheet-weapons > div > *{
     border: var(--border);
     /*background-color: var(--tile_colour);*/
@@ -793,6 +800,7 @@ input.sheet-toggle_perk_description:not(:checked) ~ textarea{
     /*color: #FF0000;*/
     /*height: 1.5em;*/
 }
+
 .repitem > *{
     border: var(--border);
     background-color: var(--tile_colour);
