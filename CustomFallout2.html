@@ -1072,17 +1072,18 @@
             })
         })
 
-        //produce list of attributes that are already
+        //produce list of attribute mods/tooltips that are not already set
         let unset_stat_attrs = []
         getAttrs(all_stat_attrs, stat_attr => {
             all_stat_attrs.forEach(attr => {
+                /*seems like defualt values don't load on:sheetopen so just checking if attribute are undefined works for the purposes of checking if
+                the defualt value is set*/
                 if (stat_attr[attr] == undefined) {
                     unset_stat_attrs.push(attr)
                 }
             })
-            console.log("set", stat_attr)
-            console.log("unset", unset_stat_attrs)
-            //initialise unset attributes
+
+            //initialise unset attribute mods/tooltips
             let update = {}
             unset_stat_attrs.forEach(unset_attr => {
                 update[unset_attr] = "0"
@@ -1096,7 +1097,7 @@
             })
         })
 
-        //set defualt attribute values
+        //set default attribute values
         let stat_values = []
         allStats.forEach(attr => {
             stat_values.push(`${attr}_value`)
@@ -1118,6 +1119,7 @@
             setAttrs(update)
         })
         getAttrs(["num_dice", "main_crit", "main_botch"], stats => {
+            //need seems like when its not on:sheetopened, getAttrs does grab default values
             console.log(`critbotch, ${JSON.stringify(stats)} crit ${stats["main_crit"] == 1} botch ${stats["main_botch"] == 20} dice ${stats["num_dice"] == 2}`)
             let update = {}
             if (stats["main_crit"] == undefined || stats["main_crit"] == 1) {
@@ -1141,12 +1143,7 @@
             if (final_label === "Noattr") {
                 final_label = "No Attribute";
             }
-            // let final_value
-            // if (final_label === "No Attribute"){
-            //     final_value = 0;
-            // }else {
-            //     final_value = value[`${attribute}_value`]
-            // }
+
             getAttrs([`${attribute}_value`], value => {
 
                 setAttrs({
@@ -1241,13 +1238,9 @@
                     roll += `{{Successes=[[@{num_dice}d20<1cs<@{main_crit}cf>@{main_botch}]]}}  \n!resetmaindice @{character_id}`
                 } else {
                     roll += `{{Successes=[[@{num_dice}d20<[[${total_mod}]]cs<@{main_crit}cf>@{main_botch}]]}}  \n!resetmaindice @{character_id}`
-                    // roll += `{{Successes=[[@{num_dice}d20<[[${total_mod}]]cs<@{main_crit}cf>@{main_botch}]]}}&#010;/r d20`
 
                 }
 
-                // if (attribute_active) {
-                //     roll += `Strength=Base:`
-                // }
                 update["main_roller"] = `!apiroll ${JSON.stringify(roll_obj)}`
                 // update["main_roller"] = roll
                 setAttrs(update)
@@ -1288,12 +1281,7 @@
     });
 
 
-    // on('clicked:repeating_settlements:setlv1', (event)=>{console.log(`clicked:repeating_section:mod event: ${JSON.stringify(event)}`)});//This event will only be triggered if position:relative/absolute is NOT applied to the filter-container div.
-    // on('clicked:repeating_settlements', (event)=>{console.log(`clicked:mod event: ${JSON.stringify(event)}`)});//This event will only be triggered if position is applied to the filter-container div. However it will not have repeating row info.
 
-    // function randrange(min, max) {
-    //     return Math.random() * (max - min + 1) + min
-    // }
     // update stat mod when conditions effecting it change
     allStats.forEach(stat => {
         on(`change:${stat}_conditions`, () => {
@@ -1538,8 +1526,7 @@
 
             let newrowattrs = {};
             let atk_row_id = r_wep("atk_row_id");
-            // let wha = atk_row_id
-            newrowattrs["wha"] = atk_row_id
+
             if (atk_row_id.length == 1) {
                 atk_row_id = generateRowID();
                 newrowattrs["repeating_weapons_-" + row_id + "_atk_row_id"] = atk_row_id;
@@ -1561,15 +1548,14 @@
             console.log(`dmg type: ${why}`)
             if (info[`repeating_weapons_-${row_id}_weapon_damage_type`] == undefined || `${info[`repeating_weapons_-${row_id}_weapon_damage_type`]}` == "PHY") {
                 console.log("inside")
-                newrowattrs[`repeating_weapons_-${row_id}_weapon_damage`] = "PHY"
+                newrowattrs[`repeating_weapons_-${row_id}_weapon_damage_type`] = "PHY"
             }
             console.log("outside")
             if (info[`repeating_weapons_-${row_id}_weapon_damage`] == undefined || info[`repeating_weapons_-${row_id}_weapon_damage`] == 1) {
                 newrowattrs[`repeating_weapons_-${row_id}_weapon_damage`] = 1
             }
 
-            // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `rolling ${r_wep("weapon_name")} with ${r_wep("weapon_attribute")} and ${r_wep("weapon_skill")} for
-            // ${r_wep("weapon_damage")} ${r_wep("weapon_damage_type")} damage!`
+
             let atk_roll_obj = {}
             let atk_roll = `&{template:custom}{{title=@{character_name} attacks @{target|character_name} with ${r_wep("weapon_name")}}}`
             atk_roll_obj["charid"] = `@{character_id}`
@@ -1595,13 +1581,12 @@
                 total_mod = total_mod.slice(0, -1)
                 console.log(total_mod)
                 atk_roll += `{{Successes=[[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20<[[${total_mod}]]cs<@{atk_crit}cf>@{atk_botch}]]}}`
-                // atk_roll += `{{Damage = [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")} damage to the [[t[Wound-Table]]]}}`
+
                 atk_roll_obj["rowid"] = atk_row_id.toLowerCase()
                 atk_roll_obj["roll"] = atk_roll
                 atk_roll_obj["wepid"] = row_id
                 atk_roll_obj["dmg_type"] = `${r_wep("weapon_damage_type")}`
                 console.log(`sfse ${atk_row_id} \n ${row_id}`)
-                // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `!apiAttack ${atk_row_id}||||${atk_roll}`
 
                 //set atk values if undefined
                 newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `!apiAttac2 ${JSON.stringify(atk_roll_obj)}`
@@ -1615,21 +1600,8 @@
                 if (values[`repeating_attacks_${atk_row_id}_atk_botch`] == undefined || values[`repeating_attacks_${atk_row_id}_atk_botch`] == 20) {
                     newrowattrs[`repeating_attacks_${atk_row_id}_atk_botch`] = 20
                 }
-
-
-                // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = atk_roll
-                // console.log(why + "d " + `${`${why}`=="PHY"}`)
-                // console.log(`update ${JSON.stringify(newrowattrs)}`)
                 setAttrs(newrowattrs)
             })
-
-            // atk_roll += `{{${capitalise(r_wep("weapon_attribute").replace("_", " "))} = `
-//             newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `&{template:default} {{name=@{character_name} attacks @{target|character_name}
-//             with
-// ${r_wep("weapon_name")} }}{{Successes=[[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20cs<@{atk_crit}cf>@{atk_botch}<[[@{${r_wep("weapon_attribute")}_value} + @{${r_wep("weapon_skill")}_value}]] ]]}}{{Damage = [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")}}}`
-            // newrowattrs[`repeating_attacks_${atk_row_id}_atk_roll`] = `/em @{name} attacks @{target|name} with ${r_wep("weapon_name")} for [[@{repeating_attacks_${atk_row_id}_atk_num_dice}d20cs1cf0<[[@{${r_wep("weapon_attribute")}_value} + @{${r_wep("weapon_skill")}_value}]] ]]success hitting the [[ 1t[status_effect-Table] ]]  for [[${r_wep("weapon_damage")}t[Combat-Dice]]] ${r_wep("weapon_damage_type")}`
-
-
         });
     });
 
