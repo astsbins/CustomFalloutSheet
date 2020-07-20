@@ -732,21 +732,8 @@
 
                 <!--              status_effects Tab-->
                 <div class="status_effects">
-                    <h4 class="status_effects_title">status_effects</h4>
-                    <div class="status_effects_mods">
-                        <div class="status_effect_strength"><strong>Strength</strong> <span
-                                name="attr_status_effect_strength_mod">0</span></div>
-                        <div class="status_effect_perception"><strong>Perception</strong> <span
-                                name="attr_status_effect_perception_mod">0</span></div>
-                        <div class="status_effect_endurance"><strong>Endurance</strong> <span
-                                name="attr_status_effect_endurance_mod">0</span></div>
-                        <div class="status_effect_charisma"><strong>Charisma</strong> <span
-                                name="attr_status_effect_charisma_mod">0</span></div>
-                        <div class="status_effect_intelligence"><strong>Intelligence</strong> <span
-                                name="attr_status_effect_intelligence_mod">0</span></div>
-                        <div class="status_effect_agility"><strong>Agility</strong> <span
-                                name="attr_status_effect_agility_mod">0</span></div>
-                    </div>
+                    <h4 class="status_effects_title">Status Effects</h4>
+
                     <div class="condition_status_effects">
                         <!--                        <div class="status_effect_titles"><strong>Status Effects</strong></div>-->
                         <div class="condition_row">
@@ -1136,7 +1123,7 @@
 
     })
 
-
+// attribute buttons
     attributes.forEach(attribute => {
         on(`clicked:${attribute}`, () => {
             let final_label = capitalise(attribute.replace("_", " "));
@@ -1155,7 +1142,7 @@
         });
     });
 
-
+// ability buttons
     abilities.forEach(ability => {
         on(`clicked:${ability}`, () => {
             final_label = capitalise(ability.replace("_", " "));
@@ -1178,19 +1165,18 @@
         setAttrs({"num_dice": 2})
     })
 
+    //this function updates the main roll,
     function updateMainModifier() {
         //TODO: find some better way to do this, too much hard coding.
         update = {}
         getAttrs([`selected_attribute`, `selected_ability`,], selected_stat => {
             let roll_obj = {}
             let attribute = selected_stat[`selected_attribute`].toLowerCase().replace(" ", "_")
-            let attribute_name = selected_stat[`selected_attribute`]
             let ability = selected_stat[`selected_ability`].toLowerCase().replace(" ", "_")
-            let ability_name = selected_stat[`selected_ability`]
             let active_stats = []
             console.log(`rollupdate ${attribute} ${ability}`)
             let roll = "&{template:custom} {{title=@{character_name} rolls "
-            //title
+            //buid title
             if (attribute == "no_attribute" && ability == "no_ability") {
                 roll += "Nothing"
             } else if (attribute != "no_attribute" && ability != "no_ability") {
@@ -1229,20 +1215,19 @@
                 })
 
                 total_mod = total_mod.slice(0, -1)
+
                 roll_obj["character_name"] = "@{character_name}"
                 roll_obj["stats"] = [attribute, ability]
                 roll_obj["roll"] = roll
                 roll_obj["target number"] = `[[${total_mod}]]`
                 roll_obj["charid"] = "@{character_id}"
-                if (total_mod.length < 2) {
-                    roll += `{{Successes=[[@{num_dice}d20<1cs<@{main_crit}cf>@{main_botch}]]}}  \n!resetmaindice @{character_id}`
-                } else {
-                    roll += `{{Successes=[[@{num_dice}d20<[[${total_mod}]]cs<@{main_crit}cf>@{main_botch}]]}}  \n!resetmaindice @{character_id}`
-
-                }
-
+                // if (total_mod.length < 2) {
+                //     roll += `{{Successes=[[@{num_dice}d20<1cs<@{main_crit}cf>@{main_botch}]]}}  \n!resetmaindice @{character_id}`
+                // } else {
+                //     roll += `{{Successes=[[@{num_dice}d20<[[${total_mod}]]cs<@{main_crit}cf>@{main_botch}]]}}  \n!resetmaindice @{character_id}`
+                //
+                // }
                 update["main_roller"] = `!apiroll ${JSON.stringify(roll_obj)}`
-                // update["main_roller"] = roll
                 setAttrs(update)
             })
 
@@ -1446,8 +1431,8 @@
         });
     });
 
+    //remove condition from tool tip and modiifer
     on("remove:repeating_conditions", eventInfo => {
-        //TODO: fix awful amount of duplication in here
         let element = eventInfo.sourceAttribute
         let row_id = element.match(/repeating_.*_-([^_]*)/)[1]
         let currentRow = `repeating_conditions_-${row_id}`;
@@ -1455,10 +1440,11 @@
         console.log("rem eventINFO " + JSON.stringify(eventInfo))
 
         function r_cond(name) {
+            //makes typing out repeating condition attributes less repetitive
             return (eventInfo.removedInfo[`repeating_conditions_-${row_id}_condition_${name}`])
         }
-
         let attr = r_cond("attribute")
+        // set defualt attribute
         if (attr == undefined) {
             console.log("undef")
             attr = "strength"
@@ -1474,7 +1460,6 @@
                     return s
                 }
             }
-
             let update = {}
 
             function remove(attrCond) {
@@ -1484,13 +1469,10 @@
                     if (oldStatConditions[i].includes(currentRow.toLowerCase())) {
                         oldStatConditions.splice(i, 1)
                         let updatedStr = addComma(oldStatConditions.toString().toLowerCase())
-                        console.log("just before " + updatedStr)
                         if (updatedStr == ",") {
                             update[attrCond] = "none"
-                            console.log("e " + attrCond)
                         } else {
                             update[attrCond] = updatedStr
-                            console.log("f " + attrCond)
                         }
                         break;
                     }
@@ -1500,14 +1482,12 @@
             remove(`${attr}_conditions`)
             console.log("rem update " + JSON.stringify(update))
             setAttrs(update);
-
         })
-
-
     })
 
 
     //TODO: make better (less repetition?)
+    //set weapon roll
     on("change:repeating_weapons", eventInfo => {
         let element = eventInfo.sourceAttribute
         let row_id = element.match(/repeating_.*_-([^_]*)/)[1]
@@ -1534,7 +1514,7 @@
             let newatr = `repeating_attacks_${atk_row_id}_atk_weapon`
             newrowattrs[newatr] = info[`repeating_weapons_-${row_id}_weapon_name`];
 
-            // set defualt weapon attribute values (really should have dictionary or something for this)
+            // set default weapon attribute values (really should have dictionary or something for this)
             if (info[`repeating_weapons_-${row_id}_weapon_attribute`] == undefined || info[`repeating_weapons_-${row_id}_weapon_attribute`] == "strength") {
                 newrowattrs[`repeating_weapons_-${row_id}_weapon_attribute`] = "strength"
             }
@@ -1555,13 +1535,14 @@
                 newrowattrs[`repeating_weapons_-${row_id}_weapon_damage`] = 1
             }
 
-
+            //build atk roll
             let atk_roll_obj = {}
             let atk_roll = `&{template:custom}{{title=@{character_name} attacks @{target|character_name} with ${r_wep("weapon_name")}}}`
             atk_roll_obj["charid"] = `@{character_id}`
             atk_roll_obj["character_name"] = "@{character_name}"
             atk_roll_obj["title"] = atk_roll
             let wep_stats = [r_wep("weapon_attribute"), r_wep("weapon_skill")]
+            //TODO: remove unnecssary things
             getAttrs([`${r_wep("weapon_attribute")}_mod_total`, `${r_wep("weapon_attribute")}_tooltip`,
                 `${r_wep("weapon_skill")}_mod_total`, `${r_wep("weapon_skill")}_tooltip`, `repeating_attacks_${atk_row_id}_num_dice`,
                 `repeating_attacks_${atk_row_id}_atk_crit`, `repeating_attacks_${atk_row_id}_atk_botch`], values => {

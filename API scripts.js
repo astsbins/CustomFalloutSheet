@@ -170,9 +170,9 @@ on("chat:message", function (msg) {
 
             if (attr == undefined) {
                 if (suppress_error == false) {
-                    sendChat("Error", `${name} is not initialised or invalid, it will probably cause errors`)
+                    sendChat("Error", `${name} is not initialised or invalid, it will probably cause errors api may need to be reset`)
                 }
-                console.log("Error", `${name} is not initialised or invalid, it will probably cause errors`)
+                console.log("Error", `${name} is not initialised or invalid`)
                 return undefined
             } else {
                 return attr.get("current")
@@ -232,9 +232,17 @@ on("chat:message", function (msg) {
         main_roll += `{{Successes=${roll_html}${roll_tooltip} }}`
 
         // sendChat("test", `${rollobj["roll"]}`)
-        sendChat("test", "&{template:custom}"+main_roll)
+        sendChat("test", "&{template:custom}"+main_roll+"{{=\n}}")
+        //reset atk_dice_num to 2
+        let numdice = findObjs({
+            "type": "attribute",
+            "name": `${rollobj["character_name"]}|main_dice`,
+            "_characterid": rollobj["charid"]
+        }, {caseInsensitive: true})[0]
+        numdice.set("current", 2)
     }
 })
+
 
 //##########################attacks
 on("chat:message", function (msg) {

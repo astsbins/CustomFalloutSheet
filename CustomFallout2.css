@@ -574,9 +574,8 @@ sheet-atk_ammo{
     height: 100%;
     /*display: grid;*/
     grid-template-areas: "title"
-                         "status"
                          "conditions";
-    grid-template-rows: 0.3fr 1fr 5fr;
+    grid-template-rows: 1em  5fr;
     grid-gap: 0.4em;
     min-height: 0;
     min-width: 0;
