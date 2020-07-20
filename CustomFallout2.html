@@ -1117,15 +1117,19 @@
             })
             setAttrs(update)
         })
-        getAttrs(["main_crit", "main_botch"], stats => {
+        getAttrs(["num_dice", "main_crit", "main_botch"], stats => {
+            console.log(`critbotch, ${JSON.stringify(stats)} crit ${stats["main_crit"] == 1} botch ${stats["main_botch"] == 20} dice ${stats["num_dice"] == 2}`)
             let update = {}
-            if (stats["main_crit"] == undefined || ["main_crit"] == 1) {
-                update["main_crit"] == 1
+            if (stats["main_crit"] == undefined || stats["main_crit"] == 1) {
+                update["main_crit"] = 1
             }
-            if (stats["main_botch"] == undefined || ["main_botch"] == 20) {
-                update["main_botch"] == 20
+            if (stats["main_botch"] == undefined || stats["main_botch"] == 20) {
+                update["main_botch"] = 20
             }
-
+            if (stats["num_dice"] == undefined || stats["num_dice"] == 2) {
+                update["num_dice"] = 2
+            }
+            setAttrs(update)
         })
 
     })
