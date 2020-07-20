@@ -488,6 +488,7 @@ button[name="act_trackers"]{
 .sheet-attacks >.repcontainer[data-groupname="repeating_attacks"] >.repitem>*{
     min-height: 0;
     min-width: 0;
+    /*height: max-content;*/
     /*height: 2em;*/
 }
 .sheet-atk_crit_botch{
@@ -750,6 +751,7 @@ input.sheet-toggle_perk_description:not(:checked) ~ textarea{
 /*    width: 70%;*/
 /*}*/
 .sheet-weapons{
+    overflow: auto;
     border: var(--border);
     background-color: var(--tile_colour);
     grid-column: 1/10;
