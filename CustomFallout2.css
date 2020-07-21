@@ -297,8 +297,8 @@ button:hover ~ .sheet-special_mod{
     background-color: var(--tile_colour);
     padding: 0.5em;
     display: grid;
-    /*                      numdice roll attribute ability initiative crit botch*/
-    grid-template-columns: 1fr        2fr 3fr       3fr         2fr     1fr 1fr;
+    /*                      numdice roll attribute ability      initiative crit botch*/
+    grid-template-columns: 1fr       2fr   2.3fr       3fr         2.5fr     1fr 1fr;
     grid-gap: 0.5em;
     min-width: 0;
 }
@@ -308,8 +308,16 @@ button:hover ~ .sheet-special_mod{
     align-self: center;
     padding: 0.5em;
     min-width: 0;
-
     /*border: var(--border);*/
+}
+.sheet-stat_select{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.sheet-stat_select > button{
+    width: 4em;
 }
 .sheet-main_tabs{
     grid-area: tab;
@@ -538,21 +546,37 @@ sheet-atk_ammo{
     /*display: grid;*/
     grid-area: content;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr repeat(7,2fr);
     background-color: var(--tile_colour);
     min-height: 0;
     height: 100%;
-    padding: 0.5em;
+    /*padding: 0.5em;*/
     grid-gap: 0.2em;
+    overflow: auto;
 }
-.sheet-armor_tab > div{
-    border: var(--border);
+.repcontainer[data-groupname="repeating_armors"]{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1em;
+}
+.repcontainer[data-groupname="repeating_armors"] > .repitem {
     background-color: var(--tile_colour);
-    padding: 0.2em;
 }
 
-.sheet-armor_title{
-    grid-row: 1;
+
+.sheet-armor_tab > div{
+    border: var(--border);
+    /*background-color: var(--tile_colour);*/
+    padding: 0.2em;
+}
+.sheet-armor_set{
+    padding: 0.4em;
+}
+.sheet-armor_set_name{
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+}
+.sheet-armor_set > input{
+    font-weight: bold;
 }
 .sheet-armor_location{
     display: grid;
@@ -570,10 +594,15 @@ sheet-atk_ammo{
 .sheet-armor_location >div >input[type="number"]{
     min-width: 0;
     height: 1.2em;
+    font-weight: bolder;
 }
 .sheet-armor_location >div >input[type="text"]{
     height: 1.2em;
 }
+.repcontrol[data-groupname="repeating_armors"]{
+    background-color: unset;
+}
+
 .sheet-status_effects{
     padding: 0.5em;
     background-color: var(--tile_colour);

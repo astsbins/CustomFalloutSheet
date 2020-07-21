@@ -63,7 +63,7 @@ for (let abilityModsKey in abilities) {
                 <span class="hidden" name="attr_${modifier}_conditions"></span>
                 <span class="tooltip" name="attr_${modifier}_tooltip"></span>
             </div>
-            <input name="attr_${modifier}_value" type="number" min="0" max="18">
+            <input name="attr_${modifier}_value" type="number" min="-" max="18">
         </span>`);
     })
     console.log("\n")

@@ -116,7 +116,9 @@
     </div>
 
     <div class="skills">
-        <div><h4>Skills</h4>&nbsp;&nbsp;&nbsp; <button type="action" name="act_reset_mods">Reset Mods</button></div>
+        <div><h4>Skills</h4>&nbsp;&nbsp;&nbsp;
+            <button type="action" name="act_reset_mods">Reset Mods</button>
+        </div>
 
         <span class="skills_athletics">
             <button type="action" name="act_athletics">Athletics</button>
@@ -523,33 +525,33 @@
     </div>
 
     <div class="charinfo">
-                <div class="info_input"><label>Name</label> <input type="text" placeholder="Name" name="attr_name"></div>
-                <div class="info_input"><label>Player</label> <input type="text" placeholder="Player" name="attr_player"></div>
-                <div class="info_input"><label>Hometown</label> <input type="text" placeholder="Hometown" name="attr_hometown"></div>
-                <div class="info_input"><label>Race </label> <input type="text" placeholder="Race" name="attr_race"></div>
-                <div class="info_input"><label>Origin</label> <input type="text" placeholder="Origin" name="attr_origin"></div>
-                <div class="info_input"><label>Background</label> <input type="text" placeholder="Background" name="attr_background"></div>
-                <div class="info_input"><label>Archetype</label> <input type="text" placeholder="Archetype" name="attr_archetype"></div>
-                <div class="info_input"><label>Karma</label> <input type="text" placeholder="Rep/karma" name="attr_karma"></div>
-                <div class="info_input"><label>Level</label> <input type="text" placeholder="Levl" name="attr_level"></div>
-<!--        <div class="info_input"><input type="text" placeholder="Name" name="attr_character_name">-->
-<!--        </div>-->
-<!--        <div class="info_input"><input type="text" placeholder="Player" name="attr_player">-->
-<!--        </div>-->
-<!--        <div class="info_input"><input type="text" placeholder="Hometown" name="attr_hometown">-->
-<!--        </div>-->
-<!--        <div class="info_input"><input type="text" placeholder="Race" name="attr_race"></div>-->
-<!--        <div class="info_input"><input type="text" placeholder="Origin" name="attr_origin">-->
-<!--        </div>-->
-<!--        <div class="info_input"><input type="text" placeholder="Background"-->
-<!--                                       name="attr_background"></div>-->
-<!--        <div class="info_input"><input type="text" placeholder="Archetype"-->
-<!--                                       name="attr_archetype"></div>-->
-<!--        <div class="info_input"><input type="text" placeholder="Reputation"-->
-<!--                                       name="attr_reputation"></div>-->
-<!--        &lt;!&ndash;            TODO: make into gridlayout/flexbox?&ndash;&gt;-->
-<!--        <div class="info_input"><input type="number" placeholder="Karma" name="attr_karma">&nbsp;&nbsp;&nbsp;-->
-<!--            <input type="number" placeholder="Level" name="attr_level"></div>-->
+        <div class="info_input"><label>Name</label> <input type="text" placeholder="Name" name="attr_name"></div>
+        <div class="info_input"><label>Player</label> <input type="text" placeholder="Player" name="attr_player"></div>
+        <div class="info_input"><label>Hometown</label> <input type="text" placeholder="Hometown" name="attr_hometown"></div>
+        <div class="info_input"><label>Race </label> <input type="text" placeholder="Race" name="attr_race"></div>
+        <div class="info_input"><label>Origin</label> <input type="text" placeholder="Origin" name="attr_origin"></div>
+        <div class="info_input"><label>Background</label> <input type="text" placeholder="Background" name="attr_background"></div>
+        <div class="info_input"><label>Archetype</label> <input type="text" placeholder="Archetype" name="attr_archetype"></div>
+        <div class="info_input"><label>Karma</label> <input type="text" placeholder="Rep/karma" name="attr_karma"></div>
+        <div class="info_input"><label>Level</label> <input type="text" placeholder="Level" name="attr_level"></div>
+        <!--        <div class="info_input"><input type="text" placeholder="Name" name="attr_character_name">-->
+        <!--        </div>-->
+        <!--        <div class="info_input"><input type="text" placeholder="Player" name="attr_player">-->
+        <!--        </div>-->
+        <!--        <div class="info_input"><input type="text" placeholder="Hometown" name="attr_hometown">-->
+        <!--        </div>-->
+        <!--        <div class="info_input"><input type="text" placeholder="Race" name="attr_race"></div>-->
+        <!--        <div class="info_input"><input type="text" placeholder="Origin" name="attr_origin">-->
+        <!--        </div>-->
+        <!--        <div class="info_input"><input type="text" placeholder="Background"-->
+        <!--                                       name="attr_background"></div>-->
+        <!--        <div class="info_input"><input type="text" placeholder="Archetype"-->
+        <!--                                       name="attr_archetype"></div>-->
+        <!--        <div class="info_input"><input type="text" placeholder="Reputation"-->
+        <!--                                       name="attr_reputation"></div>-->
+        <!--        &lt;!&ndash;            TODO: make into gridlayout/flexbox?&ndash;&gt;-->
+        <!--        <div class="info_input"><input type="number" placeholder="Karma" name="attr_karma">&nbsp;&nbsp;&nbsp;-->
+        <!--            <input type="number" placeholder="Level" name="attr_level"></div>-->
 
     </div>
     <div class="main">
@@ -564,17 +566,18 @@
                     value="&{template:custom} {{title=@{character_name} rolls @{selected_attribute} + @{selected_ability}}}{{Successes=[[@{num_dice}d20<[[@{selected_attribute_value}+@{selected_ability_value}]]cs<@{main_crit}cf>@{main_botch}]]}}&#010;!resetmaindice @{character_id}">
                 Roll
             </button>
-
-            <div>
-                <input type="hidden" name="attr_selected_attribute_value"/>
+            <div class="stat_select">
+                <span class="main_mod"><input type="hidden" name="attr_selected_attribute_value"/></span>
                 <span name="attr_selected_attribute">noattr</span>
                 <button type="action" name="act_noattr">None</button>
+                <span>Mod: <input type="number" name="attr_main_attribute_mod"></span>
                 <span type="hidden" name="noattr_value" value="0"></span>
             </div>
-            <div>
+            <div class="stat_select">
                 <input type="hidden" name="attr_selected_ability_value"/>
                 <span name="attr_selected_ability">noabil</span>
                 <button type="action" name="act_noabil">None</button>
+                <span>Mod: <input type="number" name="attr_main_ability_mod"></span>
                 <span type="hidden" name="noabil_value" value="0"></span>
             </div>
             <div>
@@ -654,79 +657,82 @@
 
                 <!--              Armor Tab -->
                 <div class="armor_tab">
-                    <h4 class="armor_title">Armor</h4>
+                    <fieldset class="repeating_armors">
+                        <div class="armor_set">
+                            <span class="armor_set_name"><label>Armor Set</label><input type="text" name="attr_armor_set_name" placeholder="Armor Set Name"></span>
+                            <div class="armor_location" name="attr_armor_eyes">
+                                <div class="location"><strong>Eyes</strong></div>
+                                <div class="armor_name"><input type="text" name="attr_eyes_armor_name" placeholder="Armor Name"></div>
+                                <div class="phy_dr_eyes">PHY<input type="number" name="attr_phy_dr_eyes" placeholder="DR"></div>
+                                <div class="ene_dr_eyes">ENE<input type="number" name="attr_ene_dr_eyes" placeholder="DR"></div>
+                                <div class="rad_rd_eyes">RAD<input type="number" name="attr_rad_rd_eyes" placeholder="DR"></div>
+                                <div class="poi_dr_eyes">POI<input type="number" name="attr_poi_dr_eyes" placeholder="DR"></div>
+                            </div>
 
-                    <div class="armor_location" name="attr_armor_eyes">
-                        <div class="location"><strong>Eyes</strong></div>
-                        <div class="armor_name"><input type="text" name="attr_eyes_armor_name" placeholder="Armor Name"></div>
-                        <div class="phy_dr_eyes">PHY<input type="number" name="attr_phy_dr_eyes" placeholder="DR"></div>
-                        <div class="ene_dr_eyes">ENE<input type="number" name="attr_ene_dr_eyes" placeholder="DR"></div>
-                        <div class="rad_rd_eyes">RAD<input type="number" name="attr_rad_rd_eyes" placeholder="DR"></div>
-                        <div class="poi_dr_eyes">POI<input type="number" name="attr_poi_dr_eyes" placeholder="DR"></div>
-                    </div>
+                            <div class="armor_location" name="attr_armor_head">
+                                <div class="location"><strong>Head</strong></div>
+                                <div class="armor_name"><input type="text" name="attr_head_armor_name" placeholder="Armor Name"></div>
+                                <div class="phy_dr_head">PHY<input type="number" name="attr_phy_dr_head" placeholder="DR"></div>
+                                <div class="ene_dr_head">ENE<input type="number" name="attr_ene_dr_head" placeholder="DR"></div>
+                                <div class="rad_rd_head">RAD<input type="number" name="attr_rad_rd_head" placeholder="DR"></div>
+                                <div class="poi_dr_head">POI<input type="number" name="attr_poi_dr_head" placeholder="DR"></div>
+                            </div>
 
-                    <div class="armor_location" name="attr_armor_head">
-                        <div class="location"><strong>Head</strong></div>
-                        <div class="armor_name"><input type="text" name="attr_head_armor_name" placeholder="Armor Name"></div>
-                        <div class="phy_dr_head">PHY<input type="number" name="attr_phy_dr_head" placeholder="DR"></div>
-                        <div class="ene_dr_head">ENE<input type="number" name="attr_ene_dr_head" placeholder="DR"></div>
-                        <div class="rad_rd_head">RAD<input type="number" name="attr_rad_rd_head" placeholder="DR"></div>
-                        <div class="poi_dr_head">POI<input type="number" name="attr_poi_dr_head" placeholder="DR"></div>
-                    </div>
+                            <div class="armor_location" name="attr_armor_right_arm">
+                                <div class="location"><strong>Right Arm</strong></div>
+                                <div class="armor_name"><input type="text" name="attr_right_arm_armor_name" placeholder="Armor Name"></div>
+                                <div class="phy_dr_right_arm">PHY<input type="number" name="attr_phy_dr_right_arm" placeholder="DR"></div>
+                                <div class="ene_dr_right_arm">ENE<input type="number" name="attr_ene_dr_right_arm" placeholder="DR"></div>
+                                <div class="rad_rd_right_arm">RAD<input type="number" name="attr_rad_rd_right_arm" placeholder="DR"></div>
+                                <div class="poi_dr_right_arm">POI<input type="number" name="attr_poi_dr_right_arm" placeholder="DR"></div>
+                            </div>
 
-                    <div class="armor_location" name="attr_armor_right_arm">
-                        <div class="location"><strong>Right Arm</strong></div>
-                        <div class="armor_name"><input type="text" name="attr_right_arm_armor_name" placeholder="Armor Name"></div>
-                        <div class="phy_dr_right_arm">PHY<input type="number" name="attr_phy_dr_right_arm" placeholder="DR"></div>
-                        <div class="ene_dr_right_arm">ENE<input type="number" name="attr_ene_dr_right_arm" placeholder="DR"></div>
-                        <div class="rad_rd_right_arm">RAD<input type="number" name="attr_rad_rd_right_arm" placeholder="DR"></div>
-                        <div class="poi_dr_right_arm">POI<input type="number" name="attr_poi_dr_right_arm" placeholder="DR"></div>
-                    </div>
+                            <div class="armor_location" name="attr_armor_left_arm">
+                                <div class="location"><strong>Left Arm</strong></div>
+                                <div class="armor_name"><input type="text" name="attr_left_arm_armor_name" placeholder="Armor Name"></div>
+                                <div class="phy_dr_left_arm">PHY<input type="number" name="attr_phy_dr_left_arm" placeholder="DR"></div>
+                                <div class="ene_dr_left_arm">ENE<input type="number" name="attr_ene_dr_left_arm" placeholder="DR"></div>
+                                <div class="rad_rd_left_arm">RAD<input type="number" name="attr_rad_rd_left_arm" placeholder="DR"></div>
+                                <div class="poi_dr_left_arm">POI<input type="number" name="attr_poi_dr_left_arm" placeholder="DR"></div>
+                            </div>
 
-                    <div class="armor_location" name="attr_armor_left_arm">
-                        <div class="location"><strong>Left Arm</strong></div>
-                        <div class="armor_name"><input type="text" name="attr_left_arm_armor_name" placeholder="Armor Name"></div>
-                        <div class="phy_dr_left_arm">PHY<input type="number" name="attr_phy_dr_left_arm" placeholder="DR"></div>
-                        <div class="ene_dr_left_arm">ENE<input type="number" name="attr_ene_dr_left_arm" placeholder="DR"></div>
-                        <div class="rad_rd_left_arm">RAD<input type="number" name="attr_rad_rd_left_arm" placeholder="DR"></div>
-                        <div class="poi_dr_left_arm">POI<input type="number" name="attr_poi_dr_left_arm" placeholder="DR"></div>
-                    </div>
+                            <div class="armor_location" name="attr_armor_torso">
+                                <div class="location"><strong>Torso</strong></div>
+                                <div class="armor_name"><input type="text" name="attr_torso_armor_name" placeholder="Armor Name"></div>
+                                <div class="phy_dr_torso">PHY<input type="number" name="attr_phy_dr_torso" placeholder="DR"></div>
+                                <div class="ene_dr_torso">ENE<input type="number" name="attr_ene_dr_torso" placeholder="DR"></div>
+                                <div class="rad_rd_torso">RAD<input type="number" name="attr_rad_rd_torso" placeholder="DR"></div>
+                                <div class="poi_dr_torso">POI<input type="number" name="attr_poi_dr_torso" placeholder="DR"></div>
+                            </div>
 
-                    <div class="armor_location" name="attr_armor_torso">
-                        <div class="location"><strong>Torso</strong></div>
-                        <div class="armor_name"><input type="text" name="attr_torso_armor_name" placeholder="Armor Name"></div>
-                        <div class="phy_dr_torso">PHY<input type="number" name="attr_phy_dr_torso" placeholder="DR"></div>
-                        <div class="ene_dr_torso">ENE<input type="number" name="attr_ene_dr_torso" placeholder="DR"></div>
-                        <div class="rad_rd_torso">RAD<input type="number" name="attr_rad_rd_torso" placeholder="DR"></div>
-                        <div class="poi_dr_torso">POI<input type="number" name="attr_poi_dr_torso" placeholder="DR"></div>
-                    </div>
+                            <div class="armor_location" name="attr_armor_groin">
+                                <div class="location"><strong>Groin</strong></div>
+                                <div class="armor_name"><input type="text" name="attr_groin_armor_name" placeholder="Armor Name"></div>
+                                <div class="phy_dr_groin">PHY<input type="number" name="attr_phy_dr_groin" placeholder="DR"></div>
+                                <div class="ene_dr_groin">ENE<input type="number" name="attr_ene_dr_groin" placeholder="DR"></div>
+                                <div class="rad_rd_groin">RAD<input type="number" name="attr_rad_rd_groin" placeholder="DR"></div>
+                                <div class="poi_dr_groin">POI<input type="number" name="attr_poi_dr_groin" placeholder="DR"></div>
+                            </div>
 
-                    <div class="armor_location" name="attr_armor_groin">
-                        <div class="location"><strong>Groin</strong></div>
-                        <div class="armor_name"><input type="text" name="attr_groin_armor_name" placeholder="Armor Name"></div>
-                        <div class="phy_dr_groin">PHY<input type="number" name="attr_phy_dr_groin" placeholder="DR"></div>
-                        <div class="ene_dr_groin">ENE<input type="number" name="attr_ene_dr_groin" placeholder="DR"></div>
-                        <div class="rad_rd_groin">RAD<input type="number" name="attr_rad_rd_groin" placeholder="DR"></div>
-                        <div class="poi_dr_groin">POI<input type="number" name="attr_poi_dr_groin" placeholder="DR"></div>
-                    </div>
+                            <div class="armor_location" name="attr_armor_left_leg">
+                                <div class="location"><strong>Left Leg</strong></div>
+                                <div class="armor_name"><input type="text" name="attr_left_leg_armor_name" placeholder="Armor Name"></div>
+                                <div class="phy_dr_left_leg">PHY<input type="number" name="attr_phy_dr_left_leg" placeholder="DR"></div>
+                                <div class="ene_dr_left_leg">ENE<input type="number" name="attr_ene_dr_left_leg" placeholder="DR"></div>
+                                <div class="rad_rd_left_leg">RAD<input type="number" name="attr_rad_rd_left_leg" placeholder="DR"></div>
+                                <div class="poi_dr_left_leg">POI<input type="number" name="attr_poi_dr_left_leg" placeholder="DR"></div>
+                            </div>
 
-                    <div class="armor_location" name="attr_armor_left_leg">
-                        <div class="location"><strong>Left Leg</strong></div>
-                        <div class="armor_name"><input type="text" name="attr_left_leg_armor_name" placeholder="Armor Name"></div>
-                        <div class="phy_dr_left_leg">PHY<input type="number" name="attr_phy_dr_left_leg" placeholder="DR"></div>
-                        <div class="ene_dr_left_leg">ENE<input type="number" name="attr_ene_dr_left_leg" placeholder="DR"></div>
-                        <div class="rad_rd_left_leg">RAD<input type="number" name="attr_rad_rd_left_leg" placeholder="DR"></div>
-                        <div class="poi_dr_left_leg">POI<input type="number" name="attr_poi_dr_left_leg" placeholder="DR"></div>
-                    </div>
-
-                    <div class="armor_location" name="attr_armor_right_leg">
-                        <div class="location"><strong>Right Leg</strong></div>
-                        <div class="armor_name"><input type="text" name="attr_right_leg_armor_name" placeholder="Armor Name"></div>
-                        <div class="phy_dr_right_leg">PHY<input type="number" name="attr_phy_dr_right_leg" placeholder="DR"></div>
-                        <div class="ene_dr_right_leg">ENE<input type="number" name="attr_ene_dr_right_leg" placeholder="DR"></div>
-                        <div class="rad_rd_right_leg">RAD<input type="number" name="attr_rad_rd_right_leg" placeholder="DR"></div>
-                        <div class="poi_dr_right_leg">POI<input type="number" name="attr_poi_dr_right_leg" placeholder="DR"></div>
-                    </div>
+                            <div class="armor_location" name="attr_armor_right_leg">
+                                <div class="location"><strong>Right Leg</strong></div>
+                                <div class="armor_name"><input type="text" name="attr_right_leg_armor_name" placeholder="Armor Name"></div>
+                                <div class="phy_dr_right_leg">PHY<input type="number" name="attr_phy_dr_right_leg" placeholder="DR"></div>
+                                <div class="ene_dr_right_leg">ENE<input type="number" name="attr_ene_dr_right_leg" placeholder="DR"></div>
+                                <div class="rad_rd_right_leg">RAD<input type="number" name="attr_rad_rd_right_leg" placeholder="DR"></div>
+                                <div class="poi_dr_right_leg">POI<input type="number" name="attr_poi_dr_right_leg" placeholder="DR"></div>
+                            </div>
+                        </div>
+                    </fieldset>
 
                 </div>
 
@@ -1123,7 +1129,7 @@
 
     })
 
-// attribute buttons
+    // attribute buttons
     attributes.forEach(attribute => {
         on(`clicked:${attribute}`, () => {
             let final_label = capitalise(attribute.replace("_", " "));
@@ -1142,7 +1148,7 @@
         });
     });
 
-// ability buttons
+    // ability buttons
     abilities.forEach(ability => {
         on(`clicked:${ability}`, () => {
             final_label = capitalise(ability.replace("_", " "));
@@ -1264,7 +1270,6 @@
             setAttrs(update);
         });
     });
-
 
 
     // update stat mod when conditions effecting it change
@@ -1443,6 +1448,7 @@
             //makes typing out repeating condition attributes less repetitive
             return (eventInfo.removedInfo[`repeating_conditions_-${row_id}_condition_${name}`])
         }
+
         let attr = r_cond("attribute")
         // set defualt attribute
         if (attr == undefined) {
@@ -1460,6 +1466,7 @@
                     return s
                 }
             }
+
             let update = {}
 
             function remove(attrCond) {
